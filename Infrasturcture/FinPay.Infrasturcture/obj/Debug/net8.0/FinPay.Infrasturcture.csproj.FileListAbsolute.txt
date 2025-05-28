@@ -1,0 +1,17 @@
+D:\GitHub test\FinPay\Infrasturcture\FinPay.Infrasturcture\bin\Debug\net8.0\FinPay.Infrasturcture.deps.json
+D:\GitHub test\FinPay\Infrasturcture\FinPay.Infrasturcture\bin\Debug\net8.0\FinPay.Infrasturcture.dll
+D:\GitHub test\FinPay\Infrasturcture\FinPay.Infrasturcture\bin\Debug\net8.0\FinPay.Infrasturcture.pdb
+D:\GitHub test\FinPay\Infrasturcture\FinPay.Infrasturcture\obj\Debug\net8.0\FinPay.Infrasturcture.GeneratedMSBuildEditorConfig.editorconfig
+D:\GitHub test\FinPay\Infrasturcture\FinPay.Infrasturcture\obj\Debug\net8.0\FinPay.Infrasturcture.AssemblyInfoInputs.cache
+D:\GitHub test\FinPay\Infrasturcture\FinPay.Infrasturcture\obj\Debug\net8.0\FinPay.Infrasturcture.AssemblyInfo.cs
+D:\GitHub test\FinPay\Infrasturcture\FinPay.Infrasturcture\obj\Debug\net8.0\FinPay.Infrasturcture.csproj.CoreCompileInputs.cache
+D:\GitHub test\FinPay\Infrasturcture\FinPay.Infrasturcture\obj\Debug\net8.0\FinPay.Infrasturcture.dll
+D:\GitHub test\FinPay\Infrasturcture\FinPay.Infrasturcture\obj\Debug\net8.0\refint\FinPay.Infrasturcture.dll
+D:\GitHub test\FinPay\Infrasturcture\FinPay.Infrasturcture\obj\Debug\net8.0\FinPay.Infrasturcture.pdb
+D:\GitHub test\FinPay\Infrasturcture\FinPay.Infrasturcture\obj\Debug\net8.0\ref\FinPay.Infrasturcture.dll
+D:\GitHub test\FinPay\Infrasturcture\FinPay.Infrasturcture\bin\Debug\net8.0\FinPay.Application.dll
+D:\GitHub test\FinPay\Infrasturcture\FinPay.Infrasturcture\bin\Debug\net8.0\FinPay.Domain.dll
+D:\GitHub test\FinPay\Infrasturcture\FinPay.Infrasturcture\bin\Debug\net8.0\FinPay.Application.pdb
+D:\GitHub test\FinPay\Infrasturcture\FinPay.Infrasturcture\bin\Debug\net8.0\FinPay.Domain.pdb
+D:\GitHub test\FinPay\Infrasturcture\FinPay.Infrasturcture\obj\Debug\net8.0\FinPay.Infrasturcture.csproj.AssemblyReference.cache
+D:\GitHub test\FinPay\Infrasturcture\FinPay.Infrasturcture\obj\Debug\net8.0\FinPay.I.46652F50.Up2Date
