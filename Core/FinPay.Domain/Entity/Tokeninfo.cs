@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FinPay.Domain.Identity
+namespace FinPay.Domain.Entity
 {
     public class Tokeninfo
     {

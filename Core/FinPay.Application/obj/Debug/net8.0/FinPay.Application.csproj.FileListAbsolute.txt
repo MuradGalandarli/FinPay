@@ -13,3 +13,4 @@ D:\GitHub test\FinPay\Core\FinPay.Application\bin\Debug\net8.0\FinPay.Domain.dll
 D:\GitHub test\FinPay\Core\FinPay.Application\bin\Debug\net8.0\FinPay.Domain.pdb
 D:\GitHub test\FinPay\Core\FinPay.Application\obj\Debug\net8.0\FinPay.Application.csproj.AssemblyReference.cache
 D:\GitHub test\FinPay\Core\FinPay.Application\obj\Debug\net8.0\FinPay.A.BF12074B.Up2Date
+D:\GitHub test\FinPay\Core\FinPay.Application\obj\Debug\net8.0\FinPay.Application.sourcelink.json

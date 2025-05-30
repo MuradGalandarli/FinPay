@@ -10,3 +10,4 @@ D:\GitHub test\FinPay\Core\FinPay.Domain\obj\Debug\net8.0\refint\FinPay.Domain.d
 D:\GitHub test\FinPay\Core\FinPay.Domain\obj\Debug\net8.0\FinPay.Domain.pdb
 D:\GitHub test\FinPay\Core\FinPay.Domain\obj\Debug\net8.0\ref\FinPay.Domain.dll
 D:\GitHub test\FinPay\Core\FinPay.Domain\obj\Debug\net8.0\FinPay.Domain.csproj.AssemblyReference.cache
+D:\GitHub test\FinPay\Core\FinPay.Domain\obj\Debug\net8.0\FinPay.Domain.sourcelink.json

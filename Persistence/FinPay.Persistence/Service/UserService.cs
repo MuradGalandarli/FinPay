@@ -23,6 +23,7 @@ using System.Security.Authentication;
 using FinPay.Application.Exceptions;
 using Microsoft.EntityFrameworkCore.Metadata.Conventions;
 using System.Diagnostics;
+using FinPay.Domain.Entity;
 
 namespace FinPay.Persistence.Service
 {

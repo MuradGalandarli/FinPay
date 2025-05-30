@@ -1,4 +1,8 @@
+using FinPay.Application.Consts;
+using FinPay.Application.CustomAttributes;
+using FinPay.Application.Enums;
 using Microsoft.AspNetCore.Mvc;
+using System.ComponentModel.Design;
 
 namespace FinPay.Persentetion.Controllers
 {
@@ -19,6 +23,7 @@ namespace FinPay.Persentetion.Controllers
         }
 
         [HttpGet(Name = "GetWeatherForecast")]
+        [AuthorizeDefinition(Menu = AuthorizeDefinitionConstants.ControlerName,ActionType = ActionType.Reading,Definition ="Get Methodu")]
         public IEnumerable<WeatherForecast> Get()
         {
             return Enumerable.Range(1, 5).Select(index => new WeatherForecast

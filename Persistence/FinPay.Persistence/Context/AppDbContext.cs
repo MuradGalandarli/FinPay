@@ -1,4 +1,5 @@
-﻿using FinPay.Domain.Identity;
+﻿using FinPay.Domain.Entity;
+using FinPay.Domain.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;

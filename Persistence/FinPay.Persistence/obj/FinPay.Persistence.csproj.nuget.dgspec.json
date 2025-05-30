@@ -154,12 +154,12 @@
         }
       }
     },
-    "D:\\GitHub test\\FinPay\\Infrasturcture\\FinPay.Infrasturcture\\FinPay.Infrasturcture.csproj": {
+    "D:\\GitHub test\\FinPay\\Infrasturcture\\FinPay.Infrasturcture\\FinPay. Infrastructure.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\GitHub test\\FinPay\\Infrasturcture\\FinPay.Infrasturcture\\FinPay.Infrasturcture.csproj",
-        "projectName": "FinPay.Infrasturcture",
-        "projectPath": "D:\\GitHub test\\FinPay\\Infrasturcture\\FinPay.Infrasturcture\\FinPay.Infrasturcture.csproj",
+        "projectUniqueName": "D:\\GitHub test\\FinPay\\Infrasturcture\\FinPay.Infrasturcture\\FinPay. Infrastructure.csproj",
+        "projectName": "FinPay. Infrastructure",
+        "projectPath": "D:\\GitHub test\\FinPay\\Infrasturcture\\FinPay.Infrasturcture\\FinPay. Infrastructure.csproj",
         "packagesPath": "C:\\Users\\LENOVO\\.nuget\\packages\\",
         "outputPath": "D:\\GitHub test\\FinPay\\Infrasturcture\\FinPay.Infrasturcture\\obj\\",
         "projectStyle": "PackageReference",
@@ -203,6 +203,12 @@
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
+          "dependencies": {
+            "Microsoft.AspNetCore.Mvc.Core": {
+              "target": "Package",
+              "version": "[2.3.0, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
@@ -251,8 +257,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "D:\\GitHub test\\FinPay\\Infrasturcture\\FinPay.Infrasturcture\\FinPay.Infrasturcture.csproj": {
-                "projectPath": "D:\\GitHub test\\FinPay\\Infrasturcture\\FinPay.Infrasturcture\\FinPay.Infrasturcture.csproj"
+              "D:\\GitHub test\\FinPay\\Infrasturcture\\FinPay.Infrasturcture\\FinPay. Infrastructure.csproj": {
+                "projectPath": "D:\\GitHub test\\FinPay\\Infrasturcture\\FinPay.Infrasturcture\\FinPay. Infrastructure.csproj"
               }
             }
           }

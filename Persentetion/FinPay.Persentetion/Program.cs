@@ -1,7 +1,9 @@
 
+using FinPay._Infrastructure.Service.Configurations;
 using FinPay.Application.Features.Commands.AppUser.SignupUser;
 using FinPay.Application.Service;
 using FinPay.Application.Service.Authentications;
+using FinPay.Application.Service.Configurations;
 using FinPay.Domain.Identity;
 using FinPay.Persistence.Context;
 using FinPay.Persistence.Seeder;
@@ -31,6 +33,10 @@ namespace FinPay.Persentetion
             builder.Services.AddScoped<ITokenService, TokenService>();
             builder.Services.AddScoped<IUserService, UserService>();
             builder.Services.AddMediatR(typeof(SignupCommandRequest).Assembly);
+
+
+            builder.Services.AddScoped<IApplicationService, ApplicationService>();
+
 
             string connectionString = builder.Configuration.GetConnectionString("default");
 

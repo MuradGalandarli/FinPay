@@ -3,20 +3,64 @@
   "WorkspaceRootPath": "D:\\GitHub test\\FinPay\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{81CFD1EB-E58A-47A7-8781-A96DAADC1375}|Infrasturcture\\FinPay.Infrasturcture\\FinPay. Infrastructure.csproj|d:\\github test\\finpay\\infrasturcture\\finpay.infrasturcture\\service\\configurations\\applicationservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{81CFD1EB-E58A-47A7-8781-A96DAADC1375}|Infrasturcture\\FinPay.Infrasturcture\\FinPay. Infrastructure.csproj|solutionrelative:infrasturcture\\finpay.infrasturcture\\service\\configurations\\applicationservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F7454FF3-9569-4689-BA1D-69D165DBA78E}|Persentetion\\FinPay.Persentetion\\FinPay.Presentation.csproj|d:\\github test\\finpay\\persentetion\\finpay.persentetion\\controllers\\applicationservicescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F7454FF3-9569-4689-BA1D-69D165DBA78E}|Persentetion\\FinPay.Persentetion\\FinPay.Presentation.csproj|solutionrelative:persentetion\\finpay.persentetion\\controllers\\applicationservicescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F7454FF3-9569-4689-BA1D-69D165DBA78E}|Persentetion\\FinPay.Persentetion\\FinPay.Presentation.csproj|d:\\github test\\finpay\\persentetion\\finpay.persentetion\\controllers\\authorize.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F7454FF3-9569-4689-BA1D-69D165DBA78E}|Persentetion\\FinPay.Persentetion\\FinPay.Presentation.csproj|solutionrelative:persentetion\\finpay.persentetion\\controllers\\authorize.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F7454FF3-9569-4689-BA1D-69D165DBA78E}|Persentetion\\FinPay.Persentetion\\FinPay.Presentation.csproj|d:\\github test\\finpay\\persentetion\\finpay.persentetion\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F7454FF3-9569-4689-BA1D-69D165DBA78E}|Persentetion\\FinPay.Persentetion\\FinPay.Presentation.csproj|solutionrelative:persentetion\\finpay.persentetion\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FFFDD799-DD67-4FB2-8E1B-335FFC044C49}|Core\\FinPay.Application\\FinPay.Application.csproj|d:\\github test\\finpay\\core\\finpay.application\\dtos\\configuration\\action.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FFFDD799-DD67-4FB2-8E1B-335FFC044C49}|Core\\FinPay.Application\\FinPay.Application.csproj|solutionrelative:core\\finpay.application\\dtos\\configuration\\action.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F7454FF3-9569-4689-BA1D-69D165DBA78E}|Persentetion\\FinPay.Persentetion\\FinPay.Presentation.csproj|d:\\github test\\finpay\\persentetion\\finpay.persentetion\\controllers\\weatherforecastcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F7454FF3-9569-4689-BA1D-69D165DBA78E}|Persentetion\\FinPay.Persentetion\\FinPay.Presentation.csproj|solutionrelative:persentetion\\finpay.persentetion\\controllers\\weatherforecastcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FFFDD799-DD67-4FB2-8E1B-335FFC044C49}|Core\\FinPay.Application\\FinPay.Application.csproj|d:\\github test\\finpay\\core\\finpay.application\\dtos\\configuration\\menu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FFFDD799-DD67-4FB2-8E1B-335FFC044C49}|Core\\FinPay.Application\\FinPay.Application.csproj|solutionrelative:core\\finpay.application\\dtos\\configuration\\menu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FFFDD799-DD67-4FB2-8E1B-335FFC044C49}|Core\\FinPay.Application\\FinPay.Application.csproj|d:\\github test\\finpay\\core\\finpay.application\\consts\\authorizedefinitionconstants.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FFFDD799-DD67-4FB2-8E1B-335FFC044C49}|Core\\FinPay.Application\\FinPay.Application.csproj|solutionrelative:core\\finpay.application\\consts\\authorizedefinitionconstants.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FFFDD799-DD67-4FB2-8E1B-335FFC044C49}|Core\\FinPay.Application\\FinPay.Application.csproj|d:\\github test\\finpay\\core\\finpay.application\\features\\commands\\appuser\\signupuser\\signupcommandhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FFFDD799-DD67-4FB2-8E1B-335FFC044C49}|Core\\FinPay.Application\\FinPay.Application.csproj|solutionrelative:core\\finpay.application\\features\\commands\\appuser\\signupuser\\signupcommandhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FFFDD799-DD67-4FB2-8E1B-335FFC044C49}|Core\\FinPay.Application\\FinPay.Application.csproj|d:\\github test\\finpay\\core\\finpay.application\\service\\iuserservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FFFDD799-DD67-4FB2-8E1B-335FFC044C49}|Core\\FinPay.Application\\FinPay.Application.csproj|solutionrelative:core\\finpay.application\\service\\iuserservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{DAA58652-747F-4B7F-95C7-E7F496ABF5AD}|Persistence\\FinPay.Persistence\\FinPay.Persistence.csproj|d:\\github test\\finpay\\persistence\\finpay.persistence\\service\\userservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{DAA58652-747F-4B7F-95C7-E7F496ABF5AD}|Persistence\\FinPay.Persistence\\FinPay.Persistence.csproj|solutionrelative:persistence\\finpay.persistence\\service\\userservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F7454FF3-9569-4689-BA1D-69D165DBA78E}|Persentetion\\FinPay.Persentetion\\FinPay.Persentetion.csproj|d:\\github test\\finpay\\persentetion\\finpay.persentetion\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F7454FF3-9569-4689-BA1D-69D165DBA78E}|Persentetion\\FinPay.Persentetion\\FinPay.Persentetion.csproj|solutionrelative:persentetion\\finpay.persentetion\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{F7454FF3-9569-4689-BA1D-69D165DBA78E}|Persentetion\\FinPay.Persentetion\\FinPay.Presentation.csproj|d:\\github test\\finpay\\persentetion\\finpay.persentetion\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F7454FF3-9569-4689-BA1D-69D165DBA78E}|Persentetion\\FinPay.Persentetion\\FinPay.Presentation.csproj|solutionrelative:persentetion\\finpay.persentetion\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{81CFD1EB-E58A-47A7-8781-A96DAADC1375}|Infrasturcture\\FinPay.Infrasturcture\\FinPay. Infrastructure.csproj|d:\\github test\\finpay\\infrasturcture\\finpay.infrasturcture\\finpay. infrastructure.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{81CFD1EB-E58A-47A7-8781-A96DAADC1375}|Infrasturcture\\FinPay.Infrasturcture\\FinPay. Infrastructure.csproj|solutionrelative:infrasturcture\\finpay.infrasturcture\\finpay. infrastructure.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4A375C86-90FA-486F-AA3E-EFAC29A07294}|Core\\FinPay.Domain\\FinPay.Domain.csproj|d:\\github test\\finpay\\core\\finpay.domain\\entity\\tokeninfo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4A375C86-90FA-486F-AA3E-EFAC29A07294}|Core\\FinPay.Domain\\FinPay.Domain.csproj|solutionrelative:core\\finpay.domain\\entity\\tokeninfo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{FFFDD799-DD67-4FB2-8E1B-335FFC044C49}|Core\\FinPay.Application\\FinPay.Application.csproj|d:\\github test\\finpay\\core\\finpay.application\\features\\commands\\appuser\\refreshtoken\\refreshtokencommandresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{FFFDD799-DD67-4FB2-8E1B-335FFC044C49}|Core\\FinPay.Application\\FinPay.Application.csproj|solutionrelative:core\\finpay.application\\features\\commands\\appuser\\refreshtoken\\refreshtokencommandresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{FFFDD799-DD67-4FB2-8E1B-335FFC044C49}|Core\\FinPay.Application\\FinPay.Application.csproj|d:\\github test\\finpay\\core\\finpay.application\\exceptions\\signuperrorexception.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{FFFDD799-DD67-4FB2-8E1B-335FFC044C49}|Core\\FinPay.Application\\FinPay.Application.csproj|solutionrelative:core\\finpay.application\\exceptions\\signuperrorexception.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{FFFDD799-DD67-4FB2-8E1B-335FFC044C49}|Core\\FinPay.Application\\FinPay.Application.csproj|d:\\github test\\finpay\\core\\finpay.application\\features\\commands\\appuser\\refreshtoken\\refreshtokencommandrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -31,16 +75,8 @@
       "RelativeMoniker": "D:0:0:{FFFDD799-DD67-4FB2-8E1B-335FFC044C49}|Core\\FinPay.Application\\FinPay.Application.csproj|solutionrelative:core\\finpay.application\\features\\commands\\appuser\\loginuser\\loginusercommandhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{FFFDD799-DD67-4FB2-8E1B-335FFC044C49}|Core\\FinPay.Application\\FinPay.Application.csproj|d:\\github test\\finpay\\core\\finpay.application\\features\\commands\\appuser\\signupuser\\signupcommandhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{FFFDD799-DD67-4FB2-8E1B-335FFC044C49}|Core\\FinPay.Application\\FinPay.Application.csproj|solutionrelative:core\\finpay.application\\features\\commands\\appuser\\signupuser\\signupcommandhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{FFFDD799-DD67-4FB2-8E1B-335FFC044C49}|Core\\FinPay.Application\\FinPay.Application.csproj|d:\\github test\\finpay\\core\\finpay.application\\features\\commands\\appuser\\refreshtoken\\refreshtokencommandhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{FFFDD799-DD67-4FB2-8E1B-335FFC044C49}|Core\\FinPay.Application\\FinPay.Application.csproj|solutionrelative:core\\finpay.application\\features\\commands\\appuser\\refreshtoken\\refreshtokencommandhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{FFFDD799-DD67-4FB2-8E1B-335FFC044C49}|Core\\FinPay.Application\\FinPay.Application.csproj|d:\\github test\\finpay\\core\\finpay.application\\service\\iuserservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{FFFDD799-DD67-4FB2-8E1B-335FFC044C49}|Core\\FinPay.Application\\FinPay.Application.csproj|solutionrelative:core\\finpay.application\\service\\iuserservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{FFFDD799-DD67-4FB2-8E1B-335FFC044C49}|Core\\FinPay.Application\\FinPay.Application.csproj|d:\\github test\\finpay\\core\\finpay.application\\features\\commands\\appuser\\loginuser\\loginusercommandresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -58,7 +94,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 11,
+          "SelectedChildIndex": 7,
           "Children": [
             {
               "$type": "Bookmark",
@@ -70,20 +106,137 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "SignupErrorException.cs",
-              "DocumentMoniker": "D:\\GitHub test\\FinPay\\Core\\FinPay.Application\\Exceptions\\SignupErrorException.cs",
-              "RelativeDocumentMoniker": "Core\\FinPay.Application\\Exceptions\\SignupErrorException.cs",
-              "ToolTip": "D:\\GitHub test\\FinPay\\Core\\FinPay.Application\\Exceptions\\SignupErrorException.cs",
-              "RelativeToolTip": "Core\\FinPay.Application\\Exceptions\\SignupErrorException.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAABeAAAAAAAAAA==",
+              "DocumentIndex": 1,
+              "Title": "ApplicationServicesController.cs",
+              "DocumentMoniker": "D:\\GitHub test\\FinPay\\Persentetion\\FinPay.Persentetion\\Controllers\\ApplicationServicesController.cs",
+              "RelativeDocumentMoniker": "Persentetion\\FinPay.Persentetion\\Controllers\\ApplicationServicesController.cs",
+              "ToolTip": "D:\\GitHub test\\FinPay\\Persentetion\\FinPay.Persentetion\\Controllers\\ApplicationServicesController.cs",
+              "RelativeToolTip": "Persentetion\\FinPay.Persentetion\\Controllers\\ApplicationServicesController.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAAAsAAAAIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-24T15:40:50.072Z",
+              "WhenOpened": "2025-05-30T15:22:35.616Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "WeatherForecastController.cs",
+              "DocumentMoniker": "D:\\GitHub test\\FinPay\\Persentetion\\FinPay.Persentetion\\Controllers\\WeatherForecastController.cs",
+              "RelativeDocumentMoniker": "Persentetion\\FinPay.Persentetion\\Controllers\\WeatherForecastController.cs",
+              "ToolTip": "D:\\GitHub test\\FinPay\\Persentetion\\FinPay.Persentetion\\Controllers\\WeatherForecastController.cs",
+              "RelativeToolTip": "Persentetion\\FinPay.Persentetion\\Controllers\\WeatherForecastController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-30T15:11:15.615Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 7,
+              "Title": "AuthorizeDefinitionConstants.cs",
+              "DocumentMoniker": "D:\\GitHub test\\FinPay\\Core\\FinPay.Application\\Consts\\AuthorizeDefinitionConstants.cs",
+              "RelativeDocumentMoniker": "Core\\FinPay.Application\\Consts\\AuthorizeDefinitionConstants.cs",
+              "ToolTip": "D:\\GitHub test\\FinPay\\Core\\FinPay.Application\\Consts\\AuthorizeDefinitionConstants.cs",
+              "RelativeToolTip": "Core\\FinPay.Application\\Consts\\AuthorizeDefinitionConstants.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAA8AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-30T15:03:14.447Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Authorize.cs",
+              "DocumentMoniker": "D:\\GitHub test\\FinPay\\Persentetion\\FinPay.Persentetion\\Controllers\\Authorize.cs",
+              "RelativeDocumentMoniker": "Persentetion\\FinPay.Persentetion\\Controllers\\Authorize.cs",
+              "ToolTip": "D:\\GitHub test\\FinPay\\Persentetion\\FinPay.Persentetion\\Controllers\\Authorize.cs",
+              "RelativeToolTip": "Persentetion\\FinPay.Persentetion\\Controllers\\Authorize.cs",
+              "ViewState": "AgIAAAgAAAAAAAAAAAASwAsAAAAHAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-30T12:07:16.203Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "Program.cs",
+              "DocumentMoniker": "D:\\GitHub test\\FinPay\\Persentetion\\FinPay.Persentetion\\Program.cs",
+              "RelativeDocumentMoniker": "Persentetion\\FinPay.Persentetion\\Program.cs",
+              "ToolTip": "D:\\GitHub test\\FinPay\\Persentetion\\FinPay.Persentetion\\Program.cs",
+              "RelativeToolTip": "Persentetion\\FinPay.Persentetion\\Program.cs",
+              "ViewState": "AgIAABgAAAAAAAAAAAAuwCUAAABSAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-30T12:05:34.941Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "ApplicationService.cs",
+              "DocumentMoniker": "D:\\GitHub test\\FinPay\\Infrasturcture\\FinPay.Infrasturcture\\Service\\Configurations\\ApplicationService.cs",
+              "RelativeDocumentMoniker": "Infrasturcture\\FinPay.Infrasturcture\\Service\\Configurations\\ApplicationService.cs",
+              "ToolTip": "D:\\GitHub test\\FinPay\\Infrasturcture\\FinPay.Infrasturcture\\Service\\Configurations\\ApplicationService.cs",
+              "RelativeToolTip": "Infrasturcture\\FinPay.Infrasturcture\\Service\\Configurations\\ApplicationService.cs",
+              "ViewState": "AgIAABQAAAAAAAAAAIA6wEMAAABhAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-30T11:48:36.05Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "FinPay. Infrastructure",
+              "DocumentMoniker": "D:\\GitHub test\\FinPay\\Infrasturcture\\FinPay.Infrasturcture\\FinPay. Infrastructure.csproj",
+              "RelativeDocumentMoniker": "Infrasturcture\\FinPay.Infrasturcture\\FinPay. Infrastructure.csproj",
+              "ToolTip": "D:\\GitHub test\\FinPay\\Infrasturcture\\FinPay.Infrasturcture\\FinPay. Infrastructure.csproj",
+              "RelativeToolTip": "Infrasturcture\\FinPay.Infrasturcture\\FinPay. Infrastructure.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2025-05-30T11:48:02.594Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Action.cs",
+              "DocumentMoniker": "D:\\GitHub test\\FinPay\\Core\\FinPay.Application\\DTOs\\Configuration\\Action.cs",
+              "RelativeDocumentMoniker": "Core\\FinPay.Application\\DTOs\\Configuration\\Action.cs",
+              "ToolTip": "D:\\GitHub test\\FinPay\\Core\\FinPay.Application\\DTOs\\Configuration\\Action.cs",
+              "RelativeToolTip": "Core\\FinPay.Application\\DTOs\\Configuration\\Action.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAuwA4AAAAaAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-30T11:39:57.437Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Menu.cs",
+              "DocumentMoniker": "D:\\GitHub test\\FinPay\\Core\\FinPay.Application\\DTOs\\Configuration\\Menu.cs",
+              "RelativeDocumentMoniker": "Core\\FinPay.Application\\DTOs\\Configuration\\Menu.cs",
+              "ToolTip": "D:\\GitHub test\\FinPay\\Core\\FinPay.Application\\DTOs\\Configuration\\Menu.cs",
+              "RelativeToolTip": "Core\\FinPay.Application\\DTOs\\Configuration\\Menu.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAuwAsAAAAzAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-30T11:39:22.681Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "Tokeninfo.cs",
+              "DocumentMoniker": "D:\\GitHub test\\FinPay\\Core\\FinPay.Domain\\Entity\\Tokeninfo.cs",
+              "RelativeDocumentMoniker": "Core\\FinPay.Domain\\Entity\\Tokeninfo.cs",
+              "ToolTip": "D:\\GitHub test\\FinPay\\Core\\FinPay.Domain\\Entity\\Tokeninfo.cs",
+              "RelativeToolTip": "Core\\FinPay.Domain\\Entity\\Tokeninfo.cs",
+              "ViewState": "AgIAAAgAAAAAAAAAAAAAwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-29T11:47:15.127Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
               "Title": "SignupCommandHandler.cs",
               "DocumentMoniker": "D:\\GitHub test\\FinPay\\Core\\FinPay.Application\\Features\\Commands\\AppUser\\SignupUser\\SignupCommandHandler.cs",
               "RelativeDocumentMoniker": "Core\\FinPay.Application\\Features\\Commands\\AppUser\\SignupUser\\SignupCommandHandler.cs",
@@ -96,7 +249,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 19,
               "Title": "LoginUserCommandResponse.cs",
               "DocumentMoniker": "D:\\GitHub test\\FinPay\\Core\\FinPay.Application\\Features\\Commands\\AppUser\\LoginUser\\LoginUserCommandResponse.cs",
               "RelativeDocumentMoniker": "Core\\FinPay.Application\\Features\\Commands\\AppUser\\LoginUser\\LoginUserCommandResponse.cs",
@@ -104,12 +257,11 @@
               "RelativeToolTip": "Core\\FinPay.Application\\Features\\Commands\\AppUser\\LoginUser\\LoginUserCommandResponse.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAzAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-24T12:42:18.758Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-24T12:42:18.758Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 20,
               "Title": "LoginUserCommandRequest.cs",
               "DocumentMoniker": "D:\\GitHub test\\FinPay\\Core\\FinPay.Application\\Features\\Commands\\AppUser\\LoginUser\\LoginUserCommandRequest.cs",
               "RelativeDocumentMoniker": "Core\\FinPay.Application\\Features\\Commands\\AppUser\\LoginUser\\LoginUserCommandRequest.cs",
@@ -117,25 +269,23 @@
               "RelativeToolTip": "Core\\FinPay.Application\\Features\\Commands\\AppUser\\LoginUser\\LoginUserCommandRequest.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAuwA8AAAAIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-24T12:25:26.924Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-24T12:25:26.924Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 17,
               "Title": "LoginUserCommandHandler.cs",
               "DocumentMoniker": "D:\\GitHub test\\FinPay\\Core\\FinPay.Application\\Features\\Commands\\AppUser\\LoginUser\\LoginUserCommandHandler.cs",
               "RelativeDocumentMoniker": "Core\\FinPay.Application\\Features\\Commands\\AppUser\\LoginUser\\LoginUserCommandHandler.cs",
               "ToolTip": "D:\\GitHub test\\FinPay\\Core\\FinPay.Application\\Features\\Commands\\AppUser\\LoginUser\\LoginUserCommandHandler.cs",
               "RelativeToolTip": "Core\\FinPay.Application\\Features\\Commands\\AppUser\\LoginUser\\LoginUserCommandHandler.cs",
-              "ViewState": "AgIAAAsAAAAAAAAAAIA9wBYAAAAzAAAAAAAAAA==",
+              "ViewState": "AgIAAAwAAAAAAAAAAAApwBYAAAAzAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-24T12:21:25.823Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-24T12:21:25.823Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 16,
               "Title": "TokenDto.cs",
               "DocumentMoniker": "D:\\GitHub test\\FinPay\\Core\\FinPay.Application\\DTOs\\TokenDto.cs",
               "RelativeDocumentMoniker": "Core\\FinPay.Application\\DTOs\\TokenDto.cs",
@@ -143,12 +293,11 @@
               "RelativeToolTip": "Core\\FinPay.Application\\DTOs\\TokenDto.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAuwA8AAAAzAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-24T12:10:30.378Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-24T12:10:30.378Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 14,
               "Title": "RefreshTokenCommandResponse.cs",
               "DocumentMoniker": "D:\\GitHub test\\FinPay\\Core\\FinPay.Application\\Features\\Commands\\AppUser\\RefreshToken\\RefreshTokenCommandResponse.cs",
               "RelativeDocumentMoniker": "Core\\FinPay.Application\\Features\\Commands\\AppUser\\RefreshToken\\RefreshTokenCommandResponse.cs",
@@ -156,12 +305,11 @@
               "RelativeToolTip": "Core\\FinPay.Application\\Features\\Commands\\AppUser\\RefreshToken\\RefreshTokenCommandResponse.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAzAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-24T10:23:28.838Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-24T10:23:28.838Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 15,
               "Title": "RefreshTokenCommandRequest.cs",
               "DocumentMoniker": "D:\\GitHub test\\FinPay\\Core\\FinPay.Application\\Features\\Commands\\AppUser\\RefreshToken\\RefreshTokenCommandRequest.cs",
               "RelativeDocumentMoniker": "Core\\FinPay.Application\\Features\\Commands\\AppUser\\RefreshToken\\RefreshTokenCommandRequest.cs",
@@ -169,12 +317,11 @@
               "RelativeToolTip": "Core\\FinPay.Application\\Features\\Commands\\AppUser\\RefreshToken\\RefreshTokenCommandRequest.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAuwAkAAAAqAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-24T10:20:29.911Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-24T10:20:29.911Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 18,
               "Title": "RefreshTokenCommandHandler.cs",
               "DocumentMoniker": "D:\\GitHub test\\FinPay\\Core\\FinPay.Application\\Features\\Commands\\AppUser\\RefreshToken\\RefreshTokenCommandHandler.cs",
               "RelativeDocumentMoniker": "Core\\FinPay.Application\\Features\\Commands\\AppUser\\RefreshToken\\RefreshTokenCommandHandler.cs",
@@ -182,18 +329,17 @@
               "RelativeToolTip": "Core\\FinPay.Application\\Features\\Commands\\AppUser\\RefreshToken\\RefreshTokenCommandHandler.cs",
               "ViewState": "AgIAAAkAAAAAAAAAAAApwBUAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-24T10:18:55.249Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-24T10:18:55.249Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 10,
               "Title": "UserService.cs",
               "DocumentMoniker": "D:\\GitHub test\\FinPay\\Persistence\\FinPay.Persistence\\Service\\UserService.cs",
               "RelativeDocumentMoniker": "Persistence\\FinPay.Persistence\\Service\\UserService.cs",
               "ToolTip": "D:\\GitHub test\\FinPay\\Persistence\\FinPay.Persistence\\Service\\UserService.cs",
               "RelativeToolTip": "Persistence\\FinPay.Persistence\\Service\\UserService.cs",
-              "ViewState": "AgIAAB4AAAAAAAAAAAAqwGwAAABfAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAJoAAAAjAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-05-24T09:52:07.4Z",
               "EditorCaption": ""
@@ -213,13 +359,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 3,
               "Title": "AuthController.cs",
               "DocumentMoniker": "D:\\GitHub test\\FinPay\\Persentetion\\FinPay.Persentetion\\Controllers\\AuthController.cs",
               "RelativeDocumentMoniker": "Persentetion\\FinPay.Persentetion\\Controllers\\AuthController.cs",
               "ToolTip": "D:\\GitHub test\\FinPay\\Persentetion\\FinPay.Persentetion\\Controllers\\AuthController.cs",
               "RelativeToolTip": "Persentetion\\FinPay.Persentetion\\Controllers\\AuthController.cs",
-              "ViewState": "AgIAACMAAAAAAAAAAAAqwDEAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAB4AAAAAAAAAAAAmwDEAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-05-24T08:35:27.049Z",
               "EditorCaption": ""

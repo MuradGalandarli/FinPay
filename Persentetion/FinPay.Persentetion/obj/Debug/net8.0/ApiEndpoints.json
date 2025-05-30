@@ -1,5 +1,15 @@
 [
   {
+    "ContainingType": "FinPay.Presentation.Controllers.ApplicationServicesController",
+    "Method": "TestAssabely",
+    "RelativePath": "api/ApplicationServices",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "FinPay.Persentetion.Controllers.AuthController",
     "Method": "Login",
     "RelativePath": "api/Auth/login",
@@ -57,7 +67,7 @@
     "Parameters": [],
     "ReturnTypes": [
       {
-        "Type": "System.Collections.Generic.IEnumerable\u00601[[FinPay.Persentetion.WeatherForecast, FinPay.Persentetion, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[FinPay.Persentetion.WeatherForecast, FinPay.Presentation, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "text/plain",
           "application/json",

@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("FinPay.Persistence")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+918dc4ebb1cc398ae63ff874022f0125fd1e67bd")]
 [assembly: System.Reflection.AssemblyProductAttribute("FinPay.Persistence")]
 [assembly: System.Reflection.AssemblyTitleAttribute("FinPay.Persistence")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
