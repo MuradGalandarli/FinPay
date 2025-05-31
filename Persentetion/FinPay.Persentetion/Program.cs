@@ -32,6 +32,7 @@ namespace FinPay.Persentetion
             builder.Services.AddSwaggerGen();
             builder.Services.AddScoped<ITokenService, TokenService>();
             builder.Services.AddScoped<IUserService, UserService>();
+            builder.Services.AddScoped<IRoleService, RoleService>();
             builder.Services.AddMediatR(typeof(SignupCommandRequest).Assembly);
 
 
@@ -44,7 +45,7 @@ namespace FinPay.Persentetion
                                       options.UseNpgsql(connectionString));
 
             // For Identity
-            builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
+            builder.Services.AddIdentity<ApplicationUser, ApplicationRole>()
                             .AddEntityFrameworkStores<AppDbContext>()
                             .AddDefaultTokenProviders();
 

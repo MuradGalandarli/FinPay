@@ -113,7 +113,7 @@ namespace FinPay.Persistence.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("TokenInfos");
+                    b.ToTable("TokenInfos", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
