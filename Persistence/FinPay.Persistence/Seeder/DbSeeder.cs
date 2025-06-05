@@ -26,7 +26,7 @@ namespace FinPay.Persistence.Seeder
             {
                 // resolve other dependencies
                 var userManager = scope.ServiceProvider.GetService<UserManager<ApplicationUser>>();
-                var roleManager = scope.ServiceProvider.GetService<RoleManager<IdentityRole>>();
+                var roleManager = scope.ServiceProvider.GetService<RoleManager<ApplicationRole>>();
 
                 // Check if any users exist to prevent duplicate seeding
                 if (userManager.Users.Any() == false)
@@ -41,11 +41,11 @@ namespace FinPay.Persistence.Seeder
                     };
 
                     // Create Admin role if it doesn't exist
-                    if ((await roleManager.RoleExistsAsync(Roles.Admin)) == false)
+                    if ((await roleManager.RoleExistsAsync(Role.Admin)) == false)
                     {
                         logger.LogInformation("Admin role is creating");
                         var roleResult = await roleManager
-                          .CreateAsync(new IdentityRole(Roles.Admin));
+                          .CreateAsync(new ApplicationRole { Name = Role.Admin,Id = Guid.NewGuid().ToString()});
 
                         if (roleResult.Succeeded == false)
                         {
@@ -73,7 +73,7 @@ namespace FinPay.Persistence.Seeder
 
                     // adding role to user
                     var addUserToRoleResult = await userManager
-                                    .AddToRoleAsync(user: user, role: Roles.Admin);
+                                    .AddToRoleAsync(user: user, role: Role.Admin);
 
                     if (addUserToRoleResult.Succeeded == false)
                     {

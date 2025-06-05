@@ -57,10 +57,10 @@ namespace FinPay.Persistence.Service
                 }
 
                 
-                if ((await _roleManager.RoleExistsAsync(Roles.User)) == false)
+                if ((await _roleManager.RoleExistsAsync(Role.User)) == false)
                 {
                     var roleResult = await _roleManager
-                          .CreateAsync(new IdentityRole(Roles.User));
+                          .CreateAsync(new IdentityRole(Role.User));
 
                     if (roleResult.Succeeded == false)
                     {
@@ -92,7 +92,7 @@ namespace FinPay.Persistence.Service
                     
                 }
 
-                var addUserToRoleResult = await _userManager.AddToRoleAsync(user: user, role: Roles.User);
+                var addUserToRoleResult = await _userManager.AddToRoleAsync(user: user, role: Role.User);
 
                 if (addUserToRoleResult.Succeeded == false)
                 {

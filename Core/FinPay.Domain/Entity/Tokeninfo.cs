@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace FinPay.Domain.Entity
 {
-    public class Tokeninfo
+    public class Tokeninfo:BaseEntity
     {
-        public int Id { get; set; }
+        
 
         [Required]
         [MaxLength(30)]

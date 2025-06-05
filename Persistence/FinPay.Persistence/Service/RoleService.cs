@@ -29,15 +29,15 @@ namespace FinPay.Persistence.Service
         {
             var role = await _roleManager.FindByNameAsync(name);
             if (role == null)
-                return false; // və ya istisna at: throw new Exception("Role not found");
+                return false; 
 
             IdentityResult result = await _roleManager.DeleteAsync(role);
             return result.Succeeded;
         }
 
-        public async Task<IDictionary<string, string>> GetAllRols()
+        public async Task<IDictionary<string, string>> GetAllRols(int page,int size)
         {
-            var datas = await _roleManager.Roles.ToDictionaryAsync(role => role.Id, role => role.Name);
+            var datas = await _roleManager.Roles.Skip(page*size).Take(size).ToDictionaryAsync(role => role.Id, role => role.Name);
             return datas;
         }
 

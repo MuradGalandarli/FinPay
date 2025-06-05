@@ -18,5 +18,7 @@ namespace FinPay.Persistence.Context
         }
 
         public DbSet<Tokeninfo> TokenInfos { get; set; }
+        public DbSet<Menu> Menus { get; set; }
+        public DbSet<Endpoint> Endpoints { get; set; }
     }
 }

@@ -53,6 +53,19 @@ namespace FinPay.Persistence.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Menus",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    Name = table.Column<string>(type: "text", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Menus", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "TokenInfos",
                 columns: table => new
                 {
@@ -173,6 +186,57 @@ namespace FinPay.Persistence.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "Endpoints",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    ActionType = table.Column<string>(type: "text", nullable: true),
+                    HttpType = table.Column<string>(type: "text", nullable: true),
+                    Definition = table.Column<string>(type: "text", nullable: true),
+                    Code = table.Column<string>(type: "text", nullable: true),
+                    MenuId = table.Column<int>(type: "integer", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Endpoints", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Endpoints_Menus_MenuId",
+                        column: x => x.MenuId,
+                        principalTable: "Menus",
+                        principalColumn: "Id");
+                });
+
+            migrationBuilder.CreateTable(
+                name: "ApplicationRoleEndpoint",
+                columns: table => new
+                {
+                    ApplicationRolesId = table.Column<string>(type: "text", nullable: false),
+                    EndpointsId = table.Column<int>(type: "integer", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ApplicationRoleEndpoint", x => new { x.ApplicationRolesId, x.EndpointsId });
+                    table.ForeignKey(
+                        name: "FK_ApplicationRoleEndpoint_AspNetRoles_ApplicationRolesId",
+                        column: x => x.ApplicationRolesId,
+                        principalTable: "AspNetRoles",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_ApplicationRoleEndpoint_Endpoints_EndpointsId",
+                        column: x => x.EndpointsId,
+                        principalTable: "Endpoints",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ApplicationRoleEndpoint_EndpointsId",
+                table: "ApplicationRoleEndpoint",
+                column: "EndpointsId");
+
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
                 table: "AspNetRoleClaims",
@@ -209,11 +273,19 @@ namespace FinPay.Persistence.Migrations
                 table: "AspNetUsers",
                 column: "NormalizedUserName",
                 unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Endpoints_MenuId",
+                table: "Endpoints",
+                column: "MenuId");
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropTable(
+                name: "ApplicationRoleEndpoint");
+
             migrationBuilder.DropTable(
                 name: "AspNetRoleClaims");
 
@@ -233,10 +305,16 @@ namespace FinPay.Persistence.Migrations
                 name: "TokenInfos");
 
             migrationBuilder.DropTable(
+                name: "Endpoints");
+
+            migrationBuilder.DropTable(
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
+
+            migrationBuilder.DropTable(
+                name: "Menus");
         }
     }
 }

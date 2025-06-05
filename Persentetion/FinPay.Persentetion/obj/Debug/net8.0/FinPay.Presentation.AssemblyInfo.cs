@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("FinPay.Presentation")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ac86f358facedee99a0b3c0ced41af155c54bbb8")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+0cba3ec4d2ad38638a763e5372448a827140721b")]
 [assembly: System.Reflection.AssemblyProductAttribute("FinPay.Presentation")]
 [assembly: System.Reflection.AssemblyTitleAttribute("FinPay.Presentation")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

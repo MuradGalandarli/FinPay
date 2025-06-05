@@ -19,7 +19,7 @@ namespace FinPay.Application.Features.Queries.AppRole.GetRoles
 
         public async Task<GetRoleQueryResponse> Handle(GetRolesQueryRequest request, CancellationToken cancellationToken)
         {
-           var data = await _roleService.GetAllRols();
+           var data = await _roleService.GetAllRols(request.Size,request.Page);
             return new()
             {
               Roles = data,

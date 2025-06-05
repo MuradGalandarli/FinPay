@@ -58,6 +58,43 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "FinPay.Presentation.Controllers.AuthorizationEndpointsController",
+    "Method": "AssingRoleEndpointAsync",
+    "RelativePath": "api/AuthorizationEndpoints",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "assingRoleEndpointCommandRequest",
+        "Type": "FinPay.Application.Features.Commands.AuthorizationEndpoint.AssingRoleEndpoint.AssingRoleEndpointCommandRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "FinPay.Presentation.Controllers.AuthorizationEndpointsController",
+    "Method": "GetRolesToEndpointAsync",
+    "RelativePath": "api/AuthorizationEndpoints/GetRolesToEndpointAsync",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "Code",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Menu",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "FinPay.Presentation.Controllers.RolesController",
     "Method": "CreateRole",
     "RelativePath": "api/Roles",
@@ -130,8 +167,13 @@
     "Order": 0,
     "Parameters": [
       {
-        "Name": "getRoleQueryRequest",
-        "Type": "FinPay.Application.Features.Queries.AppRole.GetRoles.GetRolesQueryRequest",
+        "Name": "Size",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "Page",
+        "Type": "System.Int32",
         "IsRequired": false
       }
     ],

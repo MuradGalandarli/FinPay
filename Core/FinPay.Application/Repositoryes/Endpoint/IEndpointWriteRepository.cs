@@ -4,11 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FinPay.Domain
+namespace FinPay.Application.Repositoryes.Endpoint
 {
-    public class Roles
+    public interface IEndpointWriteRepository:IWriteRepository<Domain.Entity.Endpoint>
     {
-        public const string Admin = "Admin";
-        public const string User = "User";
     }
 }
