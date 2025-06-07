@@ -23,7 +23,7 @@ namespace FinPay.Persentetion.Controllers
         }
 
         [HttpGet(Name = "GetWeatherForecast")]
-        [AuthorizeDefinition(Menu = AuthorizeDefinitionConstants.ControlerName,ActionType = ActionType.Reading,Definition ="Get Methodu")]
+        [AuthorizeDefinition(Menu = AuthorizeDefinitionConstants.ControllerName,ActionType = ActionType.Reading,Definition ="Get Methodu")]
         public IEnumerable<WeatherForecast> Get()
         {
             return Enumerable.Range(1, 5).Select(index => new WeatherForecast

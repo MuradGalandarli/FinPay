@@ -76,7 +76,7 @@
   {
     "ContainingType": "FinPay.Presentation.Controllers.AuthorizationEndpointsController",
     "Method": "GetRolesToEndpointAsync",
-    "RelativePath": "api/AuthorizationEndpoints/GetRolesToEndpointAsync",
+    "RelativePath": "api/AuthorizationEndpoints/GetRolesToEndpoint",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -175,6 +175,43 @@
         "Name": "Page",
         "Type": "System.Int32",
         "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "FinPay.Presentation.Controllers.UserController",
+    "Method": "GetAllUser",
+    "RelativePath": "api/User",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "Size",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "Page",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "FinPay.Presentation.Controllers.UserController",
+    "Method": "AssingRoleToUser",
+    "RelativePath": "api/User/assing-role-to-user",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "assingRoleToUserCommandRequest",
+        "Type": "FinPay.Application.Features.Commands.AppUser.AssingRoleToUser.AssingRoleToUserCommandRequest",
+        "IsRequired": true
       }
     ],
     "ReturnTypes": []

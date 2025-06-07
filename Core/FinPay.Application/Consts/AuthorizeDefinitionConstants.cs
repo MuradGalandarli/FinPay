@@ -8,6 +8,7 @@ namespace FinPay.Application.Consts
 {
     public static class AuthorizeDefinitionConstants
     {
-        public const string ControlerName = "WeatherForecast";
+        public const string ControllerName = "WeatherForecast";
+        public const string ControllerUser = "UserController";
     }
 }

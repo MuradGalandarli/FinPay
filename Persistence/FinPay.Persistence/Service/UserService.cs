@@ -30,11 +30,11 @@ namespace FinPay.Persistence.Service
     public class UserService : IUserService
     {
         private readonly UserManager<ApplicationUser> _userManager;
-        private readonly RoleManager<IdentityRole> _roleManager;
+        private readonly RoleManager<ApplicationRole> _roleManager;
         private readonly ILogger<UserService> _logger;
         private readonly IConfiguration _configuration;
         private readonly AppDbContext _appDbContext;
-        public UserService(UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager = null, ILogger<UserService> logger = null, IConfiguration configuration = null, AppDbContext appDbContext = null)
+        public UserService(UserManager<ApplicationUser> userManager, RoleManager<ApplicationRole> roleManager = null, ILogger<UserService> logger = null, IConfiguration configuration = null, AppDbContext appDbContext = null)
         {
             _userManager = userManager;
             _roleManager = roleManager;
@@ -42,11 +42,37 @@ namespace FinPay.Persistence.Service
             _configuration = configuration;
             _appDbContext = appDbContext;
         }
+        public async Task AssingRoleToUser(string id, string[] roles)
+        {
+            ApplicationUser user = await _userManager.FindByIdAsync(id);
+            if(user != null)
+            {
+               
+                var userRoles = await _userManager.GetRolesAsync(user);
+                await _userManager.RemoveFromRolesAsync(user, userRoles);
 
+                await _userManager.AddToRolesAsync(user, roles);
+            }
+
+
+        }
+
+        public async Task<List<UserResponseDto>> GetAllUserAsync(int page, int size)
+        {
+            List<UserResponseDto> user = await _userManager.Users.Skip(page * size).Take(size).Select(x => new UserResponseDto
+            {
+                Id = x.Id,
+                Name = x.Name,
+                Email = x.Email,
+
+            }).ToListAsync();
+
+            return user;
+        }
 
         public async Task<CreateUserResponse> Signup(SignupDto signup)
         {
-                CreateUserResponse userResponse = new();
+            CreateUserResponse userResponse = new();
             try
             {
                 var existingUser = await _userManager.FindByNameAsync(signup.Email);
@@ -56,17 +82,17 @@ namespace FinPay.Persistence.Service
                     return userResponse;
                 }
 
-                
+
                 if ((await _roleManager.RoleExistsAsync(Role.User)) == false)
                 {
                     var roleResult = await _roleManager
-                          .CreateAsync(new IdentityRole(Role.User));
+    .CreateAsync(new ApplicationRole { Name = "User" ,Id = Guid.NewGuid().ToString()});
 
                     if (roleResult.Succeeded == false)
                     {
                         userResponse.Succeeded = roleResult.Succeeded;
                         var roleErros = roleResult.Errors.Select(e => e.Description);
-                         _logger.LogError(userResponse.Message);
+                        _logger.LogError(userResponse.Message);
                         throw new SignupErrorException($"Failed to create user role. Errors : {string.Join(",", roleErros)}");
                     }
                 }
@@ -80,7 +106,7 @@ namespace FinPay.Persistence.Service
                     EmailConfirmed = true
                 };
 
-               
+
                 var createUserResult = await _userManager.CreateAsync(user, signup.Password);
 
                 if (createUserResult.Succeeded == false)
@@ -88,8 +114,8 @@ namespace FinPay.Persistence.Service
                     userResponse.Succeeded = createUserResult.Succeeded;
                     var errors = createUserResult.Errors.Select(e => e.Description);
                     _logger.LogError(userResponse.Message);
-                   throw new SignupErrorException($"Failed to create user. Errors: {string.Join(", ", errors)}");
-                    
+                    throw new SignupErrorException($"Failed to create user. Errors: {string.Join(", ", errors)}");
+
                 }
 
                 var addUserToRoleResult = await _userManager.AddToRoleAsync(user: user, role: Role.User);
@@ -99,9 +125,9 @@ namespace FinPay.Persistence.Service
                     var errors = addUserToRoleResult.Errors.Select(e => e.Description);
                     _logger.LogError(userResponse.Message);
                     throw new SignupErrorException($"Failed to add role to the user. Errors : {string.Join(",", errors)}");
-                  
+
                 }
-                 userResponse.Succeeded = true;
+                userResponse.Succeeded = true;
                 userResponse.Message = "User created";
                 return userResponse;
             }
@@ -118,7 +144,7 @@ namespace FinPay.Persistence.Service
                 var user = await _userManager.FindByNameAsync(email);
                 if (user == null)
                 {
-                   throw new AuthenticationException("User with this username is not registered with us.");
+                    throw new AuthenticationException("User with this username is not registered with us.");
                 }
                 bool isValidPassword = await _userManager.CheckPasswordAsync(user, password);
                 if (isValidPassword == false)
@@ -140,7 +166,7 @@ namespace FinPay.Persistence.Service
                 }
 
                 // generating access token
-                var token = GenerateAccessToken(authClaims,accessTokenLifeTime);
+                var token = GenerateAccessToken(authClaims, accessTokenLifeTime);
 
                 string refreshToken = GenerateRefreshToken();
 
@@ -161,7 +187,7 @@ namespace FinPay.Persistence.Service
                     _appDbContext.TokenInfos.Add(ti);
                 }
                 // Else, update the refresh token and expiration
-                
+
                 else
                 {
                     tokenInfo.RefreshToken = refreshToken;
@@ -181,7 +207,7 @@ namespace FinPay.Persistence.Service
             catch (Exception ex)
             {
                 _logger.LogError(ex.Message);
-                 throw new AuthenticationException("401", ex);
+                throw new AuthenticationException("401", ex);
             }
 
         }
@@ -200,9 +226,9 @@ namespace FinPay.Persistence.Service
                     throw new RefreshTokenException("Invalid refresh token. Please login again.");
                 }
 
-                var newAccessToken = GenerateAccessToken(principal.Claims,accessTokenLifeTime);
+                var newAccessToken = GenerateAccessToken(principal.Claims, accessTokenLifeTime);
                 var newRefreshToken = GenerateRefreshToken();
-                DateTime dateToken = DateTime.UtcNow.AddMinutes(refreshTokenLifeTime+accessTokenLifeTime);
+                DateTime dateToken = DateTime.UtcNow.AddMinutes(refreshTokenLifeTime + accessTokenLifeTime);
                 tokenInfo.RefreshToken = newRefreshToken; // rotating the refresh token
                 tokenInfo.ExpiredAt = dateToken; // rotating the refresh token
                 await _appDbContext.SaveChangesAsync();
@@ -217,23 +243,12 @@ namespace FinPay.Persistence.Service
             catch (Exception ex)
             {
                 _logger.LogError(ex.Message);
-                 throw new RefreshTokenException("500",ex);
+                throw new RefreshTokenException("500", ex);
             }
         }
 
 
-
-
-
-
-
-
-
-
-
-
-
-        public string GenerateAccessToken(IEnumerable<Claim> claims,int minutes)
+        public string GenerateAccessToken(IEnumerable<Claim> claims, int minutes)
         {
             var tokenHandler = new JwtSecurityTokenHandler();
 
@@ -304,6 +319,6 @@ namespace FinPay.Persistence.Service
             return principal;
         }
 
-     
+       
     }
 }
