@@ -24,6 +24,7 @@ using FinPay.Application.Exceptions;
 using Microsoft.EntityFrameworkCore.Metadata.Conventions;
 using System.Diagnostics;
 using FinPay.Domain.Entity;
+using FinPay.Persistence.Repositoryes.Endpoint;
 
 namespace FinPay.Persistence.Service
 {
@@ -34,14 +35,61 @@ namespace FinPay.Persistence.Service
         private readonly ILogger<UserService> _logger;
         private readonly IConfiguration _configuration;
         private readonly AppDbContext _appDbContext;
-        public UserService(UserManager<ApplicationUser> userManager, RoleManager<ApplicationRole> roleManager = null, ILogger<UserService> logger = null, IConfiguration configuration = null, AppDbContext appDbContext = null)
+        private readonly EndpointReadRepository _endpointReadRepository;
+
+
+        public UserService(UserManager<ApplicationUser> userManager, RoleManager<ApplicationRole> roleManager = null, ILogger<UserService> logger = null, IConfiguration configuration = null, AppDbContext appDbContext = null, EndpointReadRepository endpointReadRepository = null)
         {
             _userManager = userManager;
             _roleManager = roleManager;
             _logger = logger;
             _configuration = configuration;
             _appDbContext = appDbContext;
+            _endpointReadRepository = endpointReadRepository;
         }
+
+
+        public async Task<bool> HasRolePermissionToEndpointAsync(string name,string code)
+        {
+            var userRoles = await GetRolsToUserAsync(name);
+          
+            if (!userRoles.Any())
+                return false;
+
+            Domain.Entity.Endpoint? endpoint = await _endpointReadRepository.Table
+                     .Include(e => e.ApplicationRoles)
+                     .FirstOrDefaultAsync(e => e.Code == code);
+
+            if (endpoint == null)
+                return false;
+
+            var hasRole = false;
+            var endpointRoles = endpoint.ApplicationRoles.Select(r => r.Name);
+
+           
+            foreach (var userRole in userRoles)
+            {
+                foreach (var endpointRole in endpointRoles)
+                    if (userRole == endpointRole)
+                        return true;
+            }
+
+            return false;
+        }
+
+        public async Task<string[]> GetRolsToUserAsync(string name)
+        {
+            var user = await _userManager.FindByNameAsync(name);
+            if (user != null)
+            {
+                var userRole = await _userManager.GetRolesAsync(user);
+                return userRole.ToArray();
+            }
+            return new string[] { };
+        }
+
+
+
         public async Task AssingRoleToUser(string id, string[] roles)
         {
             ApplicationUser user = await _userManager.FindByIdAsync(id);
@@ -319,6 +367,6 @@ namespace FinPay.Persistence.Service
             return principal;
         }
 
-       
+      
     }
 }

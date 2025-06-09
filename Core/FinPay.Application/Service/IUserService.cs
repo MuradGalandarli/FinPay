@@ -4,6 +4,7 @@ using FinPay.Application.Features.Commands.AppUser.RefreshToken;
 using Microsoft.EntityFrameworkCore.Query.Internal;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.Contracts;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -18,5 +19,9 @@ namespace FinPay.Application.Service
         public Task<TokenDto> RefreshTokenAsync(string accessToken, string refreshToken, int accessTokenLifeTime, int refreshTokenLifeTime);
         public Task<List<UserResponseDto>> GetAllUserAsync(int page,int size);
         public Task AssingRoleToUser(string id, string[] roles);
+        public Task<bool> HasRolePermissionToEndpointAsync(string name,string code);
+     
+
+
     }
 }

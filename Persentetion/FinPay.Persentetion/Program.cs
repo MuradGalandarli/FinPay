@@ -13,6 +13,7 @@ using FinPay.Persistence.Repositoryes.Menu;
 using FinPay.Persistence.Seeder;
 using FinPay.Persistence.Service;
 using FinPay.Persistence.Service.Authentications;
+using FinPay.Presentation.Filters;
 using MediatR;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
@@ -30,7 +31,8 @@ namespace FinPay.Persentetion
 
             // Add services to the container.
 
-            builder.Services.AddControllers();
+            builder.Services.AddControllers(options=>  options.Filters.Add<RolePermissionFilter>());
+           
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
