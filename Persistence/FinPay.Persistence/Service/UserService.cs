@@ -25,6 +25,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Conventions;
 using System.Diagnostics;
 using FinPay.Domain.Entity;
 using FinPay.Persistence.Repositoryes.Endpoint;
+using FinPay.Application.Repositoryes.Endpoint;
 
 namespace FinPay.Persistence.Service
 {
@@ -35,10 +36,10 @@ namespace FinPay.Persistence.Service
         private readonly ILogger<UserService> _logger;
         private readonly IConfiguration _configuration;
         private readonly AppDbContext _appDbContext;
-        private readonly EndpointReadRepository _endpointReadRepository;
+        private readonly IEndpointReadRepository _endpointReadRepository;
 
 
-        public UserService(UserManager<ApplicationUser> userManager, RoleManager<ApplicationRole> roleManager = null, ILogger<UserService> logger = null, IConfiguration configuration = null, AppDbContext appDbContext = null, EndpointReadRepository endpointReadRepository = null)
+        public UserService(UserManager<ApplicationUser> userManager, RoleManager<ApplicationRole> roleManager = null, ILogger<UserService> logger = null, IConfiguration configuration = null, AppDbContext appDbContext = null, IEndpointReadRepository endpointReadRepository = null)
         {
             _userManager = userManager;
             _roleManager = roleManager;

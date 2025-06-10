@@ -20,7 +20,7 @@ namespace FinPay.Application.Features.Commands.AppUser.RefreshToken
 
         public async Task<RefreshTokenCommandResponse> Handle(RefreshTokenCommandRequest request, CancellationToken cancellationToken)
         {
-            TokenDto token = await _userService.RefreshTokenAsync(request.AccessToken, request.RefreshToken,1,2);
+            TokenDto token = await _userService.RefreshTokenAsync(request.AccessToken, request.RefreshToken,100,200);
             return new()
             {
                 RefreshToken = token.RefreshToken,

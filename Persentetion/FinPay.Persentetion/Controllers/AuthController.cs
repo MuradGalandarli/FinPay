@@ -26,7 +26,7 @@ namespace FinPay.Persentetion.Controllers
         {
             _mediator = mediator;
         }
-
+        [AllowAnonymous]
         [HttpPost("signup")]
         public async Task<IActionResult> Signup(SignupCommandRequest signupCommandRequest)
             {
@@ -34,13 +34,14 @@ namespace FinPay.Persentetion.Controllers
             return Ok(signupCommandResponse);
 
         }
-
-        [HttpPost("login")]
+        [HttpPost("[action]")]
+        //[HttpPost("login")]
         public async Task<IActionResult> Login(LoginUserCommandRequest loginUserCommandRequest)
         {
         LoginUserCommandResponse loginUserCommandResponse = await _mediator.Send(loginUserCommandRequest);
             return Ok(loginUserCommandResponse);
         }
+        [AllowAnonymous]
         [HttpPost("token/refresh")]
         public async Task<IActionResult> Refresh(RefreshTokenCommandRequest tokenModel)
         { 

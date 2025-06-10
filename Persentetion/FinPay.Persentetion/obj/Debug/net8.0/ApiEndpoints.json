@@ -12,7 +12,7 @@
   {
     "ContainingType": "FinPay.Persentetion.Controllers.AuthController",
     "Method": "Login",
-    "RelativePath": "api/Auth/login",
+    "RelativePath": "api/Auth/Login",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
@@ -90,6 +90,48 @@
         "Name": "Menu",
         "Type": "System.String",
         "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "FinPay.Presentation.Controllers.AuthorizationEndpointsController",
+    "Method": "Test",
+    "RelativePath": "api/AuthorizationEndpoints/Test",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "FinPay.Presentation.Controllers.PaymentController",
+    "Method": "PaymentTransaction",
+    "RelativePath": "api/Payment",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "paymentTransactionCommandRequest",
+        "Type": "FinPay.Application.Features.Commands.Payment.PaymentTransaction.PaymentTransactionCommandRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "FinPay.Presentation.Controllers.PaymentController",
+    "Method": "CaptureOrderAsync",
+    "RelativePath": "api/Payment/CaptureOrder",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "captureOrderCommandRequest",
+        "Type": "FinPay.Application.Features.Commands.Payment.CaptureOrder.CaptureOrderCommandRequest",
+        "IsRequired": true
       }
     ],
     "ReturnTypes": []

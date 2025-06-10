@@ -10,6 +10,7 @@ using FinPay.Persentetion;
 using MediatR;
 using FinPay.Application.Features.Commands.AuthorizationEndpoint.AssingRoleEndpoint;
 using FinPay.Application.Features.Queries.AppRole.GetRolesToEndpoint;
+using FinPay.Persistence.Repositoryes.Endpoint;
 
 namespace FinPay.Presentation.Controllers
 {
@@ -18,10 +19,13 @@ namespace FinPay.Presentation.Controllers
     public class AuthorizationEndpointsController : ControllerBase
     {
         private readonly IMediator _mediator;
+        private readonly IEndpointReadRepository _endpointReadRepository;
 
-        public AuthorizationEndpointsController(IMediator mediator)
+
+        public AuthorizationEndpointsController(IMediator mediator, IEndpointReadRepository endpointReadRepository)
         {
             _mediator = mediator;
+            _endpointReadRepository = endpointReadRepository;
         }
         [HttpPost]
         public async Task<IActionResult> AssingRoleEndpointAsync([FromBody]AssingRoleEndpointCommandRequest assingRoleEndpointCommandRequest)
@@ -35,6 +39,13 @@ namespace FinPay.Presentation.Controllers
         {
            GetRolesToEndpointQueryResponse getRolesToEndpointQueryResponse = await _mediator.Send(getRolesToEndpointQueryRequest);
             return Ok(getRolesToEndpointQueryResponse);
+        }
+        [HttpGet("Test")]
+        public async Task<IActionResult> Test()
+        {
+            var test = _endpointReadRepository.Table;
+            
+            return Ok(test);
         }
     }
 }

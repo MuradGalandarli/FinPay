@@ -140,3 +140,7 @@ D:\GitHub test\FinPay\Persentetion\FinPay.Persentetion\obj\Debug\net8.0\ref\FinP
 D:\GitHub test\FinPay\Persentetion\FinPay.Persentetion\bin\Debug\net8.0\Microsoft.Extensions.Diagnostics.Abstractions.dll
 D:\GitHub test\FinPay\Persentetion\FinPay.Persentetion\bin\Debug\net8.0\Microsoft.Extensions.Hosting.Abstractions.dll
 D:\GitHub test\FinPay\Persentetion\FinPay.Persentetion\bin\Debug\net8.0\Microsoft.Extensions.ObjectPool.dll
+D:\GitHub test\FinPay\Persentetion\FinPay.Persentetion\bin\Debug\net8.0\Microsoft.AspNetCore.JsonPatch.dll
+D:\GitHub test\FinPay\Persentetion\FinPay.Persentetion\bin\Debug\net8.0\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
+D:\GitHub test\FinPay\Persentetion\FinPay.Persentetion\bin\Debug\net8.0\Newtonsoft.Json.dll
+D:\GitHub test\FinPay\Persentetion\FinPay.Persentetion\bin\Debug\net8.0\Newtonsoft.Json.Bson.dll

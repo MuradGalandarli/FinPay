@@ -1,12 +1,14 @@
 using FinPay.Application.Consts;
 using FinPay.Application.CustomAttributes;
 using FinPay.Application.Enums;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.ComponentModel.Design;
 
 namespace FinPay.Persentetion.Controllers
 {
     [ApiController]
+    [Authorize()]
     [Route("[controller]")]
     public class WeatherForecastController : ControllerBase
     {

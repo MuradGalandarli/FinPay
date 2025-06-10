@@ -6,6 +6,7 @@ using FinPay.Application.Repositoryes.Menu;
 using FinPay.Application.Service;
 using FinPay.Application.Service.Authentications;
 using FinPay.Application.Service.Configurations;
+using FinPay.Application.Service.Payment;
 using FinPay.Domain.Identity;
 using FinPay.Persistence.Context;
 using FinPay.Persistence.Repositoryes.Endpoint;
@@ -13,6 +14,7 @@ using FinPay.Persistence.Repositoryes.Menu;
 using FinPay.Persistence.Seeder;
 using FinPay.Persistence.Service;
 using FinPay.Persistence.Service.Authentications;
+using FinPay.Persistence.Service.Payment;
 using FinPay.Presentation.Filters;
 using MediatR;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -31,8 +33,14 @@ namespace FinPay.Persentetion
 
             // Add services to the container.
 
-            builder.Services.AddControllers(options=>  options.Filters.Add<RolePermissionFilter>());
-           
+            //builder.Services.AddControllers();
+            //builder.Services.AddScoped<RolePermissionFilter>();
+
+            builder.Services.AddControllers(options =>
+            {
+                options.Filters.Add<RolePermissionFilter>();
+            });
+
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
@@ -48,6 +56,7 @@ namespace FinPay.Persentetion
             builder.Services.AddScoped<IEndpointReadRepository, EndpointReadRepository>();
             builder.Services.AddScoped<IEndpointWriteRepository, EndpointWriteRepository>();
             builder.Services.AddScoped<IAuthorizationEndpointService, AuthorizetionEndpointService>();
+            builder.Services.AddScoped<IPaymentTransaction, PaymentTransaction>();
 
 
             string connectionString = builder.Configuration.GetConnectionString("default");

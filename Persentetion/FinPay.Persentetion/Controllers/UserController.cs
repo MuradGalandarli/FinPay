@@ -12,6 +12,7 @@ namespace FinPay.Presentation.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    //[Authorize(AuthenticationSchemes = "Admin")]
     public class UserController : ControllerBase
     {
         private readonly IMediator _mediator;
@@ -30,10 +31,10 @@ namespace FinPay.Presentation.Controllers
             return Ok(getAllUserQueryResponse);
         }
 
-
+       
         [HttpPost("assing-role-to-user")]
         [AuthorizeDefinition(ActionType = Application.Enums.ActionType.Writing,Menu = AuthorizeDefinitionConstants.ControllerUser,Definition ="Assing Role To User")]
-        public async Task<IActionResult>AssingRoleToUser(AssingRoleToUserCommandRequest assingRoleToUserCommandRequest)
+        public async Task<IActionResult>AssingRoleToUser([FromBody]AssingRoleToUserCommandRequest assingRoleToUserCommandRequest)
         {
             AssingRoleToUserCommandRespose assingRoleToUserCommandRespose = await _mediator.Send(assingRoleToUserCommandRequest);
             return Ok(assingRoleToUserCommandRespose);
