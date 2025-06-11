@@ -1,4 +1,5 @@
 ﻿
+using FinPay.Domain.Entity;
 using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
@@ -11,5 +12,7 @@ namespace FinPay.Domain.Identity
     public class ApplicationUser:IdentityUser
 {
     public string Name { get; set; } = string.Empty;
+        public ICollection<AppTransaction> SendTransactions { get; set; }
+        public ICollection<AppTransaction> ReceivedTransactions { get; set; }
 }
 }

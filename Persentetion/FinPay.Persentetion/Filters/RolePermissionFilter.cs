@@ -1,4 +1,5 @@
 ﻿using FinPay.Application.CustomAttributes;
+using FinPay.Application.Repositoryes.AppTransactions;
 using FinPay.Application.Service;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Controllers;
@@ -11,7 +12,7 @@ namespace FinPay.Presentation.Filters
     public class RolePermissionFilter : IAsyncActionFilter
     {
         private readonly IUserService _userService;
-
+      
         public RolePermissionFilter(IUserService userService)
         {
             _userService = userService;

@@ -1,14 +1,3 @@
-D:\GitHub test\FinPay\Persentetion\FinPay.Persentetion\obj\Debug\net8.0\FinPay.Presentation.csproj.AssemblyReference.cache
-D:\GitHub test\FinPay\Persentetion\FinPay.Persentetion\obj\Debug\net8.0\FinPay.Presentation.GeneratedMSBuildEditorConfig.editorconfig
-D:\GitHub test\FinPay\Persentetion\FinPay.Persentetion\obj\Debug\net8.0\FinPay.Presentation.AssemblyInfoInputs.cache
-D:\GitHub test\FinPay\Persentetion\FinPay.Persentetion\obj\Debug\net8.0\FinPay.Presentation.AssemblyInfo.cs
-D:\GitHub test\FinPay\Persentetion\FinPay.Persentetion\obj\Debug\net8.0\FinPay.Presentation.csproj.CoreCompileInputs.cache
-D:\GitHub test\FinPay\Persentetion\FinPay.Persentetion\obj\Debug\net8.0\FinPay.Presentation.MvcApplicationPartsAssemblyInfo.cs
-D:\GitHub test\FinPay\Persentetion\FinPay.Persentetion\obj\Debug\net8.0\FinPay.Presentation.MvcApplicationPartsAssemblyInfo.cache
-D:\GitHub test\FinPay\Persentetion\FinPay.Persentetion\obj\Debug\net8.0\FinPay.Presentation.sourcelink.json
-D:\GitHub test\FinPay\Persentetion\FinPay.Persentetion\obj\Debug\net8.0\FinPay.Presentation.dll
-D:\GitHub test\FinPay\Persentetion\FinPay.Persentetion\obj\Debug\net8.0\refint\FinPay.Presentation.dll
-D:\GitHub test\FinPay\Persentetion\FinPay.Persentetion\obj\Debug\net8.0\FinPay.Presentation.pdb
 D:\GitHub test\FinPay\Persentetion\FinPay.Persentetion\bin\Debug\net8.0\appsettings.Development.json
 D:\GitHub test\FinPay\Persentetion\FinPay.Persentetion\bin\Debug\net8.0\appsettings.json
 D:\GitHub test\FinPay\Persentetion\FinPay.Persentetion\bin\Debug\net8.0\FinPay.Presentation.staticwebassets.endpoints.json
@@ -25,6 +14,8 @@ D:\GitHub test\FinPay\Persentetion\FinPay.Persentetion\bin\Debug\net8.0\Microsof
 D:\GitHub test\FinPay\Persentetion\FinPay.Persentetion\bin\Debug\net8.0\Microsoft.AspNetCore.Cryptography.Internal.dll
 D:\GitHub test\FinPay\Persentetion\FinPay.Persentetion\bin\Debug\net8.0\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
 D:\GitHub test\FinPay\Persentetion\FinPay.Persentetion\bin\Debug\net8.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
+D:\GitHub test\FinPay\Persentetion\FinPay.Persentetion\bin\Debug\net8.0\Microsoft.AspNetCore.JsonPatch.dll
+D:\GitHub test\FinPay\Persentetion\FinPay.Persentetion\bin\Debug\net8.0\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
 D:\GitHub test\FinPay\Persentetion\FinPay.Persentetion\bin\Debug\net8.0\Microsoft.Bcl.AsyncInterfaces.dll
 D:\GitHub test\FinPay\Persentetion\FinPay.Persentetion\bin\Debug\net8.0\Microsoft.CodeAnalysis.dll
 D:\GitHub test\FinPay\Persentetion\FinPay.Persentetion\bin\Debug\net8.0\Microsoft.CodeAnalysis.CSharp.dll
@@ -38,10 +29,13 @@ D:\GitHub test\FinPay\Persentetion\FinPay.Persentetion\bin\Debug\net8.0\Microsof
 D:\GitHub test\FinPay\Persentetion\FinPay.Persentetion\bin\Debug\net8.0\Microsoft.Extensions.DependencyInjection.dll
 D:\GitHub test\FinPay\Persentetion\FinPay.Persentetion\bin\Debug\net8.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
 D:\GitHub test\FinPay\Persentetion\FinPay.Persentetion\bin\Debug\net8.0\Microsoft.Extensions.DependencyModel.dll
+D:\GitHub test\FinPay\Persentetion\FinPay.Persentetion\bin\Debug\net8.0\Microsoft.Extensions.Diagnostics.Abstractions.dll
+D:\GitHub test\FinPay\Persentetion\FinPay.Persentetion\bin\Debug\net8.0\Microsoft.Extensions.Hosting.Abstractions.dll
 D:\GitHub test\FinPay\Persentetion\FinPay.Persentetion\bin\Debug\net8.0\Microsoft.Extensions.Identity.Core.dll
 D:\GitHub test\FinPay\Persentetion\FinPay.Persentetion\bin\Debug\net8.0\Microsoft.Extensions.Identity.Stores.dll
 D:\GitHub test\FinPay\Persentetion\FinPay.Persentetion\bin\Debug\net8.0\Microsoft.Extensions.Logging.dll
 D:\GitHub test\FinPay\Persentetion\FinPay.Persentetion\bin\Debug\net8.0\Microsoft.Extensions.Logging.Abstractions.dll
+D:\GitHub test\FinPay\Persentetion\FinPay.Persentetion\bin\Debug\net8.0\Microsoft.Extensions.ObjectPool.dll
 D:\GitHub test\FinPay\Persentetion\FinPay.Persentetion\bin\Debug\net8.0\Microsoft.Extensions.Options.dll
 D:\GitHub test\FinPay\Persentetion\FinPay.Persentetion\bin\Debug\net8.0\Microsoft.IdentityModel.Abstractions.dll
 D:\GitHub test\FinPay\Persentetion\FinPay.Persentetion\bin\Debug\net8.0\Microsoft.IdentityModel.JsonWebTokens.dll
@@ -51,6 +45,8 @@ D:\GitHub test\FinPay\Persentetion\FinPay.Persentetion\bin\Debug\net8.0\Microsof
 D:\GitHub test\FinPay\Persentetion\FinPay.Persentetion\bin\Debug\net8.0\Microsoft.IdentityModel.Tokens.dll
 D:\GitHub test\FinPay\Persentetion\FinPay.Persentetion\bin\Debug\net8.0\Microsoft.OpenApi.dll
 D:\GitHub test\FinPay\Persentetion\FinPay.Persentetion\bin\Debug\net8.0\Mono.TextTemplating.dll
+D:\GitHub test\FinPay\Persentetion\FinPay.Persentetion\bin\Debug\net8.0\Newtonsoft.Json.dll
+D:\GitHub test\FinPay\Persentetion\FinPay.Persentetion\bin\Debug\net8.0\Newtonsoft.Json.Bson.dll
 D:\GitHub test\FinPay\Persentetion\FinPay.Persentetion\bin\Debug\net8.0\Npgsql.dll
 D:\GitHub test\FinPay\Persentetion\FinPay.Persentetion\bin\Debug\net8.0\Npgsql.EntityFrameworkCore.PostgreSQL.dll
 D:\GitHub test\FinPay\Persentetion\FinPay.Persentetion\bin\Debug\net8.0\Swashbuckle.AspNetCore.Swagger.dll
@@ -123,6 +119,14 @@ D:\GitHub test\FinPay\Persentetion\FinPay.Persentetion\bin\Debug\net8.0\FinPay.A
 D:\GitHub test\FinPay\Persentetion\FinPay.Persentetion\bin\Debug\net8.0\FinPay. Infrastructure.pdb
 D:\GitHub test\FinPay\Persentetion\FinPay.Persentetion\bin\Debug\net8.0\FinPay.Persistence.pdb
 D:\GitHub test\FinPay\Persentetion\FinPay.Persentetion\bin\Debug\net8.0\FinPay.Domain.pdb
+D:\GitHub test\FinPay\Persentetion\FinPay.Persentetion\obj\Debug\net8.0\FinPay.Presentation.csproj.AssemblyReference.cache
+D:\GitHub test\FinPay\Persentetion\FinPay.Persentetion\obj\Debug\net8.0\FinPay.Presentation.GeneratedMSBuildEditorConfig.editorconfig
+D:\GitHub test\FinPay\Persentetion\FinPay.Persentetion\obj\Debug\net8.0\FinPay.Presentation.AssemblyInfoInputs.cache
+D:\GitHub test\FinPay\Persentetion\FinPay.Persentetion\obj\Debug\net8.0\FinPay.Presentation.AssemblyInfo.cs
+D:\GitHub test\FinPay\Persentetion\FinPay.Persentetion\obj\Debug\net8.0\FinPay.Presentation.csproj.CoreCompileInputs.cache
+D:\GitHub test\FinPay\Persentetion\FinPay.Persentetion\obj\Debug\net8.0\FinPay.Presentation.MvcApplicationPartsAssemblyInfo.cs
+D:\GitHub test\FinPay\Persentetion\FinPay.Persentetion\obj\Debug\net8.0\FinPay.Presentation.MvcApplicationPartsAssemblyInfo.cache
+D:\GitHub test\FinPay\Persentetion\FinPay.Persentetion\obj\Debug\net8.0\FinPay.Presentation.sourcelink.json
 D:\GitHub test\FinPay\Persentetion\FinPay.Persentetion\obj\Debug\net8.0\scopedcss\bundle\FinPay.Presentation.styles.css
 D:\GitHub test\FinPay\Persentetion\FinPay.Persentetion\obj\Debug\net8.0\staticwebassets.build.json
 D:\GitHub test\FinPay\Persentetion\FinPay.Persentetion\obj\Debug\net8.0\staticwebassets.development.json
@@ -135,12 +139,8 @@ D:\GitHub test\FinPay\Persentetion\FinPay.Persentetion\obj\Debug\net8.0\staticwe
 D:\GitHub test\FinPay\Persentetion\FinPay.Persentetion\obj\Debug\net8.0\staticwebassets.pack.json
 D:\GitHub test\FinPay\Persentetion\FinPay.Persentetion\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt
 D:\GitHub test\FinPay\Persentetion\FinPay.Persentetion\obj\Debug\net8.0\FinPay.P.F71FB6B9.Up2Date
+D:\GitHub test\FinPay\Persentetion\FinPay.Persentetion\obj\Debug\net8.0\FinPay.Presentation.dll
+D:\GitHub test\FinPay\Persentetion\FinPay.Persentetion\obj\Debug\net8.0\refint\FinPay.Presentation.dll
+D:\GitHub test\FinPay\Persentetion\FinPay.Persentetion\obj\Debug\net8.0\FinPay.Presentation.pdb
 D:\GitHub test\FinPay\Persentetion\FinPay.Persentetion\obj\Debug\net8.0\FinPay.Presentation.genruntimeconfig.cache
 D:\GitHub test\FinPay\Persentetion\FinPay.Persentetion\obj\Debug\net8.0\ref\FinPay.Presentation.dll
-D:\GitHub test\FinPay\Persentetion\FinPay.Persentetion\bin\Debug\net8.0\Microsoft.Extensions.Diagnostics.Abstractions.dll
-D:\GitHub test\FinPay\Persentetion\FinPay.Persentetion\bin\Debug\net8.0\Microsoft.Extensions.Hosting.Abstractions.dll
-D:\GitHub test\FinPay\Persentetion\FinPay.Persentetion\bin\Debug\net8.0\Microsoft.Extensions.ObjectPool.dll
-D:\GitHub test\FinPay\Persentetion\FinPay.Persentetion\bin\Debug\net8.0\Microsoft.AspNetCore.JsonPatch.dll
-D:\GitHub test\FinPay\Persentetion\FinPay.Persentetion\bin\Debug\net8.0\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
-D:\GitHub test\FinPay\Persentetion\FinPay.Persentetion\bin\Debug\net8.0\Newtonsoft.Json.dll
-D:\GitHub test\FinPay\Persentetion\FinPay.Persentetion\bin\Debug\net8.0\Newtonsoft.Json.Bson.dll

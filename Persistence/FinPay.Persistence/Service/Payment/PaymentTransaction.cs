@@ -1,17 +1,33 @@
-﻿using FinPay.Application.Service.Payment;
+﻿using FinPay.Application.Repositoryes.AppTransactions;
+using FinPay.Application.Service.Payment;
+using FinPay.Domain.Enum;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http.Headers;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace FinPay.Persistence.Service.Payment
 {
     public class PaymentTransaction : IPaymentTransaction
     {
-        public async Task<string> CreatePayment(decimal amount)
+        private readonly ITransactionWriteRepository _transactionWriteRepository;
+        private readonly ITransactionReadRepository _transactionReadRepository;
+        private readonly IConfiguration _configuration;
+
+        public PaymentTransaction(ITransactionWriteRepository transactionWriteRepository, ITransactionReadRepository transactionReadRepository, IConfiguration configuration)
+        {
+            _transactionWriteRepository = transactionWriteRepository;
+            _transactionReadRepository = transactionReadRepository;
+            _configuration = configuration;
+        }
+
+        public async Task<string> CreatePayment(decimal amount,string userId)
         {
             string accessToken = await GetAccessTokenAsync();
             using var httpClient = new HttpClient();
@@ -39,39 +55,85 @@ namespace FinPay.Persistence.Service.Payment
                 }
             };
 
+            await _transactionWriteRepository.Add(new Domain.Entity.AppTransaction
+            {
+               Amount = amount,
+               CreateAt = DateTime.UtcNow,
+               ToUserId = userId,
+               Status = TransferStatus.Created,
+               
+            });
+           await _transactionWriteRepository.SaveAsync();
+
             var json = JsonConvert.SerializeObject(requestBody);
             var content = new StringContent(json, Encoding.UTF8, "application/json");
-
+            
             var response = await httpClient.PostAsync("https://api-m.sandbox.paypal.com/v2/checkout/orders", content);
             var responseString = await response.Content.ReadAsStringAsync();
 
-            return responseString; // içində approve URL və orderId olacaq
+            return responseString;  
+
         }
-            public async Task<string> CaptureOrderAsync(string orderId)
-            {
+
+
+        public async Task<string> CaptureOrderAsync(string orderId, string userId, int transactionId)
+        {
             string accessToken = await GetAccessTokenAsync();
 
-            using var httpClient = new HttpClient();
+            using var httpClient = new HttpClient(); // Tövsiyə: IHttpClientFactory ilə əvəzlənə bilər
             httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
 
-            // Boş content JSON formatında
-            var content = new StringContent("", Encoding.UTF8, "application/json");
+            var content = new StringContent("{}", Encoding.UTF8, "application/json");
 
             var response = await httpClient.PostAsync(
                 $"https://api-m.sandbox.paypal.com/v2/checkout/orders/{orderId}/capture",
-                content); // null yerinə content
+                content);
 
             var result = await response.Content.ReadAsStringAsync();
-            return result; // status: COMPLETED gəlməlidir
+
+            var transaction = await _transactionReadRepository
+                .GetSingelAsync(x => x.ToUserId == userId && x.Status == TransferStatus.Created && x.Id == transactionId);
+
+            if (transaction == null)
+            {
+                return "Transaction not found.";
+            }
+
+            string status = null;
+            if (response.IsSuccessStatusCode)
+            {
+                try
+                {
+                    var json = JsonDocument.Parse(result);
+                    status = json.RootElement.GetProperty("status").GetString();
+                }
+                catch (Exception ex)
+                {
+                    // Log ex
+                    transaction.Status = TransferStatus.Failed;
+                    await _transactionWriteRepository.SaveAsync();
+                    return "Invalid response from PayPal.";
+                }
+            }
+
+            if (response.IsSuccessStatusCode && status == "COMPLETED")
+            {
+                transaction.Status = TransferStatus.Completed;
+            }
+            else
+            {
+                transaction.Status = TransferStatus.Failed;
+            }
+
+            await _transactionWriteRepository.SaveAsync();
+            return result;
         }
+
 
         public async Task<string> GetAccessTokenAsync()
         {
-            var clientId = "ARJGMFf_CGpJPb7az_SDzIHpGg229LnTLKxIIYvPyPBwXLuh9jJW1ZYjrDqFwXfKibaJSXR1Qb3TkNgK";
-            var clientSecret = "ELnTlKYVzNiGi76YU-Uhdfihbuq9IW9cj9igL8Y0UbvnVF8mzct5XNnWk1JTDLUCwVqoZhW-2znSTluY";
-
             using var httpClient = new HttpClient();
-            var byteArray = Encoding.ASCII.GetBytes($"{clientId}:{clientSecret}");
+            var byteArray = Encoding.ASCII.GetBytes($"{_configuration["PaypalSettings:clientId"]}:{_configuration["PaypalSettings:clientSecret"]}");
             httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", Convert.ToBase64String(byteArray));
 
             var content = new StringContent("grant_type=client_credentials", Encoding.UTF8, "application/x-www-form-urlencoded");
@@ -82,6 +144,6 @@ namespace FinPay.Persistence.Service.Payment
             dynamic result = JsonConvert.DeserializeObject(responseString);
             return result.access_token;
         }
-       
+
     }
 }

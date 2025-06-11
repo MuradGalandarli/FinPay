@@ -13,13 +13,13 @@ namespace FinPay.Application.Features.Commands.Payment.PaymentTransaction
         private readonly IPaymentTransaction _paymentTransaction;
 
         public PaymentTransactionCommandHandler(IPaymentTransaction paymentTransaction)
-        {
+        { 
             _paymentTransaction = paymentTransaction;
         }
 
         public async Task<PaymentTransactionCommandResponse> Handle(PaymentTransactionCommandRequest request, CancellationToken cancellationToken)
         {
-           string paymentTransactionCommandResponse = await _paymentTransaction.CreatePayment(request.Amount);
+           string paymentTransactionCommandResponse = await _paymentTransaction.CreatePayment(request.Amount,request.UserId);
 
             return new() { AccessToken = paymentTransactionCommandResponse };
         }

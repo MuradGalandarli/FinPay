@@ -37,6 +37,38 @@ namespace FinPay.Persistence.Migrations
                     b.ToTable("ApplicationRoleEndpoint");
                 });
 
+            modelBuilder.Entity("FinPay.Domain.Entity.AppTransaction", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<decimal>("Amount")
+                        .HasColumnType("numeric");
+
+                    b.Property<DateTime>("CreateAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("FromUserId")
+                        .HasColumnType("text");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("ToUserId")
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("FromUserId");
+
+                    b.HasIndex("ToUserId");
+
+                    b.ToTable("AppTransactions");
+                });
+
             modelBuilder.Entity("FinPay.Domain.Entity.Endpoint", b =>
                 {
                     b.Property<int>("Id")
@@ -325,6 +357,23 @@ namespace FinPay.Persistence.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("FinPay.Domain.Entity.AppTransaction", b =>
+                {
+                    b.HasOne("FinPay.Domain.Identity.ApplicationUser", "FromUser")
+                        .WithMany("SendTransactions")
+                        .HasForeignKey("FromUserId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("FinPay.Domain.Identity.ApplicationUser", "ToUser")
+                        .WithMany("ReceivedTransactions")
+                        .HasForeignKey("ToUserId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.Navigation("FromUser");
+
+                    b.Navigation("ToUser");
+                });
+
             modelBuilder.Entity("FinPay.Domain.Entity.Endpoint", b =>
                 {
                     b.HasOne("FinPay.Domain.Entity.Menu", "Menu")
@@ -388,6 +437,13 @@ namespace FinPay.Persistence.Migrations
             modelBuilder.Entity("FinPay.Domain.Entity.Menu", b =>
                 {
                     b.Navigation("Endpoints");
+                });
+
+            modelBuilder.Entity("FinPay.Domain.Identity.ApplicationUser", b =>
+                {
+                    b.Navigation("ReceivedTransactions");
+
+                    b.Navigation("SendTransactions");
                 });
 #pragma warning restore 612, 618
         }

@@ -20,5 +20,25 @@ namespace FinPay.Persistence.Context
         public DbSet<Tokeninfo> TokenInfos { get; set; }
         public DbSet<Menu> Menus { get; set; }
         public DbSet<Endpoint> Endpoints { get; set; }
+        public DbSet<AppTransaction> AppTransactions { get; set; }
+
+
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            base.OnModelCreating(builder);
+
+            builder.Entity<AppTransaction>()
+                .HasOne(t => t.FromUser)
+                .WithMany(u => u.SendTransactions)
+                .HasForeignKey(t => t.FromUserId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            builder.Entity<AppTransaction>()
+                .HasOne(t => t.ToUser)
+                .WithMany(u => u.ReceivedTransactions)
+                .HasForeignKey(t => t.ToUserId)
+                .OnDelete(DeleteBehavior.Restrict);
+        }
+
     }
 }

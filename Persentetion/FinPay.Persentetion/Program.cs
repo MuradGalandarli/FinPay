@@ -3,6 +3,7 @@ using FinPay._Infrastructure.Service.Configurations;
 using FinPay.Application.Features.Commands.AppUser.SignupUser;
 using FinPay.Application.Repositoryes.Endpoint;
 using FinPay.Application.Repositoryes.Menu;
+using FinPay.Application.Repositoryes.AppTransactions;
 using FinPay.Application.Service;
 using FinPay.Application.Service.Authentications;
 using FinPay.Application.Service.Configurations;
@@ -11,6 +12,7 @@ using FinPay.Domain.Identity;
 using FinPay.Persistence.Context;
 using FinPay.Persistence.Repositoryes.Endpoint;
 using FinPay.Persistence.Repositoryes.Menu;
+using FinPay.Persistence.Repositoryes.AppTransactions;
 using FinPay.Persistence.Seeder;
 using FinPay.Persistence.Service;
 using FinPay.Persistence.Service.Authentications;
@@ -57,6 +59,8 @@ namespace FinPay.Persentetion
             builder.Services.AddScoped<IEndpointWriteRepository, EndpointWriteRepository>();
             builder.Services.AddScoped<IAuthorizationEndpointService, AuthorizetionEndpointService>();
             builder.Services.AddScoped<IPaymentTransaction, PaymentTransaction>();
+            builder.Services.AddScoped<ITransactionReadRepository, TransactionReadRepository>();
+            builder.Services.AddScoped<ITransactionWriteRepository, TransactionWriteRepository>();
 
 
             string connectionString = builder.Configuration.GetConnectionString("default");
@@ -91,9 +95,20 @@ namespace FinPay.Persentetion
        };
    }
     );
+            builder.Services.AddCors(options =>
+            {
+                options.AddPolicy("AllowAll", policy =>
+                {
+                    policy
+                        .AllowAnyOrigin()
+                        .AllowAnyHeader()
+                        .AllowAnyMethod();
+                });
+            });
 
 
             var app = builder.Build();
+
 
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
@@ -103,6 +118,8 @@ namespace FinPay.Persentetion
             }
 
             app.UseHttpsRedirection();
+
+            app.UseCors("AllowAll");
 
             app.UseAuthentication();
             app.UseAuthorization();

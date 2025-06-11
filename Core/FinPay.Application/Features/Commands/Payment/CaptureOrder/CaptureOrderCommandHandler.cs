@@ -19,7 +19,7 @@ namespace FinPay.Application.Features.Commands.Payment.CaptureOrder
 
         public async Task<CaptureOrderCommandResponse> Handle(CaptureOrderCommandRequest request, CancellationToken cancellationToken)
         {
-            string response = await _paymentTransaction.CaptureOrderAsync(request.Id);
+            string response = await _paymentTransaction.CaptureOrderAsync(request.Id,request.UserId,request.TransactionId);
             return new()
             {
                 Status = response,
