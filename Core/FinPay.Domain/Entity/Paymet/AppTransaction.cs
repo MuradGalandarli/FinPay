@@ -9,9 +9,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FinPay.Domain.Entity
+namespace FinPay.Domain.Entity.Paymet
 {
-    public class AppTransaction:BaseEntity
+    public class AppTransaction : BaseEntity
     {
         public string? FromUserId { get; set; }
 
@@ -22,7 +22,8 @@ namespace FinPay.Domain.Entity
 
         [ForeignKey(nameof(ToUserId))]
         public ApplicationUser? ToUser { get; set; }
-
+        public bool IsPayoutSent { get; set; } = false;
+        public string PaypalEmail { get; set; }
         public decimal Amount { get; set; }
         public DateTime CreateAt { get; set; }
         public TransferStatus Status { get; set; } = TransferStatus.Pending;

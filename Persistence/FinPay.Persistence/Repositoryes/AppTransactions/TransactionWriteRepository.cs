@@ -1,7 +1,7 @@
 ﻿
 
 using FinPay.Application.Repositoryes.AppTransactions;
-using FinPay.Domain.Entity;
+using FinPay.Domain.Entity.Paymet;
 using FinPay.Persistence.Context;
 using System;
 using System.Collections.Generic;

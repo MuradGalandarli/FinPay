@@ -37,38 +37,6 @@ namespace FinPay.Persistence.Migrations
                     b.ToTable("ApplicationRoleEndpoint");
                 });
 
-            modelBuilder.Entity("FinPay.Domain.Entity.AppTransaction", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
-
-                    b.Property<decimal>("Amount")
-                        .HasColumnType("numeric");
-
-                    b.Property<DateTime>("CreateAt")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<string>("FromUserId")
-                        .HasColumnType("text");
-
-                    b.Property<int>("Status")
-                        .HasColumnType("integer");
-
-                    b.Property<string>("ToUserId")
-                        .HasColumnType("text");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("FromUserId");
-
-                    b.HasIndex("ToUserId");
-
-                    b.ToTable("AppTransactions");
-                });
-
             modelBuilder.Entity("FinPay.Domain.Entity.Endpoint", b =>
                 {
                     b.Property<int>("Id")
@@ -114,6 +82,112 @@ namespace FinPay.Persistence.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Menus");
+                });
+
+            modelBuilder.Entity("FinPay.Domain.Entity.Paymet.AppTransaction", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<decimal>("Amount")
+                        .HasColumnType("numeric");
+
+                    b.Property<DateTime>("CreateAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("FromUserId")
+                        .HasColumnType("text");
+
+                    b.Property<bool>("IsPayoutSent")
+                        .HasColumnType("boolean");
+
+                    b.Property<string>("PaypalEmail")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("ToUserId")
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("FromUserId");
+
+                    b.HasIndex("ToUserId");
+
+                    b.ToTable("AppTransactions");
+                });
+
+            modelBuilder.Entity("FinPay.Domain.Entity.Paymet.CardBalance", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<decimal>("Balance")
+                        .HasColumnType("numeric");
+
+                    b.Property<string>("PaypalEmail")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId")
+                        .IsUnique();
+
+                    b.ToTable("CardBalances");
+                });
+
+            modelBuilder.Entity("FinPay.Domain.Entity.Paymet.PaypalTransaction", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<decimal>("Amount")
+                        .HasColumnType("numeric");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("FromPaypalEmail")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<bool>("IsSuccessful")
+                        .HasColumnType("boolean");
+
+                    b.Property<string>("ToPaypalEmail")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<DateTime>("TransactionDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("PaypalTransactions");
                 });
 
             modelBuilder.Entity("FinPay.Domain.Entity.Tokeninfo", b =>
@@ -357,7 +431,16 @@ namespace FinPay.Persistence.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("FinPay.Domain.Entity.AppTransaction", b =>
+            modelBuilder.Entity("FinPay.Domain.Entity.Endpoint", b =>
+                {
+                    b.HasOne("FinPay.Domain.Entity.Menu", "Menu")
+                        .WithMany("Endpoints")
+                        .HasForeignKey("MenuId");
+
+                    b.Navigation("Menu");
+                });
+
+            modelBuilder.Entity("FinPay.Domain.Entity.Paymet.AppTransaction", b =>
                 {
                     b.HasOne("FinPay.Domain.Identity.ApplicationUser", "FromUser")
                         .WithMany("SendTransactions")
@@ -374,13 +457,26 @@ namespace FinPay.Persistence.Migrations
                     b.Navigation("ToUser");
                 });
 
-            modelBuilder.Entity("FinPay.Domain.Entity.Endpoint", b =>
+            modelBuilder.Entity("FinPay.Domain.Entity.Paymet.CardBalance", b =>
                 {
-                    b.HasOne("FinPay.Domain.Entity.Menu", "Menu")
-                        .WithMany("Endpoints")
-                        .HasForeignKey("MenuId");
+                    b.HasOne("FinPay.Domain.Identity.ApplicationUser", "ApplicationUser")
+                        .WithOne("cardBalance")
+                        .HasForeignKey("FinPay.Domain.Entity.Paymet.CardBalance", "UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.Navigation("Menu");
+                    b.Navigation("ApplicationUser");
+                });
+
+            modelBuilder.Entity("FinPay.Domain.Entity.Paymet.PaypalTransaction", b =>
+                {
+                    b.HasOne("FinPay.Domain.Identity.ApplicationUser", "ApplicationUser")
+                        .WithMany("PaypalTransactions")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("ApplicationUser");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -441,9 +537,14 @@ namespace FinPay.Persistence.Migrations
 
             modelBuilder.Entity("FinPay.Domain.Identity.ApplicationUser", b =>
                 {
+                    b.Navigation("PaypalTransactions");
+
                     b.Navigation("ReceivedTransactions");
 
                     b.Navigation("SendTransactions");
+
+                    b.Navigation("cardBalance")
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

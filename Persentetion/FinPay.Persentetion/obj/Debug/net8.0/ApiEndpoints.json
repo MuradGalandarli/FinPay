@@ -137,6 +137,22 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "FinPay.Presentation.Controllers.PaymentController",
+    "Method": "CardTransaction",
+    "RelativePath": "api/Payment/CardTransaction",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "cardTransactionCommandRequest",
+        "Type": "FinPay.Application.Features.Commands.CardTransaction.CardTransactionCommandRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "FinPay.Presentation.Controllers.RolesController",
     "Method": "CreateRole",
     "RelativePath": "api/Roles",

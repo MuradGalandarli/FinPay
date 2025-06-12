@@ -55,7 +55,7 @@ namespace FinPay.Persistence.Service.Payment
                 }
             };
 
-            await _transactionWriteRepository.Add(new Domain.Entity.AppTransaction
+            await _transactionWriteRepository.Add(new Domain.Entity.Paymet.AppTransaction
             {
                Amount = amount,
                CreateAt = DateTime.UtcNow,
@@ -80,7 +80,7 @@ namespace FinPay.Persistence.Service.Payment
         {
             string accessToken = await GetAccessTokenAsync();
 
-            using var httpClient = new HttpClient(); // Tövsiyə: IHttpClientFactory ilə əvəzlənə bilər
+            using var httpClient = new HttpClient(); 
             httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
 
             var content = new StringContent("{}", Encoding.UTF8, "application/json");

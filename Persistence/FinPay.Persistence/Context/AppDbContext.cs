@@ -1,4 +1,5 @@
 ﻿using FinPay.Domain.Entity;
+using FinPay.Domain.Entity.Paymet;
 using FinPay.Domain.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
@@ -21,6 +22,8 @@ namespace FinPay.Persistence.Context
         public DbSet<Menu> Menus { get; set; }
         public DbSet<Endpoint> Endpoints { get; set; }
         public DbSet<AppTransaction> AppTransactions { get; set; }
+        public DbSet<CardBalance> CardBalances { get; set; }
+        public DbSet<PaypalTransaction> PaypalTransactions { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder builder)

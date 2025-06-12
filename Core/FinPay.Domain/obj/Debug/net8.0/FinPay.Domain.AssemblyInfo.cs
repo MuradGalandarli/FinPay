@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("FinPay.Domain")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+2f6eeaf3ef1c6798692193bfd31b760379ee43ab")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f9e0b7fbb2f37ba24768cc084612c471d97d7eb0")]
 [assembly: System.Reflection.AssemblyProductAttribute("FinPay.Domain")]
 [assembly: System.Reflection.AssemblyTitleAttribute("FinPay.Domain")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -24,6 +24,11 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using FinPay.Application.Repositoryes.CardBalance;
+using FinPay.Persistence.Repositoryes;
+using FinPay.Application.Repositoryes;
+using FinPay.Persistence.Repositoryes.PaypalTransaction;
+using FinPay.Application.Repositoryes.PaypalTransaction;
 
 namespace FinPay.Persentetion
 {
@@ -32,11 +37,6 @@ namespace FinPay.Persentetion
         public static async Task Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
-
-            // Add services to the container.
-
-            //builder.Services.AddControllers();
-            //builder.Services.AddScoped<RolePermissionFilter>();
 
             builder.Services.AddControllers(options =>
             {
@@ -51,6 +51,8 @@ namespace FinPay.Persentetion
             builder.Services.AddScoped<IRoleService, RoleService>();
             builder.Services.AddMediatR(typeof(SignupCommandRequest).Assembly);
 
+            builder.Services.AddHostedService<AutoPayoutService>();
+
 
             builder.Services.AddScoped<IApplicationService, ApplicationService>();
             builder.Services.AddScoped<IMenuWriteRepository, MenuWriteRepository>();
@@ -61,6 +63,11 @@ namespace FinPay.Persentetion
             builder.Services.AddScoped<IPaymentTransaction, PaymentTransaction>();
             builder.Services.AddScoped<ITransactionReadRepository, TransactionReadRepository>();
             builder.Services.AddScoped<ITransactionWriteRepository, TransactionWriteRepository>();
+            builder.Services.AddScoped<ICardBalanceReadRepository, CardBalanceReadRepository>();
+            builder.Services.AddScoped<ICardBalanceWriteRepository, CardBalanceWriteRepository>();
+            builder.Services.AddScoped<IPaypalTransactionWriteRepository, PeypalTransactionWriteRepository>();
+            builder.Services.AddScoped<IPaypalTransactionReadRepository, PeypalTransactionReadRepository>();
+            builder.Services.AddScoped<ICardTransactionService, CardTransactionService>();
 
 
             string connectionString = builder.Configuration.GetConnectionString("default");
