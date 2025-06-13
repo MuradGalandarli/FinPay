@@ -138,11 +138,17 @@ namespace FinPay.Persistence.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
+                    b.Property<int>("UserAccountId")
+                        .HasColumnType("integer");
+
                     b.Property<string>("UserId")
                         .IsRequired()
                         .HasColumnType("text");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("UserAccountId")
+                        .IsUnique();
 
                     b.HasIndex("UserId")
                         .IsUnique();
@@ -188,6 +194,39 @@ namespace FinPay.Persistence.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("PaypalTransactions");
+                });
+
+            modelBuilder.Entity("FinPay.Domain.Entity.Paymet.UserAccount", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("Currency")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("LinkedPaypalEmail")
+                        .HasColumnType("text");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId")
+                        .IsUnique();
+
+                    b.ToTable("UserAccount");
                 });
 
             modelBuilder.Entity("FinPay.Domain.Entity.Tokeninfo", b =>
@@ -459,6 +498,12 @@ namespace FinPay.Persistence.Migrations
 
             modelBuilder.Entity("FinPay.Domain.Entity.Paymet.CardBalance", b =>
                 {
+                    b.HasOne("FinPay.Domain.Entity.Paymet.UserAccount", "UserAccount")
+                        .WithOne("CardBalance")
+                        .HasForeignKey("FinPay.Domain.Entity.Paymet.CardBalance", "UserAccountId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("FinPay.Domain.Identity.ApplicationUser", "ApplicationUser")
                         .WithOne("cardBalance")
                         .HasForeignKey("FinPay.Domain.Entity.Paymet.CardBalance", "UserId")
@@ -466,6 +511,8 @@ namespace FinPay.Persistence.Migrations
                         .IsRequired();
 
                     b.Navigation("ApplicationUser");
+
+                    b.Navigation("UserAccount");
                 });
 
             modelBuilder.Entity("FinPay.Domain.Entity.Paymet.PaypalTransaction", b =>
@@ -473,6 +520,17 @@ namespace FinPay.Persistence.Migrations
                     b.HasOne("FinPay.Domain.Identity.ApplicationUser", "ApplicationUser")
                         .WithMany("PaypalTransactions")
                         .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("ApplicationUser");
+                });
+
+            modelBuilder.Entity("FinPay.Domain.Entity.Paymet.UserAccount", b =>
+                {
+                    b.HasOne("FinPay.Domain.Identity.ApplicationUser", "ApplicationUser")
+                        .WithOne("UserAccount")
+                        .HasForeignKey("FinPay.Domain.Entity.Paymet.UserAccount", "UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -535,6 +593,12 @@ namespace FinPay.Persistence.Migrations
                     b.Navigation("Endpoints");
                 });
 
+            modelBuilder.Entity("FinPay.Domain.Entity.Paymet.UserAccount", b =>
+                {
+                    b.Navigation("CardBalance")
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("FinPay.Domain.Identity.ApplicationUser", b =>
                 {
                     b.Navigation("PaypalTransactions");
@@ -542,6 +606,9 @@ namespace FinPay.Persistence.Migrations
                     b.Navigation("ReceivedTransactions");
 
                     b.Navigation("SendTransactions");
+
+                    b.Navigation("UserAccount")
+                        .IsRequired();
 
                     b.Navigation("cardBalance")
                         .IsRequired();

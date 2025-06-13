@@ -2,14 +2,10 @@
 using FinPay.Application.Repositoryes;
 using FinPay.Application.Repositoryes.AppTransactions;
 using FinPay.Application.Repositoryes.CardBalance;
+using FinPay.Application.Repositoryes.UserAccount;
 using FinPay.Application.Service.Payment;
 using FinPay.Domain.Entity.Paymet;
-using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace FinPay.Persistence.Service.Payment
 {
@@ -20,18 +16,27 @@ namespace FinPay.Persistence.Service.Payment
         private readonly ICardBalanceWriteRepository _cardBalanceWriteRepository;
         private readonly ICardBalanceReadRepository _cardBalanceReadRepository;
         private readonly IPaypalTransactionWriteRepository _paypalTransactionWriteRepository;
-        
+        private readonly IUserAccountReadRepository _userAccountReadRepository;
+        private readonly ITransactionReadRepository _transactionReadRepository;
+
+
 
         public CardTransactionService(
             ICardBalanceWriteRepository cardBalanceWriteRepository,
             ITransactionWriteRepository transactionWriteRepository,
             ICardBalanceReadRepository cardBalanceReadRepository,
-            IPaypalTransactionWriteRepository paypalTransactionWriteRepository)
+            IPaypalTransactionWriteRepository paypalTransactionWriteRepository
+,
+            IUserAccountReadRepository userAccountReadRepository
+,
+            ITransactionReadRepository transactionReadRepository)
         {
             _cardBalanceWriteRepository = cardBalanceWriteRepository;
             _transactionWriteRepository = transactionWriteRepository;
             _cardBalanceReadRepository = cardBalanceReadRepository;
             _paypalTransactionWriteRepository = paypalTransactionWriteRepository;
+            _userAccountReadRepository = userAccountReadRepository;
+            _transactionReadRepository = transactionReadRepository;
         }
 
         public async Task<bool> PaypalToPaypalAsync(CardToCardRequestDto request)
@@ -53,8 +58,12 @@ namespace FinPay.Persistence.Service.Payment
 
             if (toBalance == null)
             {
+                var userAccountId = await _transactionReadRepository.GetSingelAsync(x => x.PaypalEmail == request.ToPaypalEmail);
                 toBalance = new CardBalance
                 {
+
+
+                    //UserAccountId = userAccountId.,
                     PaypalEmail = request.ToPaypalEmail,
                     Balance = 0
                 };
@@ -73,7 +82,9 @@ namespace FinPay.Persistence.Service.Payment
                 Amount = request.Amount,
                 Description = request.Description,
                 IsSuccessful = true,
-                TransactionDate = DateTime.UtcNow
+                TransactionDate = DateTime.UtcNow,
+                //UserId = request.
+                
             };
 
             await _paypalTransactionWriteRepository.Add(transaction);

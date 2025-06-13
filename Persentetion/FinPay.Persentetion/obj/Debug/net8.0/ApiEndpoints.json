@@ -275,6 +275,22 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "FinPay.Presentation.Controllers.UserAccountController",
+    "Method": "CreateUserAccount",
+    "RelativePath": "api/UserAccount/CreateUserAccount",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userAccountCommandRequest",
+        "Type": "FinPay.Application.Features.Commands.Payment.UserAccount.UserAccountCommandRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "FinPay.Persentetion.Controllers.WeatherForecastController",
     "Method": "Get",
     "RelativePath": "WeatherForecast",

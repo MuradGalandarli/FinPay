@@ -29,6 +29,8 @@ using FinPay.Persistence.Repositoryes;
 using FinPay.Application.Repositoryes;
 using FinPay.Persistence.Repositoryes.PaypalTransaction;
 using FinPay.Application.Repositoryes.PaypalTransaction;
+using FinPay.Persistence.Repositoryes.UserAccount;
+using FinPay.Application.Repositoryes.UserAccount;
 
 namespace FinPay.Persentetion
 {
@@ -68,6 +70,9 @@ namespace FinPay.Persentetion
             builder.Services.AddScoped<IPaypalTransactionWriteRepository, PeypalTransactionWriteRepository>();
             builder.Services.AddScoped<IPaypalTransactionReadRepository, PeypalTransactionReadRepository>();
             builder.Services.AddScoped<ICardTransactionService, CardTransactionService>();
+            builder.Services.AddScoped<IUserAccountService, UserAccountService>();
+            builder.Services.AddScoped<IUserAccountWriteRepository, UserAccountWriteRepository>();
+            builder.Services.AddScoped<IUserAccountReadRepository, UserAccountReadRepository>();
 
 
             string connectionString = builder.Configuration.GetConnectionString("default");

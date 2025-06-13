@@ -55,6 +55,7 @@ namespace FinPay.Persistence.Service.Payment
                                 UserId = tx.ToUserId,
                                 Balance = tx.Amount,
                                 PaypalEmail = tx.PaypalEmail,
+                                //UserAccountId = 
                             });
                         }
                         else
