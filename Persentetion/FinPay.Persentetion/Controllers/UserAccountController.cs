@@ -1,4 +1,5 @@
 ﻿using FinPay.Application.Features.Commands.Payment.UserAccount;
+using FinPay.Application.Features.Queries.GetCardBalanceByUserId;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -21,6 +22,12 @@ namespace FinPay.Presentation.Controllers
         {
             UserAccountCommandResponse userAccountCommandResponse = await _mediator.Send(userAccountCommandRequest); 
             return Ok(userAccountCommandResponse);
+        }
+        [HttpGet("GetCardBalanceByUserId")]
+        public async Task<IActionResult> GetCardBalanceByUserId([FromQuery]GetCardBalanceByUserIdQueryRequest userIdQueryRequest)
+        {
+            GetCardBalanceByUserIdQueryResponse getCardBalanceByUserIdQueryResponse = await _mediator.Send(userIdQueryRequest);
+            return Ok(getCardBalanceByUserIdQueryResponse);
         }
 
 

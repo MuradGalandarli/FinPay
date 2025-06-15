@@ -1,4 +1,5 @@
-﻿using FinPay.Application.Repositoryes.AppTransactions;
+﻿using FinPay.Application.Repositoryes;
+using FinPay.Application.Repositoryes.AppTransactions;
 using FinPay.Application.Repositoryes.CardBalance;
 using FinPay.Domain.Enum;
 using Microsoft.EntityFrameworkCore;
@@ -32,6 +33,7 @@ namespace FinPay.Persistence.Service.Payment
                 var writeRepo = scope.ServiceProvider.GetRequiredService<ITransactionWriteRepository>();
                 var cardBalanceReadRepo = scope.ServiceProvider.GetRequiredService<ICardBalanceReadRepository>();
                 var cardBalanceWriteRepo = scope.ServiceProvider.GetRequiredService<ICardBalanceWriteRepository>();
+                var userAccountWriteRepo = scope.ServiceProvider.GetRequiredService<IUserAccountWriteRepository>();
 
                 var transactions = await transactionRepo
                     .GetWhere(x => x.Status == TransferStatus.Completed && !x.IsPayoutSent)
@@ -47,12 +49,13 @@ namespace FinPay.Persistence.Service.Payment
                     {
                         tx.IsPayoutSent = true;
 
-                        var balance = await cardBalanceReadRepo.GetSingelAsync(x => x.UserId == tx.ToUserId);
-                        if (balance == null)
+                        //var balance = await cardBalanceReadRepo.GetSingelAsync(x => x.UserId == tx.ToUserId);
+                        var balance = await userAccountWriteRepo.Table.Include(x => x.CardBalance).FirstOrDefaultAsync(x=>x.UserId == tx.ToUserId);
+                        if (balance?.CardBalance == null)
                         {
                             await cardBalanceWriteRepo.Add(new()
                             {
-                                UserId = tx.ToUserId,
+                                //UserId = tx.ToUserId,
                                 Balance = tx.Amount,
                                 PaypalEmail = tx.PaypalEmail,
                                 //UserAccountId = 
@@ -60,7 +63,7 @@ namespace FinPay.Persistence.Service.Payment
                         }
                         else
                         {
-                            balance.Balance += tx.Amount;
+                            balance.CardBalance.Balance += tx.Amount;
                         }
                     }
 

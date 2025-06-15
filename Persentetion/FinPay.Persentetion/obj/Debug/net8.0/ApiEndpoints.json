@@ -291,6 +291,22 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "FinPay.Presentation.Controllers.UserAccountController",
+    "Method": "GetCardBalanceByUserId",
+    "RelativePath": "api/UserAccount/GetCardBalanceByUserId",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "UserAccountId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "FinPay.Persentetion.Controllers.WeatherForecastController",
     "Method": "Get",
     "RelativePath": "WeatherForecast",

@@ -12,10 +12,11 @@ namespace FinPay.Domain.Entity.Paymet
     {
         public decimal Balance { get; set; }
         public string PaypalEmail { get; set; }
+        public bool IsActive { get; set; }
         
-        public string UserId { get; set; }
-        [ForeignKey(nameof(UserId))]
-        public ApplicationUser ApplicationUser { get; set; }
+        //public string UserId { get; set; }
+        //[ForeignKey(nameof(UserId))]
+        //public ApplicationUser ApplicationUser { get; set; }
 
         public int UserAccountId { get; set; }
         [ForeignKey(nameof(UserAccountId))]

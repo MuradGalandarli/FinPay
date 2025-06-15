@@ -14,7 +14,7 @@ namespace FinPay.Domain.Identity
         public ICollection<AppTransaction> SendTransactions { get; set; }
         public ICollection<AppTransaction> ReceivedTransactions { get; set; }
         public ICollection<PaypalTransaction> PaypalTransactions { get; set; }
-        public CardBalance cardBalance { get; set; }
+        //public CardBalance cardBalance { get; set; }
         public UserAccount UserAccount { get; set; }
     }
 }

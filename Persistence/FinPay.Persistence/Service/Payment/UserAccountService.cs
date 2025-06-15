@@ -1,8 +1,10 @@
 ﻿using FinPay.Application.DTOs;
 using FinPay.Application.Enums;
 using FinPay.Application.Repositoryes;
+using FinPay.Application.Repositoryes.CardBalance;
 using FinPay.Application.Repositoryes.UserAccount;
 using FinPay.Application.Service.Payment;
+using FinPay.Domain.Entity.Paymet;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,11 +17,13 @@ namespace FinPay.Persistence.Service.Payment
     {
         private readonly IUserAccountReadRepository _userAccountReadRepository;
         private readonly IUserAccountWriteRepository _userAccountWriteRepository;
+        private readonly ICardBalanceReadRepository _cardBalanceReadRepository;
 
-        public UserAccountService(IUserAccountWriteRepository userAccountWriteRepository, IUserAccountReadRepository userAccountReadRepository)
+        public UserAccountService(IUserAccountWriteRepository userAccountWriteRepository, IUserAccountReadRepository userAccountReadRepository, ICardBalanceReadRepository cardBalanceReadRepository)
         {
             _userAccountWriteRepository = userAccountWriteRepository;
             _userAccountReadRepository = userAccountReadRepository;
+            _cardBalanceReadRepository = cardBalanceReadRepository;
         }
 
 
@@ -42,6 +46,19 @@ namespace FinPay.Persistence.Service.Payment
                 return true;
             } 
             return false;
+        }
+
+        public async Task<GetUserBalanceResponse> GetCardBalanceByUserId(int userAccountId)
+        {
+         var userBalance =  await _cardBalanceReadRepository.GetByIdAsync( userAccountId);
+            return new()
+            { 
+                PaypalEmail = userBalance.PaypalEmail,
+                Balance = userBalance.Balance,
+                UserAccountId = userBalance.UserAccountId,
+             
+            };
+
         }
     }
 }

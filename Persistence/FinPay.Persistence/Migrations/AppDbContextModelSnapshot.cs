@@ -134,6 +134,9 @@ namespace FinPay.Persistence.Migrations
                     b.Property<decimal>("Balance")
                         .HasColumnType("numeric");
 
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("boolean");
+
                     b.Property<string>("PaypalEmail")
                         .IsRequired()
                         .HasColumnType("text");
@@ -141,16 +144,9 @@ namespace FinPay.Persistence.Migrations
                     b.Property<int>("UserAccountId")
                         .HasColumnType("integer");
 
-                    b.Property<string>("UserId")
-                        .IsRequired()
-                        .HasColumnType("text");
-
                     b.HasKey("Id");
 
                     b.HasIndex("UserAccountId")
-                        .IsUnique();
-
-                    b.HasIndex("UserId")
                         .IsUnique();
 
                     b.ToTable("CardBalances");
@@ -504,14 +500,6 @@ namespace FinPay.Persistence.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("FinPay.Domain.Identity.ApplicationUser", "ApplicationUser")
-                        .WithOne("cardBalance")
-                        .HasForeignKey("FinPay.Domain.Entity.Paymet.CardBalance", "UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("ApplicationUser");
-
                     b.Navigation("UserAccount");
                 });
 
@@ -608,9 +596,6 @@ namespace FinPay.Persistence.Migrations
                     b.Navigation("SendTransactions");
 
                     b.Navigation("UserAccount")
-                        .IsRequired();
-
-                    b.Navigation("cardBalance")
                         .IsRequired();
                 });
 #pragma warning restore 612, 618

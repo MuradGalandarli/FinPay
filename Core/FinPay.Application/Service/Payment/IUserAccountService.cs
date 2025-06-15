@@ -1,4 +1,5 @@
 ﻿using FinPay.Application.DTOs;
+using FinPay.Domain.Entity.Paymet;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,5 +11,6 @@ namespace FinPay.Application.Service.Payment
     public interface IUserAccountService
     {
         public Task<bool> CreateUserAccount(UserAccountDto account);
+        public Task<GetUserBalanceResponse> GetCardBalanceByUserId(int userAccountId);
     }
 }

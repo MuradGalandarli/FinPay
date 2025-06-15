@@ -500,6 +500,28 @@
         }
       }
     },
+    "/api/UserAccount/GetCardBalanceByUserId": {
+      "get": {
+        "tags": [
+          "UserAccount"
+        ],
+        "parameters": [
+          {
+            "name": "UserAccountId",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/WeatherForecast": {
       "get": {
         "tags": [
