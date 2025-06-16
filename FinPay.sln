@@ -21,6 +21,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentatio
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FinPay.Presentation", "Persentetion\FinPay.Persentetion\FinPay.Presentation.csproj", "{F7454FF3-9569-4689-BA1D-69D165DBA78E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FinPay.MessageRetryEngine", "MessageRetryEngine\FinPay.MessageRetryEngine.csproj", "{E19850F5-BBEE-410F-9D93-703B5D07F1A6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -47,6 +49,10 @@ Global
 		{F7454FF3-9569-4689-BA1D-69D165DBA78E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F7454FF3-9569-4689-BA1D-69D165DBA78E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F7454FF3-9569-4689-BA1D-69D165DBA78E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E19850F5-BBEE-410F-9D93-703B5D07F1A6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E19850F5-BBEE-410F-9D93-703B5D07F1A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E19850F5-BBEE-410F-9D93-703B5D07F1A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E19850F5-BBEE-410F-9D93-703B5D07F1A6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -57,5 +63,6 @@ Global
 		{81CFD1EB-E58A-47A7-8781-A96DAADC1375} = {DE652FCE-B2F9-433E-BC77-CB597FEC86AD}
 		{DAA58652-747F-4B7F-95C7-E7F496ABF5AD} = {9CF0C4E3-E304-4411-AD16-D10877CFC22C}
 		{F7454FF3-9569-4689-BA1D-69D165DBA78E} = {DFE1F7A9-0046-4972-A914-47A71DA99256}
+		{E19850F5-BBEE-410F-9D93-703B5D07F1A6} = {DE652FCE-B2F9-433E-BC77-CB597FEC86AD}
 	EndGlobalSection
 EndGlobal

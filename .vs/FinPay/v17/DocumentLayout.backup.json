@@ -3,36 +3,20 @@
   "WorkspaceRootPath": "D:\\GitHub test\\FinPay\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{DAA58652-747F-4B7F-95C7-E7F496ABF5AD}|Persistence\\FinPay.Persistence\\FinPay.Persistence.csproj|d:\\github test\\finpay\\persistence\\finpay.persistence\\service\\payment\\useraccountservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{DAA58652-747F-4B7F-95C7-E7F496ABF5AD}|Persistence\\FinPay.Persistence\\FinPay.Persistence.csproj|solutionrelative:persistence\\finpay.persistence\\service\\payment\\useraccountservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{F7454FF3-9569-4689-BA1D-69D165DBA78E}|Persentetion\\FinPay.Persentetion\\FinPay.Presentation.csproj|d:\\github test\\finpay\\persentetion\\finpay.persentetion\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F7454FF3-9569-4689-BA1D-69D165DBA78E}|Persentetion\\FinPay.Persentetion\\FinPay.Presentation.csproj|solutionrelative:persentetion\\finpay.persentetion\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F7454FF3-9569-4689-BA1D-69D165DBA78E}|Persentetion\\FinPay.Persentetion\\FinPay.Presentation.csproj|d:\\github test\\finpay\\persentetion\\finpay.persentetion\\controllers\\useraccountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F7454FF3-9569-4689-BA1D-69D165DBA78E}|Persentetion\\FinPay.Persentetion\\FinPay.Presentation.csproj|solutionrelative:persentetion\\finpay.persentetion\\controllers\\useraccountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{E19850F5-BBEE-410F-9D93-703B5D07F1A6}|MessageRetryEngine\\FinPay.MessageRetryEngine.csproj|d:\\github test\\finpay\\messageretryengine\\services\\transactionmessagerabbitmq.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E19850F5-BBEE-410F-9D93-703B5D07F1A6}|MessageRetryEngine\\FinPay.MessageRetryEngine.csproj|solutionrelative:messageretryengine\\services\\transactionmessagerabbitmq.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{FFFDD799-DD67-4FB2-8E1B-335FFC044C49}|Core\\FinPay.Application\\FinPay.Application.csproj|d:\\github test\\finpay\\core\\finpay.application\\features\\queries\\getcardbalancebyuserid\\getcardbalancebyuseridqueryhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{FFFDD799-DD67-4FB2-8E1B-335FFC044C49}|Core\\FinPay.Application\\FinPay.Application.csproj|solutionrelative:core\\finpay.application\\features\\queries\\getcardbalancebyuserid\\getcardbalancebyuseridqueryhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{FFFDD799-DD67-4FB2-8E1B-335FFC044C49}|Core\\FinPay.Application\\FinPay.Application.csproj|d:\\github test\\finpay\\core\\finpay.application\\rabbitmqmessage\\transactionmessage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FFFDD799-DD67-4FB2-8E1B-335FFC044C49}|Core\\FinPay.Application\\FinPay.Application.csproj|solutionrelative:core\\finpay.application\\rabbitmqmessage\\transactionmessage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{FFFDD799-DD67-4FB2-8E1B-335FFC044C49}|Core\\FinPay.Application\\FinPay.Application.csproj|d:\\github test\\finpay\\core\\finpay.application\\features\\queries\\getcardbalancebyuserid\\getcardbalancebyuseridqueryrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{FFFDD799-DD67-4FB2-8E1B-335FFC044C49}|Core\\FinPay.Application\\FinPay.Application.csproj|solutionrelative:core\\finpay.application\\features\\queries\\getcardbalancebyuserid\\getcardbalancebyuseridqueryrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{FFFDD799-DD67-4FB2-8E1B-335FFC044C49}|Core\\FinPay.Application\\FinPay.Application.csproj|d:\\github test\\finpay\\core\\finpay.application\\features\\queries\\getcardbalancebyuserid\\getcardbalancebyuseridqueryresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{FFFDD799-DD67-4FB2-8E1B-335FFC044C49}|Core\\FinPay.Application\\FinPay.Application.csproj|solutionrelative:core\\finpay.application\\features\\queries\\getcardbalancebyuserid\\getcardbalancebyuseridqueryresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4A375C86-90FA-486F-AA3E-EFAC29A07294}|Core\\FinPay.Domain\\FinPay.Domain.csproj|d:\\github test\\finpay\\core\\finpay.domain\\entity\\paymet\\cardbalance.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4A375C86-90FA-486F-AA3E-EFAC29A07294}|Core\\FinPay.Domain\\FinPay.Domain.csproj|solutionrelative:core\\finpay.domain\\entity\\paymet\\cardbalance.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{FFFDD799-DD67-4FB2-8E1B-335FFC044C49}|Core\\FinPay.Application\\FinPay.Application.csproj|d:\\github test\\finpay\\core\\finpay.application\\dtos\\getuserbalanceresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{FFFDD799-DD67-4FB2-8E1B-335FFC044C49}|Core\\FinPay.Application\\FinPay.Application.csproj|solutionrelative:core\\finpay.application\\dtos\\getuserbalanceresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{FFFDD799-DD67-4FB2-8E1B-335FFC044C49}|Core\\FinPay.Application\\FinPay.Application.csproj|d:\\github test\\finpay\\core\\finpay.application\\service\\payment\\iuseraccountservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{FFFDD799-DD67-4FB2-8E1B-335FFC044C49}|Core\\FinPay.Application\\FinPay.Application.csproj|solutionrelative:core\\finpay.application\\service\\payment\\iuseraccountservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{E19850F5-BBEE-410F-9D93-703B5D07F1A6}|MessageRetryEngine\\FinPay.MessageRetryEngine.csproj|d:\\github test\\finpay\\messageretryengine\\rabbitmqpublisher\\apppublisher.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E19850F5-BBEE-410F-9D93-703B5D07F1A6}|MessageRetryEngine\\FinPay.MessageRetryEngine.csproj|solutionrelative:messageretryengine\\rabbitmqpublisher\\apppublisher.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -42,8 +26,60 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 7,
+          "SelectedChildIndex": 0,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Program.cs",
+              "DocumentMoniker": "D:\\GitHub test\\FinPay\\Persentetion\\FinPay.Persentetion\\Program.cs",
+              "RelativeDocumentMoniker": "Persentetion\\FinPay.Persentetion\\Program.cs",
+              "ToolTip": "D:\\GitHub test\\FinPay\\Persentetion\\FinPay.Persentetion\\Program.cs",
+              "RelativeToolTip": "Persentetion\\FinPay.Persentetion\\Program.cs",
+              "ViewState": "AgIAAD4AAAAAAAAAAAAQwFEAAABCAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-16T18:09:54.072Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "TransactionMessage.cs",
+              "DocumentMoniker": "D:\\GitHub test\\FinPay\\Core\\FinPay.Application\\RabbitMqMessage\\TransactionMessage.cs",
+              "RelativeDocumentMoniker": "Core\\FinPay.Application\\RabbitMqMessage\\TransactionMessage.cs",
+              "ToolTip": "D:\\GitHub test\\FinPay\\Core\\FinPay.Application\\RabbitMqMessage\\TransactionMessage.cs",
+              "RelativeToolTip": "Core\\FinPay.Application\\RabbitMqMessage\\TransactionMessage.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAuwAsAAAArAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-16T17:55:26.24Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "TransactionMessageRabbitMq.cs",
+              "DocumentMoniker": "D:\\GitHub test\\FinPay\\MessageRetryEngine\\Services\\TransactionMessageRabbitMq.cs",
+              "RelativeDocumentMoniker": "MessageRetryEngine\\Services\\TransactionMessageRabbitMq.cs",
+              "ToolTip": "D:\\GitHub test\\FinPay\\MessageRetryEngine\\Services\\TransactionMessageRabbitMq.cs*",
+              "RelativeToolTip": "MessageRetryEngine\\Services\\TransactionMessageRabbitMq.cs*",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAuwAoAAAArAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-16T17:28:19.922Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "AppPublisher.cs",
+              "DocumentMoniker": "D:\\GitHub test\\FinPay\\MessageRetryEngine\\RabbitMqPublisher\\AppPublisher.cs",
+              "RelativeDocumentMoniker": "MessageRetryEngine\\RabbitMqPublisher\\AppPublisher.cs",
+              "ToolTip": "D:\\GitHub test\\FinPay\\MessageRetryEngine\\RabbitMqPublisher\\AppPublisher.cs",
+              "RelativeToolTip": "MessageRetryEngine\\RabbitMqPublisher\\AppPublisher.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACUAAAAwAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-16T16:27:30.73Z",
+              "EditorCaption": ""
+            },
             {
               "$type": "Bookmark",
               "Name": "ST:128:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
@@ -51,110 +87,6 @@
             {
               "$type": "Bookmark",
               "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "UserAccountController.cs",
-              "DocumentMoniker": "D:\\GitHub test\\FinPay\\Persentetion\\FinPay.Persentetion\\Controllers\\UserAccountController.cs",
-              "RelativeDocumentMoniker": "Persentetion\\FinPay.Persentetion\\Controllers\\UserAccountController.cs",
-              "ToolTip": "D:\\GitHub test\\FinPay\\Persentetion\\FinPay.Persentetion\\Controllers\\UserAccountController.cs",
-              "RelativeToolTip": "Persentetion\\FinPay.Persentetion\\Controllers\\UserAccountController.cs",
-              "ViewState": "AgIAAAoAAAAAAAAAAAAAABkAAAAoAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-15T19:29:14.534Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "GetCardBalanceByUserIdQueryResponse.cs",
-              "DocumentMoniker": "D:\\GitHub test\\FinPay\\Core\\FinPay.Application\\Features\\Queries\\GetCardBalanceByUserId\\GetCardBalanceByUserIdQueryResponse.cs",
-              "RelativeDocumentMoniker": "Core\\FinPay.Application\\Features\\Queries\\GetCardBalanceByUserId\\GetCardBalanceByUserIdQueryResponse.cs",
-              "ToolTip": "D:\\GitHub test\\FinPay\\Core\\FinPay.Application\\Features\\Queries\\GetCardBalanceByUserId\\GetCardBalanceByUserIdQueryResponse.cs",
-              "RelativeToolTip": "Core\\FinPay.Application\\Features\\Queries\\GetCardBalanceByUserId\\GetCardBalanceByUserIdQueryResponse.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAFAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-15T19:25:59.624Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "GetCardBalanceByUserIdQueryRequest.cs",
-              "DocumentMoniker": "D:\\GitHub test\\FinPay\\Core\\FinPay.Application\\Features\\Queries\\GetCardBalanceByUserId\\GetCardBalanceByUserIdQueryRequest.cs",
-              "RelativeDocumentMoniker": "Core\\FinPay.Application\\Features\\Queries\\GetCardBalanceByUserId\\GetCardBalanceByUserIdQueryRequest.cs",
-              "ToolTip": "D:\\GitHub test\\FinPay\\Core\\FinPay.Application\\Features\\Queries\\GetCardBalanceByUserId\\GetCardBalanceByUserIdQueryRequest.cs",
-              "RelativeToolTip": "Core\\FinPay.Application\\Features\\Queries\\GetCardBalanceByUserId\\GetCardBalanceByUserIdQueryRequest.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAATAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-15T19:24:52.988Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "GetCardBalanceByUserIdQueryHandler.cs",
-              "DocumentMoniker": "D:\\GitHub test\\FinPay\\Core\\FinPay.Application\\Features\\Queries\\GetCardBalanceByUserId\\GetCardBalanceByUserIdQueryHandler.cs",
-              "RelativeDocumentMoniker": "Core\\FinPay.Application\\Features\\Queries\\GetCardBalanceByUserId\\GetCardBalanceByUserIdQueryHandler.cs",
-              "ToolTip": "D:\\GitHub test\\FinPay\\Core\\FinPay.Application\\Features\\Queries\\GetCardBalanceByUserId\\GetCardBalanceByUserIdQueryHandler.cs",
-              "RelativeToolTip": "Core\\FinPay.Application\\Features\\Queries\\GetCardBalanceByUserId\\GetCardBalanceByUserIdQueryHandler.cs",
-              "ViewState": "AgIAAAQAAAAAAAAAAAArwBYAAABFAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-15T19:23:03.45Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "GetUserBalanceResponse.cs",
-              "DocumentMoniker": "D:\\GitHub test\\FinPay\\Core\\FinPay.Application\\DTOs\\GetUserBalanceResponse.cs",
-              "RelativeDocumentMoniker": "Core\\FinPay.Application\\DTOs\\GetUserBalanceResponse.cs",
-              "ToolTip": "D:\\GitHub test\\FinPay\\Core\\FinPay.Application\\DTOs\\GetUserBalanceResponse.cs",
-              "RelativeToolTip": "Core\\FinPay.Application\\DTOs\\GetUserBalanceResponse.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAuAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-15T19:01:20.57Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "UserAccountService.cs",
-              "DocumentMoniker": "D:\\GitHub test\\FinPay\\Persistence\\FinPay.Persistence\\Service\\Payment\\UserAccountService.cs",
-              "RelativeDocumentMoniker": "Persistence\\FinPay.Persistence\\Service\\Payment\\UserAccountService.cs",
-              "ToolTip": "D:\\GitHub test\\FinPay\\Persistence\\FinPay.Persistence\\Service\\Payment\\UserAccountService.cs",
-              "RelativeToolTip": "Persistence\\FinPay.Persistence\\Service\\Payment\\UserAccountService.cs",
-              "ViewState": "AgIAACcAAAAAAAAAAAAYwD4AAAAFAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-15T18:49:14.679Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "CardBalance.cs",
-              "DocumentMoniker": "D:\\GitHub test\\FinPay\\Core\\FinPay.Domain\\Entity\\Paymet\\CardBalance.cs",
-              "RelativeDocumentMoniker": "Core\\FinPay.Domain\\Entity\\Paymet\\CardBalance.cs",
-              "ToolTip": "D:\\GitHub test\\FinPay\\Core\\FinPay.Domain\\Entity\\Paymet\\CardBalance.cs",
-              "RelativeToolTip": "Core\\FinPay.Domain\\Entity\\Paymet\\CardBalance.cs",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAuwBIAAAA+AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-15T18:25:55.168Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "IUserAccountService.cs",
-              "DocumentMoniker": "D:\\GitHub test\\FinPay\\Core\\FinPay.Application\\Service\\Payment\\IUserAccountService.cs",
-              "RelativeDocumentMoniker": "Core\\FinPay.Application\\Service\\Payment\\IUserAccountService.cs",
-              "ToolTip": "D:\\GitHub test\\FinPay\\Core\\FinPay.Application\\Service\\Payment\\IUserAccountService.cs",
-              "RelativeToolTip": "Core\\FinPay.Application\\Service\\Payment\\IUserAccountService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAuwA0AAABGAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-15T18:20:08.962Z",
-              "EditorCaption": ""
             }
           ]
         }
