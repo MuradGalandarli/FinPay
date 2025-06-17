@@ -21,7 +21,7 @@ namespace FinPay.Presentation.Controllers
             _mediator = mediator;
         }
 
-        [HttpPost]
+        [HttpPost("PaymentTransaction")]
         public async Task<IActionResult> PaymentTransaction(PaymentTransactionCommandRequest paymentTransactionCommandRequest)
         {
             PaymentTransactionCommandResponse paymentTransactionCommandResponse = await _mediator.Send(paymentTransactionCommandRequest);

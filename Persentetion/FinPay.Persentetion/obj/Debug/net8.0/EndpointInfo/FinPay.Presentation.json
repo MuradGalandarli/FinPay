@@ -181,7 +181,7 @@
         }
       }
     },
-    "/api/Payment": {
+    "/api/Payment/PaymentTransaction": {
       "post": {
         "tags": [
           "Payment"
@@ -719,17 +719,13 @@
       "CaptureOrderCommandRequest": {
         "type": "object",
         "properties": {
-          "id": {
+          "orderId": {
             "type": "string",
             "nullable": true
           },
           "userId": {
             "type": "string",
             "nullable": true
-          },
-          "transactionId": {
-            "type": "integer",
-            "format": "int32"
           }
         },
         "additionalProperties": false

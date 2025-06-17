@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("FinPay.MessageRetryEngine")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+89b62bfb9595085bda1a35ba536769b7ed839c2b")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+85f26da409665127a91c2fa2410e210827abe87c")]
 [assembly: System.Reflection.AssemblyProductAttribute("FinPay.MessageRetryEngine")]
 [assembly: System.Reflection.AssemblyTitleAttribute("FinPay.MessageRetryEngine")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

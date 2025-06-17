@@ -1,6 +1,7 @@
 ﻿using FinPay.Application.Repositoryes;
 using FinPay.Application.Repositoryes.AppTransactions;
 using FinPay.Application.Repositoryes.CardBalance;
+using FinPay.Application.Service;
 using FinPay.Domain.Enum;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -16,6 +17,7 @@ namespace FinPay.Persistence.Service.Payment
     {
         private readonly IServiceScopeFactory _scopeFactory;
         private readonly IConfiguration _configuration;
+        
 
         public AutoPayoutService(IServiceScopeFactory scopeFactory, IConfiguration configuration)
         {
@@ -34,10 +36,15 @@ namespace FinPay.Persistence.Service.Payment
                 var cardBalanceReadRepo = scope.ServiceProvider.GetRequiredService<ICardBalanceReadRepository>();
                 var cardBalanceWriteRepo = scope.ServiceProvider.GetRequiredService<ICardBalanceWriteRepository>();
                 var userAccountWriteRepo = scope.ServiceProvider.GetRequiredService<IUserAccountWriteRepository>();
+                var _transactionMessageRabbitMq = scope.ServiceProvider.GetRequiredService<ITransactionMessageRabbitMq>();
 
                 var transactions = await transactionRepo
                     .GetWhere(x => x.Status == TransferStatus.Completed && !x.IsPayoutSent)
                     .ToListAsync();
+
+                  //_transactionMessageRabbitMq.StartListeningAsync();
+                
+
 
                 foreach (var tx in transactions)
                 {
@@ -49,16 +56,21 @@ namespace FinPay.Persistence.Service.Payment
                     {
                         tx.IsPayoutSent = true;
 
-                        //var balance = await cardBalanceReadRepo.GetSingelAsync(x => x.UserId == tx.ToUserId);
                         var balance = await userAccountWriteRepo.Table.Include(x => x.CardBalance).FirstOrDefaultAsync(x=>x.UserId == tx.ToUserId);
                         if (balance?.CardBalance == null)
                         {
+                            //await _transactionMessageRabbitMq.ProcessAsync(new() { 
+                            //Amount = tx.Amount,
+                            //CreateAt = tx.CreateAt,
+                            //FromUserId = tx.FromUserId,
+                            //IsPayoutSent = true,
+                            //PaypalEmail = tx.PaypalEmail,
+                            //ToUserId = tx.ToUserId,
+                            //});
                             await cardBalanceWriteRepo.Add(new()
                             {
-                                //UserId = tx.ToUserId,
                                 Balance = tx.Amount,
                                 PaypalEmail = tx.PaypalEmail,
-                                //UserAccountId = 
                             });
                         }
                         else

@@ -9,7 +9,7 @@ namespace FinPay.Application.Service
 {
     public interface ITransactionMessageRabbitMq
     {
-        Task ProcessAsync(TransactionMessage message);
-        Task StartListeningAsync();
+        Task ProcessAsync<T>(string routingKey, T message);
+        Task StartListeningAsync<T>(string routingKey,string queue);
     }
 }

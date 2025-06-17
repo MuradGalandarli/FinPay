@@ -1,9 +1,11 @@
 ﻿using FinPay.Application.RabbitMqMessage;
 using FinPay.Application.Service;
+using Newtonsoft.Json;
 using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
 using System;
 using System.Text;
+using System.Threading.Channels;
 using System.Threading.Tasks;
 
 namespace FinPay.MessageRetryEngine.Services
@@ -27,38 +29,57 @@ namespace FinPay.MessageRetryEngine.Services
             );
         }
 
-        public async Task ProcessAsync(TransactionMessage message)
+        public async Task ProcessAsync<T>(string routingKey, T message)
         {
-            var body = Encoding.UTF8.GetBytes(message.Content);
+            _channel.ExchangeDeclare(exchange: "transaction-exchange", type: ExchangeType.Direct);
+
+            _channel.QueueDeclare(queue: "transaction", durable: true, exclusive: false, autoDelete: false);
+            _channel.QueueDeclare(queue: "CardToCard", durable: true, exclusive: false, autoDelete: false);
+            
+             _channel.QueueBind(queue: "transaction", exchange: "transaction-exchange", routingKey: routingKey);
+             _channel.QueueBind(queue: "CardToCard", exchange: "transaction-exchange", routingKey: routingKey);
+           
+            var json = JsonConvert.SerializeObject(message);
+            var body = Encoding.UTF8.GetBytes(json);
 
             var properties = _channel.CreateBasicProperties();
             properties.Persistent = true;
 
             _channel.BasicPublish(
-                exchange: "",
-                routingKey: "transaction-queue",
+                exchange: "transaction-exchange",
+                routingKey: routingKey,
                 basicProperties: properties,
                 body: body
             );
 
-            Console.WriteLine($"[>] Message sent: {message.Content}");
+            Console.WriteLine($"[>] Message sent: {json}");
 
             await Task.CompletedTask;
         }
 
-        public Task StartListeningAsync()
+        public Task StartListeningAsync<T>(string routingKey, string queue)
         {
+            _channel.ExchangeDeclare(exchange: "transaction-exchange", type: ExchangeType.Direct);
+
+            _channel.QueueDeclare(queue: queue, durable: true, exclusive: false, autoDelete: false);
+            _channel.QueueDeclare(queue: queue, durable: true, exclusive: false, autoDelete: false);
+           
+            _channel.QueueBind(queue: queue, exchange: "transaction-exchange", routingKey: routingKey);
+            _channel.QueueBind(queue: queue, exchange: "transaction-exchange", routingKey: routingKey);
+          
             var consumer = new AsyncEventingBasicConsumer(_channel);
 
             consumer.Received += async (model, ea) =>
             {
                 var body = ea.Body.ToArray();
                 var messageContent = Encoding.UTF8.GetString(body);
-                var message = new TransactionMessage { Content = messageContent };
+                CardToCardMQ transactionMessage = JsonConvert.DeserializeObject<CardToCardMQ>(messageContent);
+                var message = JsonConvert.DeserializeObject<T>(messageContent);
 
+               
                 try
                 {
-                    await HandleMessageWithRetryAsync(message);
+                    await HandleMessageWithRetryAsync(transactionMessage);
                     _channel.BasicAck(ea.DeliveryTag, multiple: false);
                 }
                 catch (Exception ex)
@@ -69,17 +90,17 @@ namespace FinPay.MessageRetryEngine.Services
                 }
             };
 
-            _channel.BasicConsume(
-                queue: "transaction-queue",
-                autoAck: false,
-                consumer: consumer
+                _channel.BasicConsume(
+                    queue: queue,
+                    autoAck: false,
+                    consumer: consumer
             );
 
             Console.WriteLine("Waiting for RabbitMQ messages...");
             return Task.CompletedTask;
         }
 
-        private async Task HandleMessageWithRetryAsync(TransactionMessage message)
+        private async Task HandleMessageWithRetryAsync(CardToCardMQ message)
         {
             int maxRetries = 3;
             int attempt = 0;
@@ -89,7 +110,7 @@ namespace FinPay.MessageRetryEngine.Services
                 try
                 {
                     attempt++;
-                    Console.WriteLine($"[i] Processing attempt {attempt}: {message.Content}");
+                    Console.WriteLine($"[i] Processing attempt {attempt}: {message}");
 
                     await Task.Delay(100);
 
