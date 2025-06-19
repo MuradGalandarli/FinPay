@@ -1,30 +1,47 @@
-﻿using FinPay.Application.RabbitMqMessage;
-using FinPay.Application.Service;
-using Microsoft.Extensions.Hosting;
+﻿using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.DependencyInjection;
+using Newtonsoft.Json;
+using System;
 using System.Threading;
 using System.Threading.Tasks;
+using FinPay.Application.RabbitMqMessage;
+using FinPay.Application.Service;
 
-namespace FinPay.MessageRetryEngine.Services
+public class RabbitMqListenerService : BackgroundService
 {
-    internal class RabbitMqListenerService : BackgroundService
+    private readonly IServiceScopeFactory _scopeFactory;
+
+    public RabbitMqListenerService(IServiceScopeFactory scopeFactory)
     {
-        private readonly ITransactionMessageRabbitMq _transactionMessageRabbitMq;
+        _scopeFactory = scopeFactory;
+    }
 
-        public RabbitMqListenerService(ITransactionMessageRabbitMq transactionMessageRabbitMq)
-        {
-            _transactionMessageRabbitMq = transactionMessageRabbitMq;
-        }
+    protected override async Task ExecuteAsync(CancellationToken stoppingToken)
+    {
+        using var scope = _scopeFactory.CreateScope();
+        var listener = scope.ServiceProvider.GetRequiredService<IRabbitMqListener>();
 
-        protected override async Task ExecuteAsync(CancellationToken stoppingToken)
-        {
-            await _transactionMessageRabbitMq.StartListeningAsync<CardToCardMQ>("CardToCardPayment", "CardToCard");
-            await _transactionMessageRabbitMq.StartListeningAsync<CreatePaymentMQ>("CreatePayment", "transaction");
-
-
-            while (!stoppingToken.IsCancellationRequested)
+        await listener.StartListening<CardToCardMQ>(
+            exchangeName: "transaction-exchange",
+            queueName: "CardToCard",
+            routingKey: "CardToCardKey",
+            async (message) =>
             {
-                await Task.Delay(1000, stoppingToken);
-            }
-        }
+                Console.WriteLine($"[>] Received from CardToCard: {JsonConvert.SerializeObject(message)}");
+                await Task.CompletedTask;
+            });
+
+        await listener.StartListening<CreatePaymentMQ>(
+            exchangeName: "transaction-exchange",
+            queueName: "transaction",
+            routingKey: "transactionKey",
+            async (message) =>
+            {
+                Console.WriteLine($"[>] Received from transaction: {JsonConvert.SerializeObject(message)}");
+                await Task.CompletedTask;
+            });
+
+        Console.WriteLine("Listener is active. Waiting...");
+        await Task.Delay(Timeout.Infinite, stoppingToken);
     }
 }

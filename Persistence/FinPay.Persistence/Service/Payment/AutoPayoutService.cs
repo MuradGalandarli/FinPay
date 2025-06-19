@@ -36,8 +36,7 @@ namespace FinPay.Persistence.Service.Payment
                 var cardBalanceReadRepo = scope.ServiceProvider.GetRequiredService<ICardBalanceReadRepository>();
                 var cardBalanceWriteRepo = scope.ServiceProvider.GetRequiredService<ICardBalanceWriteRepository>();
                 var userAccountWriteRepo = scope.ServiceProvider.GetRequiredService<IUserAccountWriteRepository>();
-                var _transactionMessageRabbitMq = scope.ServiceProvider.GetRequiredService<ITransactionMessageRabbitMq>();
-
+               
                 var transactions = await transactionRepo
                     .GetWhere(x => x.Status == TransferStatus.Completed && !x.IsPayoutSent)
                     .ToListAsync();
@@ -56,17 +55,10 @@ namespace FinPay.Persistence.Service.Payment
                     {
                         tx.IsPayoutSent = true;
 
-                        var balance = await userAccountWriteRepo.Table.Include(x => x.CardBalance).FirstOrDefaultAsync(x=>x.UserId == tx.ToUserId);
+                        var balance = await userAccountWriteRepo.Table.Include(x => x.CardBalance).FirstOrDefaultAsync(x=>x.UserId == tx.FromUserId);
                         if (balance?.CardBalance == null)
                         {
-                            //await _transactionMessageRabbitMq.ProcessAsync(new() { 
-                            //Amount = tx.Amount,
-                            //CreateAt = tx.CreateAt,
-                            //FromUserId = tx.FromUserId,
-                            //IsPayoutSent = true,
-                            //PaypalEmail = tx.PaypalEmail,
-                            //ToUserId = tx.ToUserId,
-                            //});
+                           
                             await cardBalanceWriteRepo.Add(new()
                             {
                                 Balance = tx.Amount,

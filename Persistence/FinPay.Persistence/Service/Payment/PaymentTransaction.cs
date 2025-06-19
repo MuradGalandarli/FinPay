@@ -3,6 +3,7 @@ using FinPay.Application.Repositoryes.AppTransactions;
 using FinPay.Application.Service;
 using FinPay.Application.Service.Payment;
 using FinPay.Domain.Enum;
+using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
@@ -21,14 +22,14 @@ namespace FinPay.Persistence.Service.Payment
         private readonly ITransactionWriteRepository _transactionWriteRepository;
         private readonly ITransactionReadRepository _transactionReadRepository;
         private readonly IConfiguration _configuration;
-        private readonly ITransactionMessageRabbitMq _transactionMessageRabbitMq;
+        private readonly IRabbitMqPublisher _rabbitMqPublisher;
 
-        public PaymentTransaction(ITransactionWriteRepository transactionWriteRepository, ITransactionReadRepository transactionReadRepository, IConfiguration configuration, ITransactionMessageRabbitMq transactionMessageRabbitMq)
+        public PaymentTransaction(ITransactionWriteRepository transactionWriteRepository, ITransactionReadRepository transactionReadRepository, IConfiguration configuration, IRabbitMqPublisher rabbitMqPublisher)
         {
             _transactionWriteRepository = transactionWriteRepository;
             _transactionReadRepository = transactionReadRepository;
             _configuration = configuration;
-            _transactionMessageRabbitMq = transactionMessageRabbitMq;
+            _rabbitMqPublisher = rabbitMqPublisher;
         }
 
         public async Task<string> CreatePayment(decimal amount,string userId)
@@ -59,27 +60,18 @@ namespace FinPay.Persistence.Service.Payment
                 }
             };
 
-            await _transactionMessageRabbitMq.ProcessAsync("CreatePayment", new CreatePaymentMQ
+           
+
+            await _rabbitMqPublisher.Publish("transaction-exchange", "transactionKey", new CreatePaymentMQ
             {
                 IsPayoutSent = true,
                 Amount = amount,
-                CreateAt = DateTime.Now,
-                ToUserId = userId,
+                CreateAt = DateTime.UtcNow,
+                FromUserId = userId,
                 Status = TransferStatus.Created,
-                
+                PaypalEmail = " "
+             
             });
-
-
-           // await _transactionWriteRepository.Add(new Domain.Entity.Paymet.AppTransaction
-           // {
-           //    Amount = amount,
-           //    CreateAt = DateTime.UtcNow,
-           //    ToUserId = userId,
-           //    Status = TransferStatus.Created,
-               
-               
-           // });
-           //await _transactionWriteRepository.SaveAsync();
 
             var json = JsonConvert.SerializeObject(requestBody);
             var content = new StringContent(json, Encoding.UTF8, "application/json");
@@ -88,9 +80,7 @@ namespace FinPay.Persistence.Service.Payment
             var responseString = await response.Content.ReadAsStringAsync();
 
             return responseString;  
-
         }
-
 
         public async Task<string> CaptureOrderAsync(string orderId, string userId)
         {
@@ -108,7 +98,7 @@ namespace FinPay.Persistence.Service.Payment
             var result = await response.Content.ReadAsStringAsync();
 
             var transaction = await _transactionReadRepository
-                .GetSingelAsync(x => x.ToUserId == userId && x.Status == TransferStatus.Created);
+                .GetSingelAsync(x => x.FromUserId == userId && x.Status == TransferStatus.Created);
 
             if (transaction == null)
             {

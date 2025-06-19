@@ -31,7 +31,7 @@ using FinPay.Persistence.Repositoryes.PaypalTransaction;
 using FinPay.Application.Repositoryes.PaypalTransaction;
 using FinPay.Persistence.Repositoryes.UserAccount;
 using FinPay.Application.Repositoryes.UserAccount;
-using FinPay.MessageRetryEngine.Services;
+
 
 namespace FinPay.Persentetion
 {
@@ -74,7 +74,12 @@ namespace FinPay.Persentetion
             builder.Services.AddScoped<IUserAccountService, UserAccountService>();
             builder.Services.AddScoped<IUserAccountWriteRepository, UserAccountWriteRepository>();
             builder.Services.AddScoped<IUserAccountReadRepository, UserAccountReadRepository>();
-            builder.Services.AddScoped<ITransactionMessageRabbitMq, TransactionMessageRabbitMq>();
+          
+            builder.Services.AddScoped<IRabbitMqPublisher, RabbitMqPublisher>();
+            builder.Services.AddScoped<IRabbitMqListener, RabbitMqListener>();
+
+            builder.Services.AddHostedService<RabbitMqListenerService>();
+
 
 
             string connectionString = builder.Configuration.GetConnectionString("default");
@@ -119,6 +124,7 @@ namespace FinPay.Persentetion
                         .AllowAnyMethod();
                 });
             });
+
 
 
             var app = builder.Build();

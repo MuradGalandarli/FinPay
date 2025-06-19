@@ -36,11 +36,7 @@ namespace FinPay.Persistence.Context
                 .HasForeignKey(t => t.FromUserId)
                 .OnDelete(DeleteBehavior.Restrict);
 
-            builder.Entity<AppTransaction>()
-                .HasOne(t => t.ToUser)
-                .WithMany(u => u.ReceivedTransactions)
-                .HasForeignKey(t => t.ToUserId)
-                .OnDelete(DeleteBehavior.Restrict);
+          
         }
 
     }

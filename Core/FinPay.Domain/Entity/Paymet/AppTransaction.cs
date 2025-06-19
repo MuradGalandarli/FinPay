@@ -18,10 +18,7 @@ namespace FinPay.Domain.Entity.Paymet
         [ForeignKey(nameof(FromUserId))]
         public ApplicationUser? FromUser { get; set; }
 
-        public string? ToUserId { get; set; }
-
-        [ForeignKey(nameof(ToUserId))]
-        public ApplicationUser? ToUser { get; set; }
+       
         public bool IsPayoutSent { get; set; } = false;
         public string PaypalEmail { get; set; }
         public decimal Amount { get; set; }

@@ -111,14 +111,9 @@ namespace FinPay.Persistence.Migrations
                     b.Property<int>("Status")
                         .HasColumnType("integer");
 
-                    b.Property<string>("ToUserId")
-                        .HasColumnType("text");
-
                     b.HasKey("Id");
 
                     b.HasIndex("FromUserId");
-
-                    b.HasIndex("ToUserId");
 
                     b.ToTable("AppTransactions");
                 });
@@ -482,14 +477,7 @@ namespace FinPay.Persistence.Migrations
                         .HasForeignKey("FromUserId")
                         .OnDelete(DeleteBehavior.Restrict);
 
-                    b.HasOne("FinPay.Domain.Identity.ApplicationUser", "ToUser")
-                        .WithMany("ReceivedTransactions")
-                        .HasForeignKey("ToUserId")
-                        .OnDelete(DeleteBehavior.Restrict);
-
                     b.Navigation("FromUser");
-
-                    b.Navigation("ToUser");
                 });
 
             modelBuilder.Entity("FinPay.Domain.Entity.Paymet.CardBalance", b =>
@@ -590,8 +578,6 @@ namespace FinPay.Persistence.Migrations
             modelBuilder.Entity("FinPay.Domain.Identity.ApplicationUser", b =>
                 {
                     b.Navigation("PaypalTransactions");
-
-                    b.Navigation("ReceivedTransactions");
 
                     b.Navigation("SendTransactions");
 

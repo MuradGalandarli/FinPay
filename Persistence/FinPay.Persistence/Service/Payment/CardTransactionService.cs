@@ -20,7 +20,7 @@ namespace FinPay.Persistence.Service.Payment
         private readonly IPaypalTransactionWriteRepository _paypalTransactionWriteRepository;
         private readonly IUserAccountReadRepository _userAccountReadRepository;
         private readonly ITransactionReadRepository _transactionReadRepository;
-        private readonly ITransactionMessageRabbitMq _transactionMessageRabbitMq;
+        private readonly IRabbitMqPublisher _rabbitMqPublisher;
 
 
         public CardTransactionService(
@@ -29,8 +29,7 @@ namespace FinPay.Persistence.Service.Payment
             ICardBalanceReadRepository cardBalanceReadRepository,
             IPaypalTransactionWriteRepository paypalTransactionWriteRepository,
             IUserAccountReadRepository userAccountReadRepository,
-            ITransactionReadRepository transactionReadRepository,
-            ITransactionMessageRabbitMq transactionMessageRabbitMq)
+            ITransactionReadRepository transactionReadRepository)
         {
             _cardBalanceWriteRepository = cardBalanceWriteRepository;
             _transactionWriteRepository = transactionWriteRepository;
@@ -38,7 +37,7 @@ namespace FinPay.Persistence.Service.Payment
             _paypalTransactionWriteRepository = paypalTransactionWriteRepository;
             _userAccountReadRepository = userAccountReadRepository;
             _transactionReadRepository = transactionReadRepository;
-            _transactionMessageRabbitMq = transactionMessageRabbitMq;
+           
         }
 
         public async Task<bool> PaypalToPaypalAsync(CardToCardRequestDto request)
@@ -63,9 +62,6 @@ namespace FinPay.Persistence.Service.Payment
                 var userAccountId = await _transactionReadRepository.GetSingelAsync(x => x.PaypalEmail == request.ToPaypalEmail);
                 toBalance = new CardBalance
                 {
-
-
-                    //UserAccountId = userAccountId.,
                     PaypalEmail = request.ToPaypalEmail,
                     Balance = 0
                 };
@@ -77,14 +73,14 @@ namespace FinPay.Persistence.Service.Payment
             toBalance.Balance += request.Amount;
 
 
-            await _transactionMessageRabbitMq.ProcessAsync("CardToCardPayment", new CardToCardMQ
+            await _rabbitMqPublisher.Publish("transaction-exchange", "CardToCardKey", new CardToCardMQ
             {
-                FromPaypalEmail = request.FromPaypalEmail,
-                ToPaypalEmail = request.ToPaypalEmail,
+                //FromPaypalEmail = request.FromPaypalEmail,
+                //ToPaypalEmail = request.ToPaypalEmail,
                 Amount = request.Amount,
                 Description = request.Description,
-                IsSuccessful = true,
-                TransactionDate = DateTime.UtcNow,
+                //IsSuccessful = true,
+                //TransactionDate = DateTime.UtcNow,
             });
 
             //var transaction = new PaypalTransaction
@@ -95,7 +91,7 @@ namespace FinPay.Persistence.Service.Payment
             //    Description = request.Description,
             //    IsSuccessful = true,
             //    TransactionDate = DateTime.UtcNow,
-                
+
             //};
 
             //await _paypalTransactionWriteRepository.Add(transaction);
