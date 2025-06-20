@@ -47,12 +47,18 @@ public class RabbitMqListener : IRabbitMqListener
                 var json = Encoding.UTF8.GetString(body);
                 var message = JsonConvert.DeserializeObject<T>(json);
 
-                DataHandler(message).GetAwaiter().GetResult();
+                //DataHandler(message).GetAwaiter().GetResult();
+                //onMessage(message).GetAwaiter().GetResult();
+                Retry(async () =>
+                {
+                    await DataHandler(message);         // Mesajı emal et
+                    await onMessage(message);           // Əgər əlavə bir funksiya ötürülmüşsə
+                }).GetAwaiter().GetResult();
 
 
                 Console.WriteLine($"[✔] Received message from '{queueName}': {json}");
 
-                onMessage(message).GetAwaiter().GetResult();
+                
 
                 _channel.BasicAck(ea.DeliveryTag, false);
             }
@@ -70,6 +76,31 @@ public class RabbitMqListener : IRabbitMqListener
         return Task.CompletedTask;
     }
 
+    private async Task Retry(Func<Task> operation, int maxRetry = 3, int delayMs = 1000)
+    {
+        for (int attempt = 1; attempt <= maxRetry; attempt++)
+        {
+            try
+            {
+                await operation();
+                return; 
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Retry cəhdi {attempt}/{maxRetry} - Xəta: {ex.Message}");
+
+                if (attempt == maxRetry)
+                {
+                    Console.WriteLine("Retry limiti aşdı. Əməliyyat uğursuz oldu.");
+                    throw;
+                }
+
+                await Task.Delay(delayMs);
+            }
+        }
+    }
+
+
     private async Task DataHandler<T>(T datas)
     {
         var type = datas.GetType().Name;
@@ -82,20 +113,7 @@ public class RabbitMqListener : IRabbitMqListener
 
                 try
                 {
-                   var dateTime = await StringConverDateTimeUtc(createPaymentMQ.CreateAt.ToString());
-                    await _transactionWriteRepository.Add(new()
-                    {
-                        Amount = createPaymentMQ.Amount,
-                        CreateAt = dateTime,
-                        UserAccountId = createPaymentMQ.UserAccountId,
-                        PaypalEmail = createPaymentMQ.PaypalEmail,
-                        IsPayoutSent = createPaymentMQ.IsPayoutSent,
-                        Status = createPaymentMQ.Status,
-
-
-
-                    });
-                    await _transactionWriteRepository.SaveAsync();
+                   await CreatePaymentOperation(createPaymentMQ);
                 }
                 catch (Exception ex) 
                 {
@@ -109,7 +127,21 @@ public class RabbitMqListener : IRabbitMqListener
                 break;
         }
     }
+    private async Task CreatePaymentOperation(CreatePaymentMQ createPaymentMQ)
+    {
+        var dateTime = await StringConverDateTimeUtc(createPaymentMQ.CreateAt.ToString());
+        await _transactionWriteRepository.Add(new()
+        {
+            Amount = createPaymentMQ.Amount,
+            CreateAt = dateTime,
+            UserAccountId = createPaymentMQ.UserAccountId,
+            PaypalEmail = createPaymentMQ.PaypalEmail,
+            IsPayoutSent = createPaymentMQ.IsPayoutSent,
+            Status = createPaymentMQ.Status,
 
+        });
+        await _transactionWriteRepository.SaveAsync();
+    }
     private async Task<DateTime> StringConverDateTimeUtc(string date)
     {
         if (DateTime.TryParse(date, out DateTime result))
