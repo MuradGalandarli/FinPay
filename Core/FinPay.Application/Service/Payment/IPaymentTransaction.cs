@@ -8,7 +8,7 @@ namespace FinPay.Application.Service.Payment
 {
     public interface IPaymentTransaction
     {
-        public Task<string> CreatePayment(decimal amount,string userId);
-        public Task<string> CaptureOrderAsync(string orderId,string userId);
+        public Task<string> CreatePayment(decimal amount,int userAccountId);
+        public Task<string> CaptureOrderAsync(string orderId,int userAccountId);
     }
 }

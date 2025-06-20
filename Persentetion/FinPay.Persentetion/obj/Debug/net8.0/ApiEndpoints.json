@@ -292,8 +292,8 @@
   },
   {
     "ContainingType": "FinPay.Presentation.Controllers.UserAccountController",
-    "Method": "GetCardBalanceByUserId",
-    "RelativePath": "api/UserAccount/GetCardBalanceByUserId",
+    "Method": "GetCardBalanceByAccountId",
+    "RelativePath": "api/UserAccount/GetCardBalanceByAccountId",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,

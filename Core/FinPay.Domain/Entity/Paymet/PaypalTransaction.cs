@@ -20,9 +20,9 @@ namespace FinPay.Domain.Entity.Paymet
 
         public bool IsSuccessful { get; set; }
         public DateTime TransactionDate { get; set; }
-        public string UserId { get; set; }
-        [ForeignKey(nameof(UserId))]
-        public ApplicationUser ApplicationUser { get; set; }
+        public int UserAccountId { get; set; }
+        [ForeignKey(nameof(UserAccountId))]
+        public UserAccount UserAccount { get; set; }
     }
 }
 

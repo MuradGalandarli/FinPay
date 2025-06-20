@@ -20,7 +20,7 @@ namespace FinPay.Application.Features.Queries.GetCardBalanceByUserId
 
         public async Task<GetCardBalanceByUserIdQueryResponse> Handle(GetCardBalanceByUserIdQueryRequest request, CancellationToken cancellationToken)
         {
-            GetUserBalanceResponse getUserBalanceResponse = await _userAccountService.GetCardBalanceByUserId(request.UserAccountId);
+            GetUserBalanceResponse getUserBalanceResponse = await _userAccountService.GetCardBalanceByAccountId(request.UserAccountId);
             return new() {
                 Balance = getUserBalanceResponse.Balance,
             PaypalEmail = getUserBalanceResponse.PaypalEmail,

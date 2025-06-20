@@ -2,6 +2,7 @@
 using FinPay.Application.Repositoryes.AppTransactions;
 using FinPay.Application.Service;
 using FinPay.Application.Service.Payment;
+using FinPay.Domain.Entity.Paymet;
 using FinPay.Domain.Enum;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
@@ -32,7 +33,7 @@ namespace FinPay.Persistence.Service.Payment
             _rabbitMqPublisher = rabbitMqPublisher;
         }
 
-        public async Task<string> CreatePayment(decimal amount,string userId)
+        public async Task<string> CreatePayment(decimal amount,int userAccountId)
         {
             string accessToken = await GetAccessTokenAsync();
             using var httpClient = new HttpClient();
@@ -67,7 +68,7 @@ namespace FinPay.Persistence.Service.Payment
                 IsPayoutSent = true,
                 Amount = amount,
                 CreateAt = DateTime.UtcNow,
-                FromUserId = userId,
+                UserAccountId = userAccountId,
                 Status = TransferStatus.Created,
                 PaypalEmail = " "
              
@@ -78,11 +79,11 @@ namespace FinPay.Persistence.Service.Payment
             
             var response = await httpClient.PostAsync("https://api-m.sandbox.paypal.com/v2/checkout/orders", content);
             var responseString = await response.Content.ReadAsStringAsync();
-
+            //responseString.name
             return responseString;  
         }
 
-        public async Task<string> CaptureOrderAsync(string orderId, string userId)
+        public async Task<string> CaptureOrderAsync(string orderId, int userAccountId)
         {
             string accessToken = await GetAccessTokenAsync();
 
@@ -98,7 +99,7 @@ namespace FinPay.Persistence.Service.Payment
             var result = await response.Content.ReadAsStringAsync();
 
             var transaction = await _transactionReadRepository
-                .GetSingelAsync(x => x.FromUserId == userId && x.Status == TransferStatus.Created);
+                .GetSingelAsync(x => x.UserAccountId == userAccountId && x.Status == TransferStatus.Created);
 
             if (transaction == null)
             {

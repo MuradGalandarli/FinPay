@@ -11,8 +11,7 @@ namespace FinPay.Application.RabbitMqMessage
 {
     public class CreatePaymentMQ
     {
-        public string? FromUserId { get; set; }
-       
+        public int UserAccountId { get; set; }
         public bool IsPayoutSent { get; set; } = false;
         public string PaypalEmail { get; set; }
         public decimal Amount { get; set; }

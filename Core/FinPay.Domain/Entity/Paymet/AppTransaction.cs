@@ -13,14 +13,12 @@ namespace FinPay.Domain.Entity.Paymet
 {
     public class AppTransaction : BaseEntity
     {
-        public string? FromUserId { get; set; }
+        public int UserAccountId { get; set; }
 
-        [ForeignKey(nameof(FromUserId))]
-        public ApplicationUser? FromUser { get; set; }
-
-       
+        [ForeignKey(nameof(UserAccountId))]
+        public  UserAccount? UserAccount { get; set; }
         public bool IsPayoutSent { get; set; } = false;
-        public string PaypalEmail { get; set; }
+        public string? PaypalEmail { get; set; }
         public decimal Amount { get; set; }
         public DateTime CreateAt { get; set; }
         public TransferStatus Status { get; set; } = TransferStatus.Pending;

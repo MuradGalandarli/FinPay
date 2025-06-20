@@ -12,7 +12,7 @@ namespace FinPay.Domain.Entity.Paymet
     {
         public decimal Balance { get; set; }
         public string PaypalEmail { get; set; }
-        public bool IsActive { get; set; }
+        public bool IsActive { get; set; } = true;
         
         public int UserAccountId { get; set; }
         [ForeignKey(nameof(UserAccountId))]

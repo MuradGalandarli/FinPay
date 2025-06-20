@@ -13,6 +13,7 @@ namespace FinPay.Domain.Enum
         Failed,     // Ödəniş uğursuz oldu
         Canceled,   // İstifadəçi ödənişi ləğv etdi
         Refunded,   // Pul geri qaytarıldı
-        Created
+        Created,
+        Success
     }
 }

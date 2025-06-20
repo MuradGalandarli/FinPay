@@ -19,5 +19,7 @@ namespace FinPay.Domain.Entity.Paymet
         [ForeignKey(nameof(UserId))]
         public ApplicationUser ApplicationUser { get; set; }
         public CardBalance CardBalance { get; set; }
+        public ICollection<AppTransaction> AppTransactions { get; set; }
+        public ICollection<PaypalTransaction> PaypalTransactions { get; set; }
     }
 }

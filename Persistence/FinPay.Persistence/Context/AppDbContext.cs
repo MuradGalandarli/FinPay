@@ -26,18 +26,18 @@ namespace FinPay.Persistence.Context
         public DbSet<PaypalTransaction> PaypalTransactions { get; set; }
 
 
-        protected override void OnModelCreating(ModelBuilder builder)
-        {
-            base.OnModelCreating(builder);
+        //protected override void OnModelCreating(ModelBuilder builder)
+        //{
+        //    base.OnModelCreating(builder);
 
-            builder.Entity<AppTransaction>()
-                .HasOne(t => t.FromUser)
-                .WithMany(u => u.SendTransactions)
-                .HasForeignKey(t => t.FromUserId)
-                .OnDelete(DeleteBehavior.Restrict);
+        //    builder.Entity<AppTransaction>()
+        //        .HasOne(t => t.UserAccountId)
+        //        .WithMany(u => u.SendTransactions)
+        //        .HasForeignKey(t => t.FromUserId)
+        //        .OnDelete(DeleteBehavior.Restrict);
 
           
-        }
+        //}
 
     }
 }

@@ -48,9 +48,9 @@ namespace FinPay.Persistence.Service.Payment
             return false;
         }
 
-        public async Task<GetUserBalanceResponse> GetCardBalanceByUserId(int userAccountId)
+        public async Task<GetUserBalanceResponse> GetCardBalanceByAccountId(int userAccountId)
         {
-         var userBalance =  await _cardBalanceReadRepository.GetByIdAsync( userAccountId);
+         var userBalance =  await _cardBalanceReadRepository.GetByIdAsync(userAccountId);
             return new()
             { 
                 PaypalEmail = userBalance.PaypalEmail,

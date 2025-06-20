@@ -500,7 +500,7 @@
         }
       }
     },
-    "/api/UserAccount/GetCardBalanceByUserId": {
+    "/api/UserAccount/GetCardBalanceByAccountId": {
       "get": {
         "tags": [
           "UserAccount"
@@ -723,9 +723,9 @@
             "type": "string",
             "nullable": true
           },
-          "userId": {
-            "type": "string",
-            "nullable": true
+          "userAccountId": {
+            "type": "integer",
+            "format": "int32"
           }
         },
         "additionalProperties": false
@@ -1738,9 +1738,9 @@
             "type": "number",
             "format": "double"
           },
-          "userId": {
-            "type": "string",
-            "nullable": true
+          "userAccountId": {
+            "type": "integer",
+            "format": "int32"
           }
         },
         "additionalProperties": false

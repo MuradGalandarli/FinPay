@@ -1,10 +1,5 @@
 ﻿using FinPay.Application.Service.Payment;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace FinPay.Application.Features.Commands.Payment.PaymentTransaction
 {
@@ -19,7 +14,7 @@ namespace FinPay.Application.Features.Commands.Payment.PaymentTransaction
 
         public async Task<PaymentTransactionCommandResponse> Handle(PaymentTransactionCommandRequest request, CancellationToken cancellationToken)
         {
-           string paymentTransactionCommandResponse = await _paymentTransaction.CreatePayment(request.Amount,request.UserId);
+           string paymentTransactionCommandResponse = await _paymentTransaction.CreatePayment(request.Amount,request.UserAccountId);
 
             return new() { AccessToken = paymentTransactionCommandResponse };
         }

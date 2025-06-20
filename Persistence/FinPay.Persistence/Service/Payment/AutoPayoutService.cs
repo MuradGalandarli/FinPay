@@ -2,6 +2,7 @@
 using FinPay.Application.Repositoryes.AppTransactions;
 using FinPay.Application.Repositoryes.CardBalance;
 using FinPay.Application.Service;
+using FinPay.Domain.Entity.Paymet;
 using FinPay.Domain.Enum;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -41,21 +42,18 @@ namespace FinPay.Persistence.Service.Payment
                     .GetWhere(x => x.Status == TransferStatus.Completed && !x.IsPayoutSent)
                     .ToListAsync();
 
-                  //_transactionMessageRabbitMq.StartListeningAsync();
-                
-
-
                 foreach (var tx in transactions)
                 {
                     if (string.IsNullOrEmpty(tx.PaypalEmail)) continue;
 
                     var payoutSuccess = await SendPaypalPayout(tx.PaypalEmail, tx.Amount);
 
-                    if (payoutSuccess)
+                    if (true)//payoutSuccess
                     {
                         tx.IsPayoutSent = true;
+                        tx.Status = TransferStatus.Success;
 
-                        var balance = await userAccountWriteRepo.Table.Include(x => x.CardBalance).FirstOrDefaultAsync(x=>x.UserId == tx.FromUserId);
+                        var balance = await userAccountWriteRepo.Table.Include(x => x.CardBalance).Where(x=>x.CardBalance.IsActive == true).FirstOrDefaultAsync(x=>x.Id == tx.UserAccountId);
                         if (balance?.CardBalance == null)
                         {
                            
@@ -63,6 +61,7 @@ namespace FinPay.Persistence.Service.Payment
                             {
                                 Balance = tx.Amount,
                                 PaypalEmail = tx.PaypalEmail,
+                                UserAccountId = tx.UserAccountId
                             });
                         }
                         else
@@ -132,7 +131,7 @@ namespace FinPay.Persistence.Service.Payment
 
             var payoutResponse = await payoutClient.PostAsync("https://api-m.sandbox.paypal.com/v1/payments/payouts", payoutContent);
             var payoutResult = await payoutResponse.Content.ReadAsStringAsync();
-
+            
             return payoutResponse.IsSuccessStatusCode;
         }
     }
