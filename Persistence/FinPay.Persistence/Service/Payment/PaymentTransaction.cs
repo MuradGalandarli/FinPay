@@ -1,4 +1,5 @@
-﻿using FinPay.Application.RabbitMqMessage;
+﻿using FinPay.Application.DTOs;
+using FinPay.Application.RabbitMqMessage;
 using FinPay.Application.Repositoryes.AppTransactions;
 using FinPay.Application.Service;
 using FinPay.Application.Service.Payment;
@@ -33,7 +34,7 @@ namespace FinPay.Persistence.Service.Payment
             _rabbitMqPublisher = rabbitMqPublisher;
         }
 
-        public async Task<string> CreatePayment(decimal amount,int userAccountId)
+        public async Task<string> CreatePayment(decimal amount, int userAccountId)
         {
             string accessToken = await GetAccessTokenAsync();
             using var httpClient = new HttpClient();
@@ -61,7 +62,7 @@ namespace FinPay.Persistence.Service.Payment
                 }
             };
 
-           
+
 
             await _rabbitMqPublisher.Publish("transaction-exchange", "transactionKey", new CreatePaymentMQ
             {
@@ -71,23 +72,23 @@ namespace FinPay.Persistence.Service.Payment
                 UserAccountId = userAccountId,
                 Status = TransferStatus.Created,
                 PaypalEmail = " "
-             
+
             });
 
             var json = JsonConvert.SerializeObject(requestBody);
             var content = new StringContent(json, Encoding.UTF8, "application/json");
-            
+
             var response = await httpClient.PostAsync("https://api-m.sandbox.paypal.com/v2/checkout/orders", content);
             var responseString = await response.Content.ReadAsStringAsync();
             //responseString.name
-            return responseString;  
+            return responseString;
         }
 
         public async Task<string> CaptureOrderAsync(string orderId, int userAccountId)
         {
             string accessToken = await GetAccessTokenAsync();
 
-            using var httpClient = new HttpClient(); 
+            using var httpClient = new HttpClient();
             httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
 
             var content = new StringContent("{}", Encoding.UTF8, "application/json");
@@ -152,5 +153,21 @@ namespace FinPay.Persistence.Service.Payment
             return result.access_token;
         }
 
+        public async Task<List<TransactionDto>> GetTransactionsByUserAccountId(int userAccountId)
+        {
+            var appTransaction = await _transactionReadRepository.Table.Where(x => x.UserAccountId == userAccountId).ToListAsync();
+
+            var result = appTransaction.Select(x => new TransactionDto
+            {
+                UserAccountId = x.UserAccountId,
+                Amount = x.Amount,
+                CreateAt = x.CreateAt,
+                IsPayoutSent = x.IsPayoutSent,
+                PaypalEmail = x.PaypalEmail,
+                Status = x.Status
+            }
+            );
+            return result.ToList();
+        }
     }
 }

@@ -274,6 +274,28 @@
         }
       }
     },
+    "/api/Payment/GetPaymrntTransactionAccountId": {
+      "get": {
+        "tags": [
+          "Payment"
+        ],
+        "parameters": [
+          {
+            "name": "UserAccountId",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/api/Roles/GetRoles": {
       "get": {
         "tags": [

@@ -1,6 +1,7 @@
 ﻿using FinPay.Application.Features.Commands.CardTransaction;
 using FinPay.Application.Features.Commands.Payment.CaptureOrder;
 using FinPay.Application.Features.Commands.Payment.PaymentTransaction;
+using FinPay.Application.Features.Queries.Transaction.PaymrntTransaction;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -41,7 +42,12 @@ namespace FinPay.Presentation.Controllers
             return Ok(cardTransactionCommandResponse);
         }
 
-
+        [HttpGet("GetPaymrntTransactionAccountId")]
+        public async Task<IActionResult> GetPaymrntTransactionAccountId([FromQuery] PaymrntTransactionQueryRequest paymrntTransactionQueryRequest )
+        {
+            List<PaymrntTransactionQueryRespose> paymrntTransactionQueryResposes = await _mediator.Send(paymrntTransactionQueryRequest);
+            return Ok(paymrntTransactionQueryResposes);
+        }
 
     }
 }

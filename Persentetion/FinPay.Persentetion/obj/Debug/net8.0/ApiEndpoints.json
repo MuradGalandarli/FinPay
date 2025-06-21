@@ -138,6 +138,22 @@
   },
   {
     "ContainingType": "FinPay.Presentation.Controllers.PaymentController",
+    "Method": "GetPaymrntTransactionAccountId",
+    "RelativePath": "api/Payment/GetPaymrntTransactionAccountId",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "UserAccountId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "FinPay.Presentation.Controllers.PaymentController",
     "Method": "PaymentTransaction",
     "RelativePath": "api/Payment/PaymentTransaction",
     "HttpMethod": "POST",

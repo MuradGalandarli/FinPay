@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FinPay.Application.DTOs;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,5 +11,6 @@ namespace FinPay.Application.Service.Payment
     {
         public Task<string> CreatePayment(decimal amount,int userAccountId);
         public Task<string> CaptureOrderAsync(string orderId,int userAccountId);
+        public Task<List<TransactionDto>> GetTransactionsByUserAccountId(int userAccountId);
     }
 }
