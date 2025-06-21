@@ -34,6 +34,8 @@ namespace FinPay.Persistence.Service.Payment
                 Description = request.Description,
                 IsSuccessful = true,
                 TransactionDate = DateTime.UtcNow,
+                Status = Domain.Enum.CardToCardStatus.Pending
+                
             });
 
             return true;

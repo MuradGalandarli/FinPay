@@ -18,6 +18,7 @@ namespace FinPay.Application.RabbitMqMessage
         public bool IsSuccessful { get; set; }
         public DateTime TransactionDate { get; set; }
         public string UserId { get; set; }
+        public CardToCardStatus Status { get; set; }
      
     }
 }

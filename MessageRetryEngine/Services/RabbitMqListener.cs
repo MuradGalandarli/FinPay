@@ -47,12 +47,10 @@ public class RabbitMqListener : IRabbitMqListener
                 var json = Encoding.UTF8.GetString(body);
                 var message = JsonConvert.DeserializeObject<T>(json);
 
-                //DataHandler(message).GetAwaiter().GetResult();
-                //onMessage(message).GetAwaiter().GetResult();
                 Retry(async () =>
                 {
-                    await DataHandler(message);         // Mesajı emal et
-                    await onMessage(message);           // Əgər əlavə bir funksiya ötürülmüşsə
+                    await DataHandler(message);         
+                    await onMessage(message);           
                 }).GetAwaiter().GetResult();
 
 
@@ -159,7 +157,11 @@ public class RabbitMqListener : IRabbitMqListener
             var toBalance = await _cardBalanceReadRepository.GetSingelAsync(x => x.PaypalEmail == cardToCardMQ.ToPaypalEmail);
 
             if (fromBalance == null || fromBalance.Balance < cardToCardMQ.Amount)
+            {
+                cardToCardMQ.Status = FinPay.Domain.Enum.CardToCardStatus.Failed;
+                await PaypalTransactionAdd(cardToCardMQ);
                 return false;
+            }
               
             if (toBalance == null)
             {
@@ -176,24 +178,29 @@ public class RabbitMqListener : IRabbitMqListener
             fromBalance.Balance -= cardToCardMQ.Amount;
             toBalance.Balance += cardToCardMQ.Amount;
 
-            DateTime dateTime = await StringConverDateTimeUtc(cardToCardMQ.TransactionDate.ToString());
-            var transaction = new PaypalTransaction
-            {
-                FromPaypalEmail = cardToCardMQ.FromPaypalEmail,
-                ToPaypalEmail = cardToCardMQ.ToPaypalEmail,
-                Amount = cardToCardMQ.Amount,
-                Description = cardToCardMQ.Description,
-                IsSuccessful = cardToCardMQ.IsSuccessful,
-                TransactionDate = dateTime
-
-            };
-
-            await _paypalTransactionWriteRepository.Add(transaction);
-            await _cardBalanceWriteRepository.SaveAsync();
-            await _transactionWriteRepository.SaveAsync();
+            cardToCardMQ.Status = FinPay.Domain.Enum.CardToCardStatus.Completed;
+            await PaypalTransactionAdd(cardToCardMQ);
             return true;
 
         }
         return false;
     }
+    private async Task PaypalTransactionAdd(CardToCardMQ cardToCardMQ)
+    {
+        DateTime dateTime = await StringConverDateTimeUtc(cardToCardMQ.TransactionDate.ToString());
+        var transaction = new PaypalTransaction
+        {
+            FromPaypalEmail = cardToCardMQ.FromPaypalEmail,
+            ToPaypalEmail = cardToCardMQ.ToPaypalEmail,
+            Amount = cardToCardMQ.Amount,
+            Description = cardToCardMQ.Description,
+            IsSuccessful = cardToCardMQ.IsSuccessful,
+            TransactionDate = dateTime,
+          
+        };
+        await _paypalTransactionWriteRepository.Add(transaction);
+        await _cardBalanceWriteRepository.SaveAsync();
+        await _transactionWriteRepository.SaveAsync();
+    }
+
 }

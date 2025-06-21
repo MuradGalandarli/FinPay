@@ -1,4 +1,5 @@
-﻿using FinPay.Domain.Identity;
+﻿using FinPay.Domain.Enum;
+using FinPay.Domain.Identity;
 using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
@@ -14,10 +15,9 @@ namespace FinPay.Domain.Entity.Paymet
 
         public string FromPaypalEmail { get; set; }
         public string ToPaypalEmail { get; set; }
-
         public decimal Amount { get; set; }
         public string Description { get; set; }
-
+        public CardToCardStatus Status { get; set; }
         public bool IsSuccessful { get; set; }
         public DateTime TransactionDate { get; set; }
         public int UserAccountId { get; set; }
