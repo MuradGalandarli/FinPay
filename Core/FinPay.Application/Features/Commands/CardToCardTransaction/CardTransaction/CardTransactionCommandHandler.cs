@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FinPay.Application.Features.Commands.CardTransaction
+namespace FinPay.Application.Features.Commands.CardToCardTransaction.CardTransaction
 {
     public class CardTransactionCommandHandler : IRequestHandler<CardTransactionCommandRequest, CardTransactionCommandResponse>
     {
@@ -19,14 +19,15 @@ namespace FinPay.Application.Features.Commands.CardTransaction
 
         public async Task<CardTransactionCommandResponse> Handle(CardTransactionCommandRequest request, CancellationToken cancellationToken)
         {
-            var cardTransactionCommandResponse = await _cardTransactionService.PaypalToPaypalAsync(new() { 
+            var cardTransactionCommandResponse = await _cardTransactionService.PaypalToPaypalAsync(new()
+            {
                 Amount = request.Amount,
                 Description = request.Description,
-            FromPaypalEmail = request.FromPaypalEmail,
-            ToPaypalEmail = request.ToPaypalEmail
+                FromPaypalEmail = request.FromPaypalEmail,
+                ToPaypalEmail = request.ToPaypalEmail
             });
             return new() { Status = cardTransactionCommandResponse };
-            
+
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿using FinPay.Application.Features.Commands.CardTransaction;
+﻿using FinPay.Application.Features.Commands.CardToCardTransaction.CardTransaction;
 using FinPay.Application.Features.Commands.Payment.CaptureOrder;
 using FinPay.Application.Features.Commands.Payment.PaymentTransaction;
 using FinPay.Application.Features.Queries.Transaction.PaymrntTransaction;
@@ -35,12 +35,7 @@ namespace FinPay.Presentation.Controllers
            CaptureOrderCommandResponse captureOrderCommandResponse = await _mediator.Send(captureOrderCommandRequest);
             return Ok(captureOrderCommandResponse);
         }
-        [HttpPost("CardTransaction")]
-        public async Task<IActionResult> CardTransaction([FromBody] CardTransactionCommandRequest cardTransactionCommandRequest)
-        {
-            CardTransactionCommandResponse cardTransactionCommandResponse = await _mediator.Send(cardTransactionCommandRequest);
-            return Ok(cardTransactionCommandResponse);
-        }
+        
 
         [HttpGet("GetPaymrntTransactionAccountId")]
         public async Task<IActionResult> GetPaymrntTransactionAccountId([FromQuery] PaymrntTransactionQueryRequest paymrntTransactionQueryRequest )

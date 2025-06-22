@@ -80,7 +80,6 @@ namespace FinPay.Persistence.Service.Payment
 
             var response = await httpClient.PostAsync("https://api-m.sandbox.paypal.com/v2/checkout/orders", content);
             var responseString = await response.Content.ReadAsStringAsync();
-            //responseString.name
             return responseString;
         }
 

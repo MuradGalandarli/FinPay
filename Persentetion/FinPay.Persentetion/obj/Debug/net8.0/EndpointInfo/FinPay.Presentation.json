@@ -181,6 +181,49 @@
         }
       }
     },
+    "/api/CardToCard/UpdateTransactionStatusAndPublish": {
+      "put": {
+        "tags": [
+          "CardToCard"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/CardToCard/CardTransaction": {
+      "post": {
+        "tags": [
+          "CardToCard"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CardTransactionCommandRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CardTransactionCommandRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CardTransactionCommandRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/api/Payment/PaymentTransaction": {
       "post": {
         "tags": [
@@ -232,37 +275,6 @@
             "application/*+json": {
               "schema": {
                 "$ref": "#/components/schemas/CaptureOrderCommandRequest"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/api/Payment/CardTransaction": {
-      "post": {
-        "tags": [
-          "Payment"
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/CardTransactionCommandRequest"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/CardTransactionCommandRequest"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/CardTransactionCommandRequest"
               }
             }
           }

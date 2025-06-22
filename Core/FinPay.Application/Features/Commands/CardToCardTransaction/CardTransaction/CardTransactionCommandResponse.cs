@@ -1,4 +1,4 @@
-﻿namespace FinPay.Application.Features.Commands.CardTransaction
+﻿namespace FinPay.Application.Features.Commands.CardToCardTransaction.CardTransaction
 {
     public class CardTransactionCommandResponse
     {

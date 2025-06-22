@@ -105,6 +105,32 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "FinPay.Presentation.Controllers.CardToCardController",
+    "Method": "CardTransaction",
+    "RelativePath": "api/CardToCard/CardTransaction",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "cardTransactionCommandRequest",
+        "Type": "FinPay.Application.Features.Commands.CardToCardTransaction.CardTransaction.CardTransactionCommandRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "FinPay.Presentation.Controllers.CardToCardController",
+    "Method": "UpdateTransactionStatusAndPublish",
+    "RelativePath": "api/CardToCard/UpdateTransactionStatusAndPublish",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "FinPay.Presentation.Controllers.PaymentController",
     "Method": "CaptureOrderAsync",
     "RelativePath": "api/Payment/CaptureOrder",
@@ -115,22 +141,6 @@
       {
         "Name": "captureOrderCommandRequest",
         "Type": "FinPay.Application.Features.Commands.Payment.CaptureOrder.CaptureOrderCommandRequest",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "FinPay.Presentation.Controllers.PaymentController",
-    "Method": "CardTransaction",
-    "RelativePath": "api/Payment/CardTransaction",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "cardTransactionCommandRequest",
-        "Type": "FinPay.Application.Features.Commands.CardTransaction.CardTransactionCommandRequest",
         "IsRequired": true
       }
     ],

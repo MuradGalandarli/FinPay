@@ -1,8 +1,8 @@
 ﻿using MediatR;
 
-namespace FinPay.Application.Features.Commands.CardTransaction
+namespace FinPay.Application.Features.Commands.CardToCardTransaction.CardTransaction
 {
-    public class CardTransactionCommandRequest:IRequest<CardTransactionCommandResponse>
+    public class CardTransactionCommandRequest : IRequest<CardTransactionCommandResponse>
     {
         public string? FromPaypalEmail { get; set; }
         public string? ToPaypalEmail { get; set; }

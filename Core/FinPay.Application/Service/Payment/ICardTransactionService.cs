@@ -10,5 +10,6 @@ namespace FinPay.Application.Service.Payment
     public interface ICardTransactionService
     {
         public Task<bool> PaypalToPaypalAsync(CardToCardRequestDto request);
+        Task<bool> UpdateTransactionStatusAndPublish(int transactionId);
     }
 }

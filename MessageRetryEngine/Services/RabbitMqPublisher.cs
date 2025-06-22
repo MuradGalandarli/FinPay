@@ -34,4 +34,6 @@ public class RabbitMqPublisher : IRabbitMqPublisher
 
         Console.WriteLine($"[x] Published: {json}");
     }
+
+ 
 }
