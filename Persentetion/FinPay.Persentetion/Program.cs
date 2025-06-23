@@ -1,36 +1,16 @@
 
-using FinPay._Infrastructure.Service.Configurations;
-using FinPay.Application.Features.Commands.AppUser.SignupUser;
-using FinPay.Application.Repositoryes.Endpoint;
-using FinPay.Application.Repositoryes.Menu;
-using FinPay.Application.Repositoryes.AppTransactions;
-using FinPay.Application.Service;
-using FinPay.Application.Service.Authentications;
-using FinPay.Application.Service.Configurations;
-using FinPay.Application.Service.Payment;
 using FinPay.Domain.Identity;
 using FinPay.Persistence.Context;
-using FinPay.Persistence.Repositoryes.Endpoint;
-using FinPay.Persistence.Repositoryes.Menu;
-using FinPay.Persistence.Repositoryes.AppTransactions;
 using FinPay.Persistence.Seeder;
-using FinPay.Persistence.Service;
-using FinPay.Persistence.Service.Authentications;
-using FinPay.Persistence.Service.Payment;
 using FinPay.Presentation.Filters;
-using MediatR;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
-using FinPay.Application.Repositoryes.CardBalance;
-using FinPay.Persistence.Repositoryes;
-using FinPay.Application.Repositoryes;
-using FinPay.Persistence.Repositoryes.PaypalTransaction;
-using FinPay.Application.Repositoryes.PaypalTransaction;
-using FinPay.Persistence.Repositoryes.UserAccount;
-using FinPay.Application.Repositoryes.UserAccount;
+using FinPay.Application;
+using FinPay._Infrastructure;
+using FinPay.MessageRetryEngine;
+using FinPay.Persistence;
 
 
 namespace FinPay.Persentetion
@@ -49,45 +29,13 @@ namespace FinPay.Persentetion
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
-            builder.Services.AddScoped<ITokenService, TokenService>();
-            builder.Services.AddScoped<IUserService, UserService>();
-            builder.Services.AddScoped<IRoleService, RoleService>();
-            builder.Services.AddMediatR(typeof(SignupCommandRequest).Assembly);
 
-            builder.Services.AddHostedService<AutoPayoutService>();
+            builder.Services.AddInfrastructureService();
+            builder.Services.AddRabbitMQService();
+            builder.Services.AddApplicationService();
+            builder.Services.AddPersistenceRegistration(builder.Configuration);
 
-
-            builder.Services.AddScoped<IApplicationService, ApplicationService>();
-            builder.Services.AddScoped<IMenuWriteRepository, MenuWriteRepository>();
-            builder.Services.AddScoped<IMenuReadRepository, MenuReadRepository>();
-            builder.Services.AddScoped<IEndpointReadRepository, EndpointReadRepository>();
-            builder.Services.AddScoped<IEndpointWriteRepository, EndpointWriteRepository>();
-            builder.Services.AddScoped<IAuthorizationEndpointService, AuthorizetionEndpointService>();
-            builder.Services.AddScoped<IPaymentTransaction, PaymentTransaction>();
-            builder.Services.AddScoped<ITransactionReadRepository, TransactionReadRepository>();
-            builder.Services.AddScoped<ITransactionWriteRepository, TransactionWriteRepository>();
-            builder.Services.AddScoped<ICardBalanceReadRepository, CardBalanceReadRepository>();
-            builder.Services.AddScoped<ICardBalanceWriteRepository, CardBalanceWriteRepository>();
-            builder.Services.AddScoped<IPaypalTransactionWriteRepository, PeypalTransactionWriteRepository>();
-            builder.Services.AddScoped<IPaypalTransactionReadRepository, PeypalTransactionReadRepository>();
-            builder.Services.AddScoped<ICardTransactionService, CardTransactionService>();
-            builder.Services.AddScoped<IUserAccountService, UserAccountService>();
-            builder.Services.AddScoped<IUserAccountWriteRepository, UserAccountWriteRepository>();
-            builder.Services.AddScoped<IUserAccountReadRepository, UserAccountReadRepository>();
           
-            builder.Services.AddScoped<IRabbitMqPublisher, RabbitMqPublisher>();
-            builder.Services.AddScoped<IRabbitMqListener, RabbitMqListener>();
-
-            builder.Services.AddHostedService<RabbitMqListenerService>();
-
-
-
-            string connectionString = builder.Configuration.GetConnectionString("default");
-
-            builder.Services.AddDbContext<AppDbContext>(options =>
-                                      options.UseNpgsql(connectionString));
-
-            // For Identity
             builder.Services.AddIdentity<ApplicationUser, ApplicationRole>()
                             .AddEntityFrameworkStores<AppDbContext>()
                             .AddDefaultTokenProviders();
