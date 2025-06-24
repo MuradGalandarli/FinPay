@@ -11,6 +11,7 @@ using FinPay.Application;
 using FinPay._Infrastructure;
 using FinPay.MessageRetryEngine;
 using FinPay.Persistence;
+using Finpay.SignalR.Hubs;
 
 
 namespace FinPay.Persentetion
@@ -34,8 +35,8 @@ namespace FinPay.Persentetion
             builder.Services.AddRabbitMQService();
             builder.Services.AddApplicationService();
             builder.Services.AddPersistenceRegistration(builder.Configuration);
+            //builder.Services.AddSignalRService();
 
-          
             builder.Services.AddIdentity<ApplicationUser, ApplicationRole>()
                             .AddEntityFrameworkStores<AppDbContext>()
                             .AddDefaultTokenProviders();
@@ -73,12 +74,8 @@ namespace FinPay.Persentetion
                 });
             });
 
-
-
             var app = builder.Build();
 
-
-            // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
             {
                 app.UseSwagger();
@@ -93,6 +90,8 @@ namespace FinPay.Persentetion
             app.UseAuthorization();
 
 
+            app.MapHub<CardToCardHub>("card-to-card-hub");
+            app.MapHub<TransactionHub>("transaction-hub");
 
             app.MapControllers();
             await DbSeeder.SeedData(app);
