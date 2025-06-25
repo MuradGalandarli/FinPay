@@ -1,5 +1,7 @@
-﻿using Finpay.SignalR.Hubs;
+﻿
 using FinPay.Application.Service;
+using FinPay.SignalR;
+using FinPay.SignalR.Hubs;
 using Microsoft.AspNetCore.SignalR;
 using System;
 using System.Collections.Generic;

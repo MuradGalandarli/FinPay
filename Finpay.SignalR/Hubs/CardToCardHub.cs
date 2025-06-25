@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Finpay.SignalR.Hubs
+namespace FinPay.SignalR.Hubs
 {
     public class CardToCardHub:Hub
     {

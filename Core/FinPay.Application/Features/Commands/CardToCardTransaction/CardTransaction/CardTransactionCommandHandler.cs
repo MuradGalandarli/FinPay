@@ -21,6 +21,8 @@ namespace FinPay.Application.Features.Commands.CardToCardTransaction.CardTransac
         {
             var cardTransactionCommandResponse = await _cardTransactionService.PaypalToPaypalAsync(new()
             {
+                FromUserId = request.FromUserId,
+                ToUserId = request.ToUserId,
                 Amount = request.Amount,
                 Description = request.Description,
                 FromPaypalEmail = request.FromPaypalEmail,

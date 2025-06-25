@@ -7,15 +7,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Finpay.SignalR
+namespace FinPay.SignalR
 {
     public static class SignalRServiceRegistration
     {
-       public static void AddSignalRService(ServiceCollection service)
+       public static void AddSignalRService(this IServiceCollection service)
         {
             service.AddScoped<ICardToCardServiceHub, CardToCardServiceHub>();
             service.AddScoped<ITransactionServiceHub, TransactionServiceHub>();
-            service.AddSignalRCore();
+            service.AddSignalR();
         }
     }
 }

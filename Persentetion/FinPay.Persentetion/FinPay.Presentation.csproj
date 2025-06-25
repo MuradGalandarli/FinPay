@@ -22,7 +22,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Core\FinPay.Application\FinPay.Application.csproj" />
-    <ProjectReference Include="..\..\Finpay.SignalR\Finpay.SignalR.csproj" />
+    <ProjectReference Include="..\..\FinPay.SignalR\FinPay.SignalR.csproj" />
     <ProjectReference Include="..\..\Infrasturcture\FinPay.Infrasturcture\FinPay. Infrastructure.csproj" />
     <ProjectReference Include="..\..\MessageRetryEngine\FinPay.MessageRetryEngine.csproj" />
     <ProjectReference Include="..\..\Persistence\FinPay.Persistence\FinPay.Persistence.csproj" />

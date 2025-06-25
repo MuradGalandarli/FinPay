@@ -11,7 +11,8 @@ using FinPay.Application;
 using FinPay._Infrastructure;
 using FinPay.MessageRetryEngine;
 using FinPay.Persistence;
-using Finpay.SignalR.Hubs;
+using FinPay.SignalR.Hubs;
+using FinPay.SignalR;
 
 
 namespace FinPay.Persentetion
@@ -35,7 +36,7 @@ namespace FinPay.Persentetion
             builder.Services.AddRabbitMQService();
             builder.Services.AddApplicationService();
             builder.Services.AddPersistenceRegistration(builder.Configuration);
-            //builder.Services.AddSignalRService();
+            builder.Services.AddSignalRService();
 
             builder.Services.AddIdentity<ApplicationUser, ApplicationRole>()
                             .AddEntityFrameworkStores<AppDbContext>()

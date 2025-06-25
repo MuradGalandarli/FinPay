@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore;
 namespace FinPay.Persistence.Service.Payment
 {
 
-    public class CardTransactionService: ICardTransactionService
+    public class CardTransactionService : ICardTransactionService
     {
         private readonly IRabbitMqPublisher _rabbitMqPublisher;
         private readonly IPaypalTransactionReadRepository _paypalTransactionReadRepository;
@@ -34,6 +34,8 @@ namespace FinPay.Persistence.Service.Payment
 
             await _rabbitMqPublisher.Publish("transaction-exchange", "CardToCardKey", new CardToCardMQ
             {
+                ToUserId = request.ToUserId,
+                FromUserId = request.FromUserId,
                 FromPaypalEmail = request.FromPaypalEmail,
                 ToPaypalEmail = request.ToPaypalEmail,
                 Amount = request.Amount,
@@ -41,7 +43,7 @@ namespace FinPay.Persistence.Service.Payment
                 IsSuccessful = true,
                 TransactionDate = DateTime.UtcNow,
                 Status = Domain.Enum.CardToCardStatus.Pending
-                
+
             });
 
             return true;
@@ -49,7 +51,7 @@ namespace FinPay.Persistence.Service.Payment
 
         public async Task<bool> UpdateTransactionStatusAndPublish(int transactionId)
         {
-            var paypalTransaction =await _paypalTransactionReadRepository.GetSingelAsync(x => x.IsSuccessful && x.Status == Domain.Enum.CardToCardStatus.Failed);
+            var paypalTransaction = await _paypalTransactionReadRepository.GetSingelAsync(x => x.IsSuccessful && x.Status == Domain.Enum.CardToCardStatus.Failed);
             if (paypalTransaction != null)
             {
                 await _rabbitMqPublisher.Publish("transaction-exchange", "CardToCardKey", new CardToCardMQ

@@ -37,7 +37,8 @@ namespace FinPay.Persistence.Service.Payment
                 var cardBalanceReadRepo = scope.ServiceProvider.GetRequiredService<ICardBalanceReadRepository>();
                 var cardBalanceWriteRepo = scope.ServiceProvider.GetRequiredService<ICardBalanceWriteRepository>();
                 var userAccountWriteRepo = scope.ServiceProvider.GetRequiredService<IUserAccountWriteRepository>();
-               
+                var transactionServiceHub = scope.ServiceProvider.GetRequiredService<ITransactionServiceHub>();
+
                 var transactions = await transactionRepo
                     .GetWhere(x => x.Status == TransferStatus.Completed && !x.IsPayoutSent)
                     .ToListAsync();
@@ -69,8 +70,15 @@ namespace FinPay.Persistence.Service.Payment
                             balance.CardBalance.Balance += tx.Amount;
                         }
                     }
-
                     await writeRepo.SaveAsync();
+                    string? userId = await transactionRepo.Table.Include(x => x.UserAccount).Where(u => u.Id == tx.UserAccountId).Select(x=>x.UserAccount.UserId).FirstOrDefaultAsync();
+                    if (!string.IsNullOrEmpty(userId))
+                    {
+                        var transaction = transactions.Where(x => x.Id == tx.Id);
+
+                        string transactionJson = JsonConvert.SerializeObject(transaction);
+                        await transactionServiceHub.TransactionAddedMessage(userId, transactionJson);
+                    }
                     await Task.Delay(500, stoppingToken);
                 }
 

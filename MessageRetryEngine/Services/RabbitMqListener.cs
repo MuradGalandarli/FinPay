@@ -8,6 +8,7 @@ using FinPay.Application.Repositoryes.AppTransactions;
 using FinPay.Domain.Entity.Paymet;
 using FinPay.Application.Repositoryes.CardBalance;
 using FinPay.Application.Repositoryes;
+using Finpay.SignalR.ServiceHubs;
 
 public class RabbitMqListener : IRabbitMqListener
 {
@@ -18,8 +19,8 @@ public class RabbitMqListener : IRabbitMqListener
     private readonly ICardBalanceReadRepository _cardBalanceReadRepository;
     private readonly ITransactionReadRepository _transactionReadRepository;
     private readonly IPaypalTransactionWriteRepository _paypalTransactionWriteRepository;
-
-    public RabbitMqListener(ITransactionWriteRepository transactionWriteRepository, ICardBalanceWriteRepository cardBalanceWriteRepository, ICardBalanceReadRepository cardBalanceReadRepository, ITransactionReadRepository transactionReadRepository, IPaypalTransactionWriteRepository paypalTransactionWriteRepository)
+    private readonly ICardToCardServiceHub _cardToCardServiceHub;
+    public RabbitMqListener(ITransactionWriteRepository transactionWriteRepository, ICardBalanceWriteRepository cardBalanceWriteRepository, ICardBalanceReadRepository cardBalanceReadRepository, ITransactionReadRepository transactionReadRepository, IPaypalTransactionWriteRepository paypalTransactionWriteRepository, ICardToCardServiceHub cardToCardServiceHub)
     {
         var factory = new ConnectionFactory { HostName = "localhost" };
         _connection = factory.CreateConnection();
@@ -29,6 +30,7 @@ public class RabbitMqListener : IRabbitMqListener
         _cardBalanceReadRepository = cardBalanceReadRepository;
         _transactionReadRepository = transactionReadRepository;
         _paypalTransactionWriteRepository = paypalTransactionWriteRepository;
+        _cardToCardServiceHub = cardToCardServiceHub;
     }
 
     public Task StartListening<T>(string exchangeName, string queueName, string routingKey, Func<T, Task> onMessage)
@@ -49,14 +51,14 @@ public class RabbitMqListener : IRabbitMqListener
 
                 Retry(async () =>
                 {
-                    await DataHandler(message);         
-                    await onMessage(message);           
+                    await DataHandler(message);
+                    await onMessage(message);
                 }).GetAwaiter().GetResult();
 
 
                 Console.WriteLine($"[✔] Received message from '{queueName}': {json}");
 
-                
+
 
                 _channel.BasicAck(ea.DeliveryTag, false);
             }
@@ -81,7 +83,7 @@ public class RabbitMqListener : IRabbitMqListener
             try
             {
                 await operation();
-                return; 
+                return;
             }
             catch (Exception ex)
             {
@@ -111,9 +113,9 @@ public class RabbitMqListener : IRabbitMqListener
 
                 try
                 {
-                   await CreatePaymentOperation(createPaymentMQ);
+                    await CreatePaymentOperation(createPaymentMQ);
                 }
-                catch (Exception ex) 
+                catch (Exception ex)
                 {
                     Console.WriteLine(ex.Message);
                 }
@@ -151,8 +153,9 @@ public class RabbitMqListener : IRabbitMqListener
 
     private async Task<bool> CardToCardOperation(CardToCardMQ cardToCardMQ)
     {
-        if(cardToCardMQ != null)
+        if (cardToCardMQ != null)
         {
+            string card = JsonConvert.SerializeObject(cardToCardMQ);
             var fromBalance = await _cardBalanceReadRepository.GetSingelAsync(x => x.PaypalEmail == cardToCardMQ.FromPaypalEmail);
             var toBalance = await _cardBalanceReadRepository.GetSingelAsync(x => x.PaypalEmail == cardToCardMQ.ToPaypalEmail);
 
@@ -160,9 +163,11 @@ public class RabbitMqListener : IRabbitMqListener
             {
                 cardToCardMQ.Status = FinPay.Domain.Enum.CardToCardStatus.Failed;
                 await PaypalTransactionAdd(cardToCardMQ);
+                await _cardToCardServiceHub.AddedMessageCardToCard(cardToCardMQ.FromUserId, card);
+                await _cardToCardServiceHub.AddedMessageCardToCard(cardToCardMQ.ToUserId, card);
                 return false;
             }
-              
+
             if (toBalance == null)
             {
                 var userAccountId = await _transactionReadRepository.GetSingelAsync(x => x.PaypalEmail == cardToCardMQ.ToPaypalEmail);
@@ -180,6 +185,10 @@ public class RabbitMqListener : IRabbitMqListener
 
             cardToCardMQ.Status = FinPay.Domain.Enum.CardToCardStatus.Completed;
             await PaypalTransactionAdd(cardToCardMQ);
+
+            
+            await _cardToCardServiceHub.AddedMessageCardToCard(cardToCardMQ.FromUserId, card);
+            await _cardToCardServiceHub.AddedMessageCardToCard(cardToCardMQ.ToUserId, card);
             return true;
 
         }
@@ -192,11 +201,13 @@ public class RabbitMqListener : IRabbitMqListener
         {
             FromPaypalEmail = cardToCardMQ.FromPaypalEmail,
             ToPaypalEmail = cardToCardMQ.ToPaypalEmail,
+            FromUserId = cardToCardMQ.FromUserId,
+            ToUserId = cardToCardMQ.ToUserId,
             Amount = cardToCardMQ.Amount,
             Description = cardToCardMQ.Description,
             IsSuccessful = cardToCardMQ.IsSuccessful,
             TransactionDate = dateTime,
-          
+
         };
         await _paypalTransactionWriteRepository.Add(transaction);
         await _cardBalanceWriteRepository.SaveAsync();
