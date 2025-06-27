@@ -9,6 +9,7 @@ using FinPay.Domain.Entity.Paymet;
 using FinPay.Application.Repositoryes.CardBalance;
 using FinPay.Application.Repositoryes;
 using Finpay.SignalR.ServiceHubs;
+using AutoMapper;
 
 public class RabbitMqListener : IRabbitMqListener
 {
@@ -20,7 +21,8 @@ public class RabbitMqListener : IRabbitMqListener
     private readonly ITransactionReadRepository _transactionReadRepository;
     private readonly IPaypalTransactionWriteRepository _paypalTransactionWriteRepository;
     private readonly ICardToCardServiceHub _cardToCardServiceHub;
-    public RabbitMqListener(ITransactionWriteRepository transactionWriteRepository, ICardBalanceWriteRepository cardBalanceWriteRepository, ICardBalanceReadRepository cardBalanceReadRepository, ITransactionReadRepository transactionReadRepository, IPaypalTransactionWriteRepository paypalTransactionWriteRepository, ICardToCardServiceHub cardToCardServiceHub)
+    private readonly IMapper _mapper;
+    public RabbitMqListener(ITransactionWriteRepository transactionWriteRepository, ICardBalanceWriteRepository cardBalanceWriteRepository, ICardBalanceReadRepository cardBalanceReadRepository, ITransactionReadRepository transactionReadRepository, IPaypalTransactionWriteRepository paypalTransactionWriteRepository, ICardToCardServiceHub cardToCardServiceHub, IMapper mapper)
     {
         var factory = new ConnectionFactory { HostName = "localhost" };
         _connection = factory.CreateConnection();
@@ -31,6 +33,7 @@ public class RabbitMqListener : IRabbitMqListener
         _transactionReadRepository = transactionReadRepository;
         _paypalTransactionWriteRepository = paypalTransactionWriteRepository;
         _cardToCardServiceHub = cardToCardServiceHub;
+        _mapper = mapper;
     }
 
     public Task StartListening<T>(string exchangeName, string queueName, string routingKey, Func<T, Task> onMessage)
@@ -130,16 +133,9 @@ public class RabbitMqListener : IRabbitMqListener
     private async Task CreatePaymentOperation(CreatePaymentMQ createPaymentMQ)
     {
         var dateTime = await StringConverDateTimeUtc(createPaymentMQ.CreateAt.ToString());
-        await _transactionWriteRepository.Add(new()
-        {
-            Amount = createPaymentMQ.Amount,
-            CreateAt = dateTime,
-            UserAccountId = createPaymentMQ.UserAccountId,
-            PaypalEmail = createPaymentMQ.PaypalEmail,
-            IsPayoutSent = createPaymentMQ.IsPayoutSent,
-            Status = createPaymentMQ.Status,
-
-        });
+        AppTransaction appTransaction = _mapper.Map<AppTransaction>(createPaymentMQ);
+        
+        await _transactionWriteRepository.Add(appTransaction);
         await _transactionWriteRepository.SaveAsync();
     }
     private async Task<DateTime> StringConverDateTimeUtc(string date)
@@ -197,18 +193,9 @@ public class RabbitMqListener : IRabbitMqListener
     private async Task PaypalTransactionAdd(CardToCardMQ cardToCardMQ)
     {
         DateTime dateTime = await StringConverDateTimeUtc(cardToCardMQ.TransactionDate.ToString());
-        var transaction = new PaypalTransaction
-        {
-            FromPaypalEmail = cardToCardMQ.FromPaypalEmail,
-            ToPaypalEmail = cardToCardMQ.ToPaypalEmail,
-            FromUserId = cardToCardMQ.FromUserId,
-            ToUserId = cardToCardMQ.ToUserId,
-            Amount = cardToCardMQ.Amount,
-            Description = cardToCardMQ.Description,
-            IsSuccessful = cardToCardMQ.IsSuccessful,
-            TransactionDate = dateTime,
 
-        };
+        PaypalTransaction transaction = _mapper.Map<PaypalTransaction>(cardToCardMQ);
+      
         await _paypalTransactionWriteRepository.Add(transaction);
         await _cardBalanceWriteRepository.SaveAsync();
         await _transactionWriteRepository.SaveAsync();

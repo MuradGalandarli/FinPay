@@ -7,6 +7,8 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="12.0.1" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.1" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="8.0.10" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.10" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.10">
@@ -22,6 +24,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Core\FinPay.Application\FinPay.Application.csproj" />
+    <ProjectReference Include="..\..\Core\FinPay.AutoMapper\FinPay.AutoMapper.csproj" />
     <ProjectReference Include="..\..\FinPay.SignalR\FinPay.SignalR.csproj" />
     <ProjectReference Include="..\..\Infrasturcture\FinPay.Infrasturcture\FinPay. Infrastructure.csproj" />
     <ProjectReference Include="..\..\MessageRetryEngine\FinPay.MessageRetryEngine.csproj" />

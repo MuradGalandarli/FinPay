@@ -1,4 +1,5 @@
-﻿using FinPay.Application.DTOs;
+﻿using AutoMapper;
+using FinPay.Application.DTOs;
 using FinPay.Application.RabbitMqMessage;
 using FinPay.Application.Repositoryes.AppTransactions;
 using FinPay.Application.Service;
@@ -25,13 +26,15 @@ namespace FinPay.Persistence.Service.Payment
         private readonly ITransactionReadRepository _transactionReadRepository;
         private readonly IConfiguration _configuration;
         private readonly IRabbitMqPublisher _rabbitMqPublisher;
+        private readonly IMapper _mapper;
 
-        public PaymentTransaction(ITransactionWriteRepository transactionWriteRepository, ITransactionReadRepository transactionReadRepository, IConfiguration configuration, IRabbitMqPublisher rabbitMqPublisher)
+        public PaymentTransaction(ITransactionWriteRepository transactionWriteRepository, ITransactionReadRepository transactionReadRepository, IConfiguration configuration, IRabbitMqPublisher rabbitMqPublisher, IMapper mapper = null)
         {
             _transactionWriteRepository = transactionWriteRepository;
             _transactionReadRepository = transactionReadRepository;
             _configuration = configuration;
             _rabbitMqPublisher = rabbitMqPublisher;
+            _mapper = mapper;
         }
 
         public async Task<string> CreatePayment(decimal amount, int userAccountId)
@@ -155,18 +158,9 @@ namespace FinPay.Persistence.Service.Payment
         public async Task<List<TransactionDto>> GetTransactionsByUserAccountId(int userAccountId)
         {
             var appTransaction = await _transactionReadRepository.Table.Where(x => x.UserAccountId == userAccountId).ToListAsync();
-
-            var result = appTransaction.Select(x => new TransactionDto
-            {
-                UserAccountId = x.UserAccountId,
-                Amount = x.Amount,
-                CreateAt = x.CreateAt,
-                IsPayoutSent = x.IsPayoutSent,
-                PaypalEmail = x.PaypalEmail,
-                Status = x.Status
-            }
-            );
-            return result.ToList();
+            var transaction = _mapper.Map<List<TransactionDto>>(appTransaction);
+           
+            return transaction;
         }
     }
 }

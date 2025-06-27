@@ -1,4 +1,6 @@
-﻿using FinPay.Application.Service.Payment;
+﻿using AutoMapper;
+using FinPay.Application.DTOs.CardTransaction;
+using FinPay.Application.Service.Payment;
 using MediatR;
 using System;
 using System.Collections.Generic;
@@ -11,23 +13,20 @@ namespace FinPay.Application.Features.Commands.CardToCardTransaction.CardTransac
     public class CardTransactionCommandHandler : IRequestHandler<CardTransactionCommandRequest, CardTransactionCommandResponse>
     {
         private readonly ICardTransactionService _cardTransactionService;
+        private readonly IMapper _mapper;
 
-        public CardTransactionCommandHandler(ICardTransactionService cardTransactionService)
+        public CardTransactionCommandHandler(ICardTransactionService cardTransactionService, IMapper mapper)
         {
             _cardTransactionService = cardTransactionService;
+            _mapper = mapper;
         }
 
         public async Task<CardTransactionCommandResponse> Handle(CardTransactionCommandRequest request, CancellationToken cancellationToken)
         {
-            var cardTransactionCommandResponse = await _cardTransactionService.PaypalToPaypalAsync(new()
-            {
-                FromUserId = request.FromUserId,
-                ToUserId = request.ToUserId,
-                Amount = request.Amount,
-                Description = request.Description,
-                FromPaypalEmail = request.FromPaypalEmail,
-                ToPaypalEmail = request.ToPaypalEmail
-            });
+            CardToCardRequestDto cardToCardRequestDto = _mapper.Map<CardToCardRequestDto>(request);
+
+            var cardTransactionCommandResponse = await _cardTransactionService.PaypalToPaypalAsync(cardToCardRequestDto);
+           
             return new() { Status = cardTransactionCommandResponse };
 
         }

@@ -1,6 +1,6 @@
 ﻿using FinPay.Application.DTOs;
+
 using FinPay.Application.DTOs.User;
-using FinPay.Application.Features.Commands.AppUser.RefreshToken;
 using Microsoft.EntityFrameworkCore.Query.Internal;
 using System;
 using System.Collections.Generic;

@@ -12,6 +12,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Core\FinPay.Application\FinPay.Application.csproj" />
+    <ProjectReference Include="..\..\Core\FinPay.AutoMapper\FinPay.AutoMapper.csproj" />
   </ItemGroup>
 
 </Project>

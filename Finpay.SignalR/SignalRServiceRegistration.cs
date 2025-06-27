@@ -18,4 +18,7 @@ namespace FinPay.SignalR
             service.AddSignalR();
         }
     }
+
+   
+
 }

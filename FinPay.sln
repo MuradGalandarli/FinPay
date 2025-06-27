@@ -25,6 +25,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FinPay.MessageRetryEngine",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FinPay.SignalR", "FinPay.SignalR\FinPay.SignalR.csproj", "{27B65EAB-EA70-4A94-BE2C-CE60D98834F5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FinPay.AutoMapper", "Core\FinPay.AutoMapper\FinPay.AutoMapper.csproj", "{9A2CCA0C-3094-4D72-8FF7-DF7E941DD460}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -59,6 +61,10 @@ Global
 		{27B65EAB-EA70-4A94-BE2C-CE60D98834F5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{27B65EAB-EA70-4A94-BE2C-CE60D98834F5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{27B65EAB-EA70-4A94-BE2C-CE60D98834F5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9A2CCA0C-3094-4D72-8FF7-DF7E941DD460}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9A2CCA0C-3094-4D72-8FF7-DF7E941DD460}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9A2CCA0C-3094-4D72-8FF7-DF7E941DD460}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9A2CCA0C-3094-4D72-8FF7-DF7E941DD460}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -71,5 +77,6 @@ Global
 		{F7454FF3-9569-4689-BA1D-69D165DBA78E} = {DFE1F7A9-0046-4972-A914-47A71DA99256}
 		{E19850F5-BBEE-410F-9D93-703B5D07F1A6} = {9CF0C4E3-E304-4411-AD16-D10877CFC22C}
 		{27B65EAB-EA70-4A94-BE2C-CE60D98834F5} = {DE652FCE-B2F9-433E-BC77-CB597FEC86AD}
+		{9A2CCA0C-3094-4D72-8FF7-DF7E941DD460} = {45350396-24C5-4FCE-AFAD-BA670A0BCE0D}
 	EndGlobalSection
 EndGlobal

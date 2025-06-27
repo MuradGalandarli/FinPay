@@ -13,6 +13,7 @@ using FinPay.MessageRetryEngine;
 using FinPay.Persistence;
 using FinPay.SignalR.Hubs;
 using FinPay.SignalR;
+using FinPay.AutoMapper;
 
 
 namespace FinPay.Persentetion
@@ -37,6 +38,7 @@ namespace FinPay.Persentetion
             builder.Services.AddApplicationService();
             builder.Services.AddPersistenceRegistration(builder.Configuration);
             builder.Services.AddSignalRService();
+            builder.Services.AddAutoMapperService();
 
             builder.Services.AddIdentity<ApplicationUser, ApplicationRole>()
                             .AddEntityFrameworkStores<AppDbContext>()

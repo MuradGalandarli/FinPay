@@ -1,5 +1,4 @@
-﻿using FinPay.Application.DTOs;
-using FinPay.Application.Service;
+﻿using FinPay.Application.Service;
 using FinPay.Domain.Identity;
 using FinPay.Domain;
 using Microsoft.AspNetCore.Http;
@@ -26,6 +25,8 @@ using System.Diagnostics;
 using FinPay.Domain.Entity;
 using FinPay.Persistence.Repositoryes.Endpoint;
 using FinPay.Application.Repositoryes.Endpoint;
+using FinPay.Application.DTOs;
+
 
 namespace FinPay.Persistence.Service
 {
