@@ -14,6 +14,7 @@ using FinPay.Persistence;
 using FinPay.SignalR.Hubs;
 using FinPay.SignalR;
 using FinPay.AutoMapper;
+using Serilog;
 
 
 namespace FinPay.Persentetion
@@ -37,8 +38,11 @@ namespace FinPay.Persentetion
             builder.Services.AddRabbitMQService();
             builder.Services.AddApplicationService();
             builder.Services.AddPersistenceRegistration(builder.Configuration);
-            builder.Services.AddSignalRService();
+            builder.Services.AddSignalRService(); 
             builder.Services.AddAutoMapperService();
+
+            builder.Host.UseSerilog((context, configuration) =>
+    configuration.ReadFrom.Configuration(context.Configuration));
 
             builder.Services.AddIdentity<ApplicationUser, ApplicationRole>()
                             .AddEntityFrameworkStores<AppDbContext>()
@@ -91,6 +95,7 @@ namespace FinPay.Persentetion
 
             app.UseAuthentication();
             app.UseAuthorization();
+            app.UseMiddleware<RequestLoggingMiddleware>();
 
 
             app.MapHub<CardToCardHub>("card-to-card-hub");

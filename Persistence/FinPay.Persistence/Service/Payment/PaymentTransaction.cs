@@ -36,7 +36,6 @@ namespace FinPay.Persistence.Service.Payment
             _rabbitMqPublisher = rabbitMqPublisher;
             _mapper = mapper;
         }
-
         public async Task<string> CreatePayment(decimal amount, int userAccountId)
         {
             string accessToken = await GetAccessTokenAsync();
@@ -64,8 +63,6 @@ namespace FinPay.Persistence.Service.Payment
                     cancel_url = "https://your-site.com/cancel"
                 }
             };
-
-
 
             await _rabbitMqPublisher.Publish("transaction-exchange", "transactionKey", new CreatePaymentMQ
             {

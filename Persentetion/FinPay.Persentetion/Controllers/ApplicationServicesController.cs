@@ -10,10 +10,11 @@ namespace FinPay.Presentation.Controllers
     public class ApplicationServicesController : ControllerBase
     {
         private readonly IApplicationService _applicationService;
-
-        public ApplicationServicesController(IApplicationService applicationService)
+        private readonly ILogger<ApplicationServicesController> _logger;
+        public ApplicationServicesController(IApplicationService applicationService, ILogger<ApplicationServicesController> logger)
         {
             _applicationService = applicationService;
+            _logger = logger;
         }
 
         [HttpGet]
