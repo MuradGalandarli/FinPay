@@ -11,6 +11,8 @@ using MediatR;
 using FinPay.Application.Features.Commands.AuthorizationEndpoint.AssingRoleEndpoint;
 using FinPay.Application.Features.Queries.AppRole.GetRolesToEndpoint;
 using FinPay.Persistence.Repositoryes.Endpoint;
+using Microsoft.IdentityModel.Tokens;
+using FluentValidation;
 
 namespace FinPay.Presentation.Controllers
 {
@@ -20,8 +22,7 @@ namespace FinPay.Presentation.Controllers
     {
         private readonly IMediator _mediator;
         private readonly IEndpointReadRepository _endpointReadRepository;
-
-
+       
         public AuthorizationEndpointsController(IMediator mediator, IEndpointReadRepository endpointReadRepository)
         {
             _mediator = mediator;

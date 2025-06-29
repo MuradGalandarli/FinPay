@@ -15,6 +15,7 @@ using FinPay.SignalR.Hubs;
 using FinPay.SignalR;
 using FinPay.AutoMapper;
 using Serilog;
+using FinPay.Validator;
 
 
 namespace FinPay.Persentetion
@@ -40,6 +41,7 @@ namespace FinPay.Persentetion
             builder.Services.AddPersistenceRegistration(builder.Configuration);
             builder.Services.AddSignalRService(); 
             builder.Services.AddAutoMapperService();
+            builder.Services.AddValidationService();
 
             builder.Host.UseSerilog((context, configuration) =>
     configuration.ReadFrom.Configuration(context.Configuration));

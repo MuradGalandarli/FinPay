@@ -28,6 +28,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\Core\FinPay.Application\FinPay.Application.csproj" />
     <ProjectReference Include="..\..\Core\FinPay.AutoMapper\FinPay.AutoMapper.csproj" />
+    <ProjectReference Include="..\..\Core\FinPay.Validator\FinPay.Validator.csproj" />
     <ProjectReference Include="..\..\FinPay.SignalR\FinPay.SignalR.csproj" />
     <ProjectReference Include="..\..\Infrasturcture\FinPay.Infrasturcture\FinPay. Infrastructure.csproj" />
     <ProjectReference Include="..\..\MessageRetryEngine\FinPay.MessageRetryEngine.csproj" />

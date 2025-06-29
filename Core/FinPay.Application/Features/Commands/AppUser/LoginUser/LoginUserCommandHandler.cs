@@ -1,27 +1,34 @@
 ﻿using AutoMapper;
 using FinPay.Application.DTOs;
 using FinPay.Application.Service;
+using FluentValidation;
 using MediatR;
 
 namespace FinPay.Application.Features.Commands.AppUser.LoginUser
 {
     public class LoginUserCommandHandler : IRequestHandler<LoginUserCommandRequest, LoginUserCommandResponse>
     {
-    private readonly IUserService _userService;
+        private readonly IUserService _userService;
         private readonly IMapper _mapper;
+        private readonly IValidator<LoginUserCommandRequest> _validator;
 
-        public LoginUserCommandHandler(IUserService userService, IMapper mapper)
+        public LoginUserCommandHandler(IUserService userService, IMapper mapper, IValidator<LoginUserCommandRequest> validator)
         {
             _userService = userService;
             _mapper = mapper;
+            _validator = validator;
         }
 
         public async Task<LoginUserCommandResponse> Handle(LoginUserCommandRequest request, CancellationToken cancellationToken)
         {
-            TokenDto token = await _userService.Login(request.Username, request.Password ,100,200);
+            if (_validator.Validate(request).IsValid)
+            {
+                TokenDto token = await _userService.Login(request.Username, request.Password, 100, 200);
 
-            return _mapper.Map<LoginUserCommandResponse>(token);
-           
+                return _mapper.Map<LoginUserCommandResponse>(token);
+            }
+            throw new Exceptions.ValidationException();
+
         }
     }
 }

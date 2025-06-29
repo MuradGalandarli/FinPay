@@ -1,4 +1,5 @@
 ﻿using FinPay.Application.Service;
+using FluentValidation;
 using MediatR;
 using System;
 using System.Collections.Generic;
@@ -11,15 +12,22 @@ namespace FinPay.Application.Features.Commands.AuthorizationEndpoint.AssingRoleE
     public class AssingRoleEndpointCommandHandler : IRequestHandler<AssingRoleEndpointCommandRequest, AssingRoleEndpointCommandResponse>
     {
         private readonly IAuthorizationEndpointService _authorizationEndpointService;
+        private readonly IValidator<AssingRoleEndpointCommandRequest> _validator;
 
-        public AssingRoleEndpointCommandHandler(IAuthorizationEndpointService authorizationEndpointService)
+        public AssingRoleEndpointCommandHandler(IAuthorizationEndpointService authorizationEndpointService, IValidator<AssingRoleEndpointCommandRequest> validator)
         {
             _authorizationEndpointService = authorizationEndpointService;
+            _validator = validator;
         }
         public async Task<AssingRoleEndpointCommandResponse> Handle(AssingRoleEndpointCommandRequest request, CancellationToken cancellationToken)
         {
-            await _authorizationEndpointService.AssingRoleEndpointAsync(request.Role, request.Menu, request.EndpointCode, request.type);
-            return new();
+          var valid = await _validator.ValidateAsync(request);
+            if (valid.IsValid)
+            {
+                await _authorizationEndpointService.AssingRoleEndpointAsync(request.Role, request.Menu, request.EndpointCode, request.type);
+                return new();
+            }
+            throw new Exceptions.ValidationException();
         }
     }
 }

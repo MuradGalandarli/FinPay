@@ -1,7 +1,10 @@
 ﻿using AutoMapper;
 using FinPay.Application.DTOs.CardTransaction;
 using FinPay.Application.Service.Payment;
+using FluentValidation;
 using MediatR;
+using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,20 +17,25 @@ namespace FinPay.Application.Features.Commands.CardToCardTransaction.CardTransac
     {
         private readonly ICardTransactionService _cardTransactionService;
         private readonly IMapper _mapper;
+        private readonly IValidator<CardTransactionCommandRequest> _validate;
 
-        public CardTransactionCommandHandler(ICardTransactionService cardTransactionService, IMapper mapper)
+        public CardTransactionCommandHandler(ICardTransactionService cardTransactionService, IMapper mapper, IValidator<CardTransactionCommandRequest> validate)
         {
             _cardTransactionService = cardTransactionService;
             _mapper = mapper;
+            _validate = validate;
         }
 
         public async Task<CardTransactionCommandResponse> Handle(CardTransactionCommandRequest request, CancellationToken cancellationToken)
         {
-            CardToCardRequestDto cardToCardRequestDto = _mapper.Map<CardToCardRequestDto>(request);
+            if (_validate.Validate(request).IsValid)
+            {
+                CardToCardRequestDto cardToCardRequestDto = _mapper.Map<CardToCardRequestDto>(request);
+                var cardTransactionCommandResponse = await _cardTransactionService.PaypalToPaypalAsync(cardToCardRequestDto);
 
-            var cardTransactionCommandResponse = await _cardTransactionService.PaypalToPaypalAsync(cardToCardRequestDto);
-           
-            return new() { Status = cardTransactionCommandResponse };
+                return new() { Status = cardTransactionCommandResponse };
+            }
+            throw new Exceptions.ValidationException();
 
         }
     }

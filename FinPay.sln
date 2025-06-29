@@ -27,6 +27,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FinPay.SignalR", "FinPay.Si
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FinPay.AutoMapper", "Core\FinPay.AutoMapper\FinPay.AutoMapper.csproj", "{9A2CCA0C-3094-4D72-8FF7-DF7E941DD460}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FinPay.Validator", "Core\FinPay.Validator\FinPay.Validator.csproj", "{A0647C49-CF32-48E6-AD48-D1FB6F35D7EE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -65,6 +67,10 @@ Global
 		{9A2CCA0C-3094-4D72-8FF7-DF7E941DD460}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9A2CCA0C-3094-4D72-8FF7-DF7E941DD460}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9A2CCA0C-3094-4D72-8FF7-DF7E941DD460}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A0647C49-CF32-48E6-AD48-D1FB6F35D7EE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A0647C49-CF32-48E6-AD48-D1FB6F35D7EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A0647C49-CF32-48E6-AD48-D1FB6F35D7EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A0647C49-CF32-48E6-AD48-D1FB6F35D7EE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -78,5 +84,6 @@ Global
 		{E19850F5-BBEE-410F-9D93-703B5D07F1A6} = {9CF0C4E3-E304-4411-AD16-D10877CFC22C}
 		{27B65EAB-EA70-4A94-BE2C-CE60D98834F5} = {DE652FCE-B2F9-433E-BC77-CB597FEC86AD}
 		{9A2CCA0C-3094-4D72-8FF7-DF7E941DD460} = {45350396-24C5-4FCE-AFAD-BA670A0BCE0D}
+		{A0647C49-CF32-48E6-AD48-D1FB6F35D7EE} = {45350396-24C5-4FCE-AFAD-BA670A0BCE0D}
 	EndGlobalSection
 EndGlobal
