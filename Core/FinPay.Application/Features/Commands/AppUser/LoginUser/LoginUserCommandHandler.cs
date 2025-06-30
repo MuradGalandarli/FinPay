@@ -21,14 +21,14 @@ namespace FinPay.Application.Features.Commands.AppUser.LoginUser
 
         public async Task<LoginUserCommandResponse> Handle(LoginUserCommandRequest request, CancellationToken cancellationToken)
         {
-            if (_validator.Validate(request).IsValid)
-            {
-                TokenDto token = await _userService.Login(request.Username, request.Password, 100, 200);
+            var validationResult = _validator.Validate(request);
+            if (!validationResult.IsValid)
+                throw new Exceptions.ValidationException(validationResult);
+
+            TokenDto token = await _userService.Login(request.Username, request.Password, 100, 200);
 
                 return _mapper.Map<LoginUserCommandResponse>(token);
-            }
-            throw new Exceptions.ValidationException();
-
+          
         }
     }
 }

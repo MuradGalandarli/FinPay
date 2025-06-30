@@ -24,9 +24,11 @@ namespace FinPay.Application.Features.Commands.AppUser.SignupUser
 
         public async Task<SignupCommandResponse> Handle(SignupCommandRequest request, CancellationToken cancellationToken)
         {
-            if (_validator.Validate(request).IsValid)
-            {
-                CreateUserResponse signupCommandResponse = await _userService.Signup(new()
+            var validationResult = _validator.Validate(request);
+            if (!validationResult.IsValid)
+                throw new Exceptions.ValidationException(validationResult);
+
+            CreateUserResponse signupCommandResponse = await _userService.Signup(new()
                 {
                     Name = request.Name,
                     Email = request.Email,
@@ -40,8 +42,6 @@ namespace FinPay.Application.Features.Commands.AppUser.SignupUser
                     Succeeded = signupCommandResponse.Succeeded,
                 };
             }
-            throw new Exceptions.ValidationException();
-
-        }
+          
     }
 }

@@ -21,13 +21,13 @@ namespace FinPay.Application.Features.Commands.AuthorizationEndpoint.AssingRoleE
         }
         public async Task<AssingRoleEndpointCommandResponse> Handle(AssingRoleEndpointCommandRequest request, CancellationToken cancellationToken)
         {
-          var valid = await _validator.ValidateAsync(request);
-            if (valid.IsValid)
-            {
-                await _authorizationEndpointService.AssingRoleEndpointAsync(request.Role, request.Menu, request.EndpointCode, request.type);
+            var validationResult = _validator.Validate(request);
+            if (!validationResult.IsValid)
+                throw new Exceptions.ValidationException(validationResult);
+
+            await _authorizationEndpointService.AssingRoleEndpointAsync(request.Role, request.Menu, request.EndpointCode, request.type);
                 return new();
-            }
-            throw new Exceptions.ValidationException();
+           
         }
     }
 }

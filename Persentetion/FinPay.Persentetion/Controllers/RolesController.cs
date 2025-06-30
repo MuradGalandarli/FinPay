@@ -44,7 +44,7 @@ namespace FinPay.Presentation.Controllers
         [HttpPut]
         public async Task<IActionResult> UpdateRole([FromBody] UpdateRoleCommandRequest updateRoleCommandRequest)
         {
-            UpdateRoleCOmmandResponse updateRoleCommandResponse = await _mediator.Send(updateRoleCommandRequest);
+            UpdateRoleCommandResponse updateRoleCommandResponse = await _mediator.Send(updateRoleCommandRequest);
             return Ok(updateRoleCommandResponse);
         }
         [HttpDelete("{Name}")]

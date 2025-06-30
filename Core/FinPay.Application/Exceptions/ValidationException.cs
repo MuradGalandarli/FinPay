@@ -17,8 +17,20 @@ namespace FinPay.Application.Exceptions
 
         public ValidationException(string message) : base(message) { }
 
-        public ValidationException(string message, Exception exception) : base(message, exception) { } 
+        public ValidationException(string message, Exception exception) : base(message, exception) { }
 
-      
+        public IDictionary<string, string[]> Errors { get; }
+
+        public ValidationException(FluentValidation.Results.ValidationResult result)
+            : base("Validation failed.")
+        {
+            Errors = result.Errors
+                .GroupBy(e => e.PropertyName)
+                .ToDictionary(
+                    g => g.Key,
+                    g => g.Select(e => e.ErrorMessage).ToArray()
+                );
+        }
+
     }
 }

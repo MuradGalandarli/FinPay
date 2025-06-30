@@ -17,13 +17,14 @@ namespace FinPay.Application.Features.Commands.Payment.PaymentTransaction
 
         public async Task<PaymentTransactionCommandResponse> Handle(PaymentTransactionCommandRequest request, CancellationToken cancellationToken)
         {
-            if (_validator.Validate(request).IsValid)
-            {
-                string paymentTransactionCommandResponse = await _paymentTransaction.CreatePayment(request.Amount, request.UserAccountId);
+            var validationResult = _validator.Validate(request);
+            if (!validationResult.IsValid)
+                throw new Exceptions.ValidationException(validationResult);
+
+            string paymentTransactionCommandResponse = await _paymentTransaction.CreatePayment(request.Amount, request.UserAccountId);
 
                 return new() { AccessToken = paymentTransactionCommandResponse };
-            }
-            throw new Exceptions.ValidationException();
+           
         }
     }
 }

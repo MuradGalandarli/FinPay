@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace FinPay.Application.Features.Commands.AppRole.UpdateRole
 {
-    public class UpdateRoleCommandHandler : IRequestHandler<UpdateRoleCommandRequest, UpdateRoleCOmmandResponse>
+    public class UpdateRoleCommandHandler : IRequestHandler<UpdateRoleCommandRequest, UpdateRoleCommandResponse>
     {
         private readonly IRoleService _roleService;
         private readonly IValidator<UpdateRoleCommandRequest> _validator;
@@ -21,17 +21,17 @@ namespace FinPay.Application.Features.Commands.AppRole.UpdateRole
             _validator = validator;
         }
 
-        public async Task<UpdateRoleCOmmandResponse> Handle(UpdateRoleCommandRequest request, CancellationToken cancellationToken)
+        public async Task<UpdateRoleCommandResponse> Handle(UpdateRoleCommandRequest request, CancellationToken cancellationToken)
         {
-            if (_validator.Validate(request).IsValid)
+            var validationResult = _validator.Validate(request);
+            if (!validationResult.IsValid)
+            throw new Exceptions.ValidationException(validationResult);
+
+            bool status = await _roleService.UpdateRole(request.Id, request.Name);
+            return new()
             {
-                bool statsu = await _roleService.UpdateRole(request.Id, request.Name);
-                return new()
-                {
-                    Status = statsu,
-                };
-            }
-            throw new Exceptions.ValidationException();
+                Status = status,
+            };
         }
     }
 }

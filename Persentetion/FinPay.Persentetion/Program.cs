@@ -98,7 +98,7 @@ namespace FinPay.Persentetion
             app.UseAuthentication();
             app.UseAuthorization();
             app.UseMiddleware<RequestLoggingMiddleware>();
-
+            app.UseMiddleware<GlobalExceptionMiddleware>();
 
             app.MapHub<CardToCardHub>("card-to-card-hub");
             app.MapHub<TransactionHub>("transaction-hub");
