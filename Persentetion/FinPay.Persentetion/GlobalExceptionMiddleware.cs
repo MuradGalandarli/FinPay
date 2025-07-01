@@ -1,9 +1,7 @@
 ﻿
     using System.Net;
     using System.Text.Json;
-    using Microsoft.AspNetCore.Http;
-    using Microsoft.Extensions.Logging;
-    using FluentValidation; // əgər FluentValidation istifadə edirsənsə
+    
 
     public class GlobalExceptionMiddleware
     {
@@ -20,7 +18,7 @@
         {
             try
             {
-                await _next(context); // Növbəti middleware və ya controller-a keç
+                await _next(context);
             }
             catch (FinPay.Application.Exceptions.ValidationException ex)
             {
@@ -48,7 +46,7 @@
                 var response = new
                 {
                     error = "Internal Server Error",
-                    detail = ex.Message // isteğe bağlı, prod-da gizlədə bilərsən
+                    detail = ex.Message 
                 };
 
                 await context.Response.WriteAsync(JsonSerializer.Serialize(response));

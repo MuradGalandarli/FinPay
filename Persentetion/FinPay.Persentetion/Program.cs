@@ -16,6 +16,7 @@ using FinPay.SignalR;
 using FinPay.AutoMapper;
 using Serilog;
 using FinPay.Validator;
+using FinPay.Presentation;
 
 
 namespace FinPay.Persentetion
@@ -42,6 +43,8 @@ namespace FinPay.Persentetion
             builder.Services.AddSignalRService(); 
             builder.Services.AddAutoMapperService();
             builder.Services.AddValidationService();
+            builder.Services.AddApiLimiter(builder.Configuration);
+
 
             builder.Host.UseSerilog((context, configuration) =>
     configuration.ReadFrom.Configuration(context.Configuration));
@@ -94,6 +97,8 @@ namespace FinPay.Persentetion
             app.UseHttpsRedirection();
 
             app.UseCors("AllowAll");
+
+            app.UseRateLimiter();
 
             app.UseAuthentication();
             app.UseAuthorization();
