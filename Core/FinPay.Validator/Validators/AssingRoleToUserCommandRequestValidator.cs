@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace FinPay.Validator.Validators
 {
-    public class AssingRoleToUserCommandRequestValidator:AbstractValidator<AssingRoleToUserCommandRequest>
+    public class AssingRoleToUserCommandRequestValidator:AbstractValidator<AssignRoleToUserCommandRequest>
     {
         public AssingRoleToUserCommandRequestValidator()
         {

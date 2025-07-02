@@ -92,7 +92,7 @@ namespace FinPay.Persistence.Service
 
 
 
-        public async Task AssingRoleToUser(string id, string[] roles)
+        public async Task AssignRoleToUser(string id, string[] roles)
         {
             ApplicationUser user = await _userManager.FindByIdAsync(id);
             if(user != null)

@@ -17,6 +17,7 @@ using FinPay.AutoMapper;
 using Serilog;
 using FinPay.Validator;
 using FinPay.Presentation;
+using Prometheus;
 
 
 namespace FinPay.Persentetion
@@ -100,15 +101,22 @@ namespace FinPay.Persentetion
 
             app.UseRateLimiter();
 
+            app.UseRouting();
+
+            app.UseRouting();
+
+            app.UseHttpMetrics();            
             app.UseAuthentication();
             app.UseAuthorization();
+
             app.UseMiddleware<RequestLoggingMiddleware>();
             app.UseMiddleware<GlobalExceptionMiddleware>();
 
-            app.MapHub<CardToCardHub>("card-to-card-hub");
-            app.MapHub<TransactionHub>("transaction-hub");
-
-            app.MapControllers();
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllers();
+                endpoints.MapMetrics();
+            });
             await DbSeeder.SeedData(app);
             app.Run();
         }

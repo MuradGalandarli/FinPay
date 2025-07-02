@@ -1,4 +1,5 @@
 ﻿using FinPay._Infrastructure.Service.Configurations;
+using FinPay.Application.Service;
 using FinPay.Application.Service.Configurations;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -14,7 +15,8 @@ namespace FinPay._Infrastructure
         public static void AddInfrastructureService(this IServiceCollection services)
         {
             services.AddScoped<IApplicationService, ApplicationService>();
-          
+            services.AddSingleton<IMetricsService, PrometheusMetricsService>();
+
         }
     }
 }

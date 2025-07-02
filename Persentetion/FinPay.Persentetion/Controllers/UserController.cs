@@ -34,9 +34,9 @@ namespace FinPay.Presentation.Controllers
        
         [HttpPost("assing-role-to-user")]
         [AuthorizeDefinition(ActionType = Application.Enums.ActionType.Writing,Menu = AuthorizeDefinitionConstants.ControllerUser,Definition ="Assing Role To User")]
-        public async Task<IActionResult>AssingRoleToUser([FromBody]AssingRoleToUserCommandRequest assingRoleToUserCommandRequest)
+        public async Task<IActionResult>AssingRoleToUser([FromBody]AssignRoleToUserCommandRequest assingRoleToUserCommandRequest)
         {
-            AssingRoleToUserCommandRespose assingRoleToUserCommandRespose = await _mediator.Send(assingRoleToUserCommandRequest);
+            AssignRoleToUserCommandResponse assingRoleToUserCommandRespose = await _mediator.Send(assingRoleToUserCommandRequest);
             return Ok(assingRoleToUserCommandRespose);
         }
     }

@@ -2,7 +2,7 @@
 
 namespace FinPay.Application.Features.Commands.AppUser.AssingRoleToUser
 {
-    public class AssingRoleToUserCommandRequest : IRequest<AssingRoleToUserCommandRespose>
+    public class AssignRoleToUserCommandRequest : IRequest<AssignRoleToUserCommandResponse>
     {
 
         public string Id { get; set; }
