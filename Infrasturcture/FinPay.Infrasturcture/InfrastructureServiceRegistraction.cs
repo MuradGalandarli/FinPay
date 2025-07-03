@@ -1,4 +1,5 @@
-﻿using FinPay._Infrastructure.Service.Configurations;
+﻿using FinPay._Infrastructure.Service;
+using FinPay._Infrastructure.Service.Configurations;
 using FinPay.Application.Service;
 using FinPay.Application.Service.Configurations;
 using Microsoft.Extensions.DependencyInjection;
@@ -16,6 +17,8 @@ namespace FinPay._Infrastructure
         {
             services.AddScoped<IApplicationService, ApplicationService>();
             services.AddSingleton<IMetricsService, PrometheusMetricsService>();
+            services.AddSingleton<IMailSender, MailSender>();
+            services.AddHostedService<AlertWorker>();
 
         }
     }
