@@ -58,7 +58,7 @@ namespace FinPay.Persistence
             services.AddScoped<IUserAccountService, UserAccountService>();
             services.AddScoped<IUserAccountWriteRepository, UserAccountWriteRepository>();
             services.AddScoped<IUserAccountReadRepository, UserAccountReadRepository>();
-           
+            services.AddHostedService<SqlBackupService>();
 
 
         }
