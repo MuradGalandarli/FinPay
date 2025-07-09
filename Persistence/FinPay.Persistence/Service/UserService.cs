@@ -26,6 +26,8 @@ using FinPay.Domain.Entity;
 using FinPay.Persistence.Repositoryes.Endpoint;
 using FinPay.Application.Repositoryes.Endpoint;
 using FinPay.Application.DTOs;
+using Microsoft.AspNetCore.WebUtilities;
+using FinPay.Application.Helpers;
 
 
 namespace FinPay.Persistence.Service
@@ -38,9 +40,10 @@ namespace FinPay.Persistence.Service
         private readonly IConfiguration _configuration;
         private readonly AppDbContext _appDbContext;
         private readonly IEndpointReadRepository _endpointReadRepository;
+        private readonly IMailSender _mailSender;
 
 
-        public UserService(UserManager<ApplicationUser> userManager, RoleManager<ApplicationRole> roleManager = null, ILogger<UserService> logger = null, IConfiguration configuration = null, AppDbContext appDbContext = null, IEndpointReadRepository endpointReadRepository = null)
+        public UserService(UserManager<ApplicationUser> userManager, RoleManager<ApplicationRole> roleManager = null, ILogger<UserService> logger = null, IConfiguration configuration = null, AppDbContext appDbContext = null, IEndpointReadRepository endpointReadRepository = null, IMailSender mailSender = null)
         {
             _userManager = userManager;
             _roleManager = roleManager;
@@ -48,13 +51,28 @@ namespace FinPay.Persistence.Service
             _configuration = configuration;
             _appDbContext = appDbContext;
             _endpointReadRepository = endpointReadRepository;
+            _mailSender = mailSender;
         }
 
+        public async Task PasswordResetAsync(string email)
+        {
+            ApplicationUser? applicationUser = await _userManager.FindByEmailAsync(email);
+            if (applicationUser != null)
+            {
+                string resetToken = await _userManager.GeneratePasswordResetTokenAsync(applicationUser);
+                //byte[] tokenByts = Encoding.UTF8.GetBytes(resetToken);
+                //resetToken = WebEncoders.Base64UrlEncode(tokenByts);
+                resetToken = CustomEncoders.UrlEncode(resetToken);
+                await _mailSender.SendPasswordResetMail(email, applicationUser.Id, resetToken);
+            }
 
-        public async Task<bool> HasRolePermissionToEndpointAsync(string name,string code)
+
+        }
+
+        public async Task<bool> HasRolePermissionToEndpointAsync(string name, string code)
         {
             var userRoles = await GetRolsToUserAsync(name);
-          
+
             if (!userRoles.Any())
                 return false;
 
@@ -68,7 +86,7 @@ namespace FinPay.Persistence.Service
             var hasRole = false;
             var endpointRoles = endpoint.ApplicationRoles.Select(r => r.Name);
 
-           
+
             foreach (var userRole in userRoles)
             {
                 foreach (var endpointRole in endpointRoles)
@@ -95,9 +113,9 @@ namespace FinPay.Persistence.Service
         public async Task AssignRoleToUser(string id, string[] roles)
         {
             ApplicationUser user = await _userManager.FindByIdAsync(id);
-            if(user != null)
+            if (user != null)
             {
-               
+
                 var userRoles = await _userManager.GetRolesAsync(user);
                 await _userManager.RemoveFromRolesAsync(user, userRoles);
 
@@ -136,7 +154,7 @@ namespace FinPay.Persistence.Service
                 if ((await _roleManager.RoleExistsAsync(Role.User)) == false)
                 {
                     var roleResult = await _roleManager
-    .CreateAsync(new ApplicationRole { Name = "User" ,Id = Guid.NewGuid().ToString()});
+    .CreateAsync(new ApplicationRole { Name = "User", Id = Guid.NewGuid().ToString() });
 
                     if (roleResult.Succeeded == false)
                     {
@@ -369,6 +387,41 @@ namespace FinPay.Persistence.Service
             return principal;
         }
 
-      
+        public async Task<bool> VerifyResetTokenAsync(string resetToken, string userId)
+        {
+            ApplicationUser? user = await _userManager.FindByIdAsync(userId);
+            if (user != null)
+            {
+                //byte[] tokenBytes = WebEncoders.Base64UrlDecode(resetToken);
+                //resetToken = Encoding.UTF8.GetString(tokenBytes);
+                resetToken = CustomEncoders.UrlDecode(resetToken);
+                return await _userManager.VerifyUserTokenAsync(user, _userManager.Options.Tokens.PasswordResetTokenProvider, "ResetPassword", resetToken);
+
+            }
+            return false;
+        }
+
+        public async Task UpdatePassword(string userId, string resetToken, string newPassword)
+        {
+            ApplicationUser? user = await _userManager.FindByIdAsync(userId);
+            if (user != null)
+            {
+                resetToken = resetToken.UrlDecode();
+                try
+                {
+                    IdentityResult result = await _userManager.ResetPasswordAsync(user, resetToken, newPassword);
+                    if (result.Succeeded)
+                        await _userManager.UpdateSecurityStampAsync(user);
+                    else
+                        throw new PasswordChangeFailedException();
+                }
+                catch(Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+                
+                
+            }
+        }
     }
 }

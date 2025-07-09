@@ -19,7 +19,7 @@ namespace FinPay._Infrastructure.Service
             _configuration = configuration;
         }
 
-        public async Task SendMail(string subject,string body)
+        public async Task SendMail(string to,string subject,string body)
         {
            
             SmtpClient client = new SmtpClient(_configuration["EmailSettings:Server"], int.Parse(_configuration.GetSection("EmailSettings:Port").Value));
@@ -27,10 +27,9 @@ namespace FinPay._Infrastructure.Service
             client.UseDefaultCredentials = false;
             client.Credentials = new NetworkCredential( _configuration["EmailSettings:SenderEmail"], "ehwy nyxe tbys cacs");
 
-            // Create email message
             MailMessage mailMessage = new MailMessage();
             mailMessage.From = new MailAddress(_configuration["EmailSettings:SenderEmail"]);
-            mailMessage.To.Add(_configuration["EmailSettings:SenderEmail"]);
+            mailMessage.To.Add(to);
             mailMessage.Subject = subject;
             mailMessage.IsBodyHtml = true;
             StringBuilder mailBody = new StringBuilder();
@@ -38,8 +37,21 @@ namespace FinPay._Infrastructure.Service
           
             mailMessage.Body = mailBody.ToString();
 
-            // Send email
             client.Send(mailMessage);
         }
+
+        public async Task SendPasswordResetMail(string to,string userId,string resetToken)
+        {
+            StringBuilder mail = new();
+            mail.AppendLine("Salam<br> Eger Yeni sifre teleb etmisinizse asagidaki likden deyise bilersiz.<br><strong>" +
+            "a< target = \"_blank\" href =\"..../");
+            mail.AppendLine(userId);
+            mail.AppendLine("/");
+            mail.AppendLine(resetToken);
+            mail.AppendLine("\"> Yeni sifre telebi ucun tiklayin </a> </strong>");
+            await SendMail(to, "Sifre yenileme", mail.ToString());
+        }
+
+
     }
 }

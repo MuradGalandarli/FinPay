@@ -52,7 +52,7 @@ namespace FinPay.Persentetion
 
             builder.Services.AddIdentity<ApplicationUser, ApplicationRole>()
                             .AddEntityFrameworkStores<AppDbContext>()
-                            .AddDefaultTokenProviders();
+                            .AddDefaultTokenProviders().AddDefaultTokenProviders();
 
             builder.Services.AddAuthentication(options =>
             {

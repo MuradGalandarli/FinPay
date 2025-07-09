@@ -1,16 +1,19 @@
 ﻿using FinPay.Application.Service;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 
 public class AlertWorker : BackgroundService, IDisposable
 {
     private readonly IMailSender _mailSender;
     private readonly HttpClient _httpClient = new();
+    private readonly IConfiguration _configuration;
 
     private const string MetricsUrl = "https://localhost:7090/metrics";
 
-    public AlertWorker(IMailSender mailSender)
+    public AlertWorker(IMailSender mailSender,IConfiguration configuration)
     {
         _mailSender = mailSender;
+        _configuration = configuration;
     }
 
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
@@ -27,7 +30,7 @@ public class AlertWorker : BackgroundService, IDisposable
 
                 if (IsCpuUsageHigh(content))
                 {
-                    await _mailSender.SendMail("CPU istifadəsi yüksəkdir!", content);
+                    await _mailSender.SendMail(_configuration["EmailSettings:SenderEmail"],"CPU istifadəsi yüksəkdir!", content);
                     Console.WriteLine($"{DateTime.Now}: Alert göndərildi.");
                 }
                 else

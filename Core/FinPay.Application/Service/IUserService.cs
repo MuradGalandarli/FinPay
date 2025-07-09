@@ -1,14 +1,5 @@
 ﻿using FinPay.Application.DTOs;
-
 using FinPay.Application.DTOs.User;
-using Microsoft.EntityFrameworkCore.Query.Internal;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics.Contracts;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace FinPay.Application.Service
 {
@@ -20,7 +11,9 @@ namespace FinPay.Application.Service
         public Task<List<UserResponseDto>> GetAllUserAsync(int page,int size);
         public Task AssignRoleToUser(string id, string[] roles);
         public Task<bool> HasRolePermissionToEndpointAsync(string name,string code);
-     
+        public Task PasswordResetAsync(string email);
+        public Task<bool> VerifyResetTokenAsync(string resetToken, string userId);
+        public Task UpdatePassword(string userId, string resetToken, string newPassword);
 
 
     }
