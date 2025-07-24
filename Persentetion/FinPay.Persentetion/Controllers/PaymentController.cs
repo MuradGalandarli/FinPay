@@ -9,7 +9,7 @@ using Newtonsoft.Json;
 using System.Net.Http.Headers;
 using System.Text;
 
-namespace FinPay.Presentation.Controllers
+namespace FinPay.Presentetion.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]

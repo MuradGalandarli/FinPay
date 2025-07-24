@@ -14,7 +14,7 @@ using FinPay.Persistence.Repositoryes.Endpoint;
 using Microsoft.IdentityModel.Tokens;
 using FluentValidation;
 
-namespace FinPay.Presentation.Controllers
+namespace FinPay.Presentetion.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]

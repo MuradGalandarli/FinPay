@@ -3,16 +3,12 @@ using FinPay.Application.CustomAttributes;
 using FinPay.Application.Features.Commands.AppUser.AssingRoleToUser;
 using FinPay.Application.Features.Commands.AppUser.ResetPassword;
 using FinPay.Application.Features.Commands.AppUser.VerifyResetToken;
-using FinPay.Application.Features.Commands.AuthorizationEndpoint.AssingRoleEndpoint;
 using FinPay.Application.Features.Queries.AppUser.GetUser;
 using FinPay.Application.Features.UpdatePassword;
 using MediatR;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using System.Reflection.Metadata.Ecma335;
-
-namespace FinPay.Presentation.Controllers
+using FinPay.Application.CustomAttributes;
+namespace FinPay.Presentetion.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]

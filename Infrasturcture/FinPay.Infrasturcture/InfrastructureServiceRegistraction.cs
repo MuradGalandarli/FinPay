@@ -9,7 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FinPay._Infrastructure
+namespace FinPay.Infrastructure
 {
     public static class InfrastructureServiceRegistraction
     {

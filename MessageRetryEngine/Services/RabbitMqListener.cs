@@ -10,6 +10,7 @@ using FinPay.Application.Repositoryes.CardBalance;
 using FinPay.Application.Repositoryes;
 using Finpay.SignalR.ServiceHubs;
 using AutoMapper;
+using Microsoft.Extensions.Configuration;
 
 public class RabbitMqListener : IRabbitMqListener
 {
@@ -22,9 +23,23 @@ public class RabbitMqListener : IRabbitMqListener
     private readonly IPaypalTransactionWriteRepository _paypalTransactionWriteRepository;
     private readonly ICardToCardServiceHub _cardToCardServiceHub;
     private readonly IMapper _mapper;
-    public RabbitMqListener(ITransactionWriteRepository transactionWriteRepository, ICardBalanceWriteRepository cardBalanceWriteRepository, ICardBalanceReadRepository cardBalanceReadRepository, ITransactionReadRepository transactionReadRepository, IPaypalTransactionWriteRepository paypalTransactionWriteRepository, ICardToCardServiceHub cardToCardServiceHub, IMapper mapper)
+    private readonly IConfiguration _configuration;
+
+    public RabbitMqListener(ITransactionWriteRepository transactionWriteRepository, ICardBalanceWriteRepository cardBalanceWriteRepository, ICardBalanceReadRepository cardBalanceReadRepository, ITransactionReadRepository transactionReadRepository, IPaypalTransactionWriteRepository paypalTransactionWriteRepository, ICardToCardServiceHub cardToCardServiceHub, IMapper mapper, IConfiguration configuration)
     {
-        var factory = new ConnectionFactory { HostName = "localhost" };
+        _configuration = configuration;
+
+        var factory = new ConnectionFactory()
+        {
+            HostName = _configuration["RabbitMq:Host"],
+            Port = int.Parse(_configuration["RabbitMq:Port"]),
+            UserName = _configuration["RabbitMq:UserName"],
+            Password = _configuration["RabbitMq:Password"]
+        };
+
+        using var connection = factory.CreateConnection();
+        using var channel = connection.CreateModel();
+
         _connection = factory.CreateConnection();
         _channel = _connection.CreateModel();
         _transactionWriteRepository = transactionWriteRepository;
@@ -34,6 +49,7 @@ public class RabbitMqListener : IRabbitMqListener
         _paypalTransactionWriteRepository = paypalTransactionWriteRepository;
         _cardToCardServiceHub = cardToCardServiceHub;
         _mapper = mapper;
+        
     }
 
     public Task StartListening<T>(string exchangeName, string queueName, string routingKey, Func<T, Task> onMessage)

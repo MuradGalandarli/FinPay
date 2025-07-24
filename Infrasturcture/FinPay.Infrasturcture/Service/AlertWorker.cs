@@ -8,7 +8,7 @@ public class AlertWorker : BackgroundService, IDisposable
     private readonly HttpClient _httpClient = new();
     private readonly IConfiguration _configuration;
 
-    private const string MetricsUrl = "https://localhost:7090/metrics";
+    private const string MetricsUrl = "http://localhost:5290/metrics";
 
     public AlertWorker(IMailSender mailSender,IConfiguration configuration)
     {

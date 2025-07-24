@@ -34,7 +34,7 @@ namespace FinPay.Persistence.Migrations
 
                     b.HasIndex("EndpointsId");
 
-                    b.ToTable("ApplicationRoleEndpoint");
+                    b.ToTable("ApplicationRoleEndpoint", (string)null);
                 });
 
             modelBuilder.Entity("FinPay.Domain.Entity.Endpoint", b =>
@@ -64,7 +64,7 @@ namespace FinPay.Persistence.Migrations
 
                     b.HasIndex("MenuId");
 
-                    b.ToTable("Endpoints");
+                    b.ToTable("Endpoints", (string)null);
                 });
 
             modelBuilder.Entity("FinPay.Domain.Entity.Menu", b =>
@@ -81,7 +81,7 @@ namespace FinPay.Persistence.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Menus");
+                    b.ToTable("Menus", (string)null);
                 });
 
             modelBuilder.Entity("FinPay.Domain.Entity.Paymet.AppTransaction", b =>
@@ -114,7 +114,7 @@ namespace FinPay.Persistence.Migrations
 
                     b.HasIndex("UserAccountId");
 
-                    b.ToTable("AppTransactions");
+                    b.ToTable("AppTransactions", (string)null);
                 });
 
             modelBuilder.Entity("FinPay.Domain.Entity.Paymet.CardBalance", b =>
@@ -143,7 +143,7 @@ namespace FinPay.Persistence.Migrations
                     b.HasIndex("UserAccountId")
                         .IsUnique();
 
-                    b.ToTable("CardBalances");
+                    b.ToTable("CardBalances", (string)null);
                 });
 
             modelBuilder.Entity("FinPay.Domain.Entity.Paymet.PaypalTransaction", b =>
@@ -165,6 +165,10 @@ namespace FinPay.Persistence.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
+                    b.Property<string>("FromUserId")
+                        .IsRequired()
+                        .HasColumnType("text");
+
                     b.Property<bool>("IsSuccessful")
                         .HasColumnType("boolean");
 
@@ -172,6 +176,10 @@ namespace FinPay.Persistence.Migrations
                         .HasColumnType("integer");
 
                     b.Property<string>("ToPaypalEmail")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("ToUserId")
                         .IsRequired()
                         .HasColumnType("text");
 
@@ -185,7 +193,7 @@ namespace FinPay.Persistence.Migrations
 
                     b.HasIndex("UserAccountId");
 
-                    b.ToTable("PaypalTransactions");
+                    b.ToTable("PaypalTransactions", (string)null);
                 });
 
             modelBuilder.Entity("FinPay.Domain.Entity.Paymet.UserAccount", b =>
@@ -218,7 +226,7 @@ namespace FinPay.Persistence.Migrations
                     b.HasIndex("UserId")
                         .IsUnique();
 
-                    b.ToTable("UserAccount");
+                    b.ToTable("UserAccount", (string)null);
                 });
 
             modelBuilder.Entity("FinPay.Domain.Entity.Tokeninfo", b =>
@@ -244,7 +252,7 @@ namespace FinPay.Persistence.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("TokenInfos");
+                    b.ToTable("TokenInfos", (string)null);
                 });
 
             modelBuilder.Entity("FinPay.Domain.Identity.ApplicationRole", b =>

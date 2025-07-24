@@ -33,7 +33,7 @@ namespace FinPay.Persistence
     {
         public static void AddPersistenceRegistration(this IServiceCollection services, IConfiguration configuration)
         {
-            string? connectionString = configuration.GetConnectionString("default");
+            string? connectionString = configuration.GetConnectionString("DefaultConnection");
 
             services.AddDbContext<AppDbContext>(options =>
                                       options.UseNpgsql(connectionString));

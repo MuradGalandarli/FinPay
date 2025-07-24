@@ -1,6 +1,0 @@
-@FinPay.Persentetion_HostAddress = http://localhost:5290
-
-GET {{FinPay.Persentetion_HostAddress}}/weatherforecast/
-Accept: application/json
-
-###

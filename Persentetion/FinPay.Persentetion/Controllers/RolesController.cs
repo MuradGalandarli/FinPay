@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
-namespace FinPay.Presentation.Controllers
+namespace FinPay.Presentetion.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]

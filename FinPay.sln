@@ -11,7 +11,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FinPay.Application", "Core\
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrasturcture", "Infrasturcture", "{DE652FCE-B2F9-433E-BC77-CB597FEC86AD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FinPay. Infrastructure", "Infrasturcture\FinPay.Infrasturcture\FinPay. Infrastructure.csproj", "{81CFD1EB-E58A-47A7-8781-A96DAADC1375}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FinPay.Infrastructure", "Infrasturcture\FinPay.Infrasturcture\FinPay.Infrastructure.csproj", "{81CFD1EB-E58A-47A7-8781-A96DAADC1375}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Persistence", "Persistence", "{9CF0C4E3-E304-4411-AD16-D10877CFC22C}"
 EndProject
@@ -19,7 +19,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FinPay.Persistence", "Persi
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{DFE1F7A9-0046-4972-A914-47A71DA99256}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FinPay.Presentation", "Persentetion\FinPay.Persentetion\FinPay.Presentation.csproj", "{F7454FF3-9569-4689-BA1D-69D165DBA78E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FinPay.Persentetion", "Persentetion\FinPay.Persentetion\FinPay.Persentetion.csproj", "{F7454FF3-9569-4689-BA1D-69D165DBA78E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FinPay.MessageRetryEngine", "MessageRetryEngine\FinPay.MessageRetryEngine.csproj", "{E19850F5-BBEE-410F-9D93-703B5D07F1A6}"
 EndProject

@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.AspNetCore.Mvc.Routing;
 using System.Reflection;
 
-namespace FinPay.Presentation.Filters
+namespace FinPay.Presentetion.Filters
 {
     public class RolePermissionFilter : IAsyncActionFilter
     {

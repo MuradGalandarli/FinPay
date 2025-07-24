@@ -1,0 +1,16 @@
+D:\GitHub test\FinPay\Core\FinPay.Application\bin\Debug\net8.0\FinPay.Application.deps.json
+D:\GitHub test\FinPay\Core\FinPay.Application\bin\Debug\net8.0\FinPay.Application.dll
+D:\GitHub test\FinPay\Core\FinPay.Application\bin\Debug\net8.0\FinPay.Application.pdb
+D:\GitHub test\FinPay\Core\FinPay.Application\bin\Debug\net8.0\FinPay.Domain.dll
+D:\GitHub test\FinPay\Core\FinPay.Application\bin\Debug\net8.0\FinPay.Domain.pdb
+D:\GitHub test\FinPay\Core\FinPay.Application\obj\Debug\net8.0\FinPay.Application.csproj.AssemblyReference.cache
+D:\GitHub test\FinPay\Core\FinPay.Application\obj\Debug\net8.0\FinPay.Application.GeneratedMSBuildEditorConfig.editorconfig
+D:\GitHub test\FinPay\Core\FinPay.Application\obj\Debug\net8.0\FinPay.Application.AssemblyInfoInputs.cache
+D:\GitHub test\FinPay\Core\FinPay.Application\obj\Debug\net8.0\FinPay.Application.AssemblyInfo.cs
+D:\GitHub test\FinPay\Core\FinPay.Application\obj\Debug\net8.0\FinPay.Application.csproj.CoreCompileInputs.cache
+D:\GitHub test\FinPay\Core\FinPay.Application\obj\Debug\net8.0\FinPay.Application.sourcelink.json
+D:\GitHub test\FinPay\Core\FinPay.Application\obj\Debug\net8.0\FinPay.A.BF12074B.Up2Date
+D:\GitHub test\FinPay\Core\FinPay.Application\obj\Debug\net8.0\FinPay.Application.dll
+D:\GitHub test\FinPay\Core\FinPay.Application\obj\Debug\net8.0\refint\FinPay.Application.dll
+D:\GitHub test\FinPay\Core\FinPay.Application\obj\Debug\net8.0\FinPay.Application.pdb
+D:\GitHub test\FinPay\Core\FinPay.Application\obj\Debug\net8.0\ref\FinPay.Application.dll

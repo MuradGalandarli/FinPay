@@ -1,0 +1,113 @@
+name: dockercompose14006975786260146945
+services:
+  finpay.persentetion:
+    build:
+      context: D:\GitHub test\FinPay
+      dockerfile: Persentetion/FinPay.Persentetion/Dockerfile
+    depends_on:
+      postgres:
+        condition: service_started
+        required: true
+      rabbitmq:
+        condition: service_started
+        required: true
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      ASPNETCORE_HTTP_PORTS: "8080"
+      ASPNETCORE_HTTPS_PORTS: "8081"
+      ConnectionStrings__default: Host=postgres;Port=5432;Database=FinPayDb;Username=postgres;Password=Murad3645
+      RabbitMQ__HostName: rabbitmq
+      RabbitMQ__Password: guest
+      RabbitMQ__UserName: guest
+    networks:
+      default: null
+    ports:
+      - mode: ingress
+        target: 8080
+        published: "8080"
+        protocol: tcp
+      - mode: ingress
+        target: 8081
+        published: "8081"
+        protocol: tcp
+      - mode: ingress
+        target: 8080
+        protocol: tcp
+      - mode: ingress
+        target: 8081
+        protocol: tcp
+    volumes:
+      - type: bind
+        source: C:\Users\LENOVO\AppData\Roaming/Microsoft/UserSecrets
+        target: C:\Users\ContainerUser\AppData\Roaming\Microsoft\UserSecrets
+        read_only: true
+        bind:
+          create_host_path: true
+      - type: bind
+        source: C:\Users\LENOVO\AppData\Roaming/ASP.NET/Https
+        target: C:\Users\ContainerUser\AppData\Roaming\ASP.NET\Https
+        read_only: true
+        bind:
+          create_host_path: true
+  nginx:
+    depends_on:
+      finpay.persentetion:
+        condition: service_started
+        required: true
+    image: nginx:alpine
+    networks:
+      default: null
+    ports:
+      - mode: ingress
+        target: 80
+        published: "8082"
+        protocol: tcp
+    volumes:
+      - type: bind
+        source: D:\GitHub test\FinPay\nginx\default.conf
+        target: /etc/nginx/conf.d/default.conf
+        read_only: true
+        bind:
+          create_host_path: true
+  postgres:
+    environment:
+      POSTGRES_DB: FinPayDb
+      POSTGRES_PASSWORD: Murad3645
+      POSTGRES_USER: postgres
+    image: postgres:15
+    networks:
+      default: null
+    ports:
+      - mode: ingress
+        target: 5432
+        published: "5432"
+        protocol: tcp
+    restart: always
+    volumes:
+      - type: volume
+        source: pgdata
+        target: /var/lib/postgresql/data
+        volume: {}
+  rabbitmq:
+    environment:
+      RABBITMQ_DEFAULT_PASS: guest
+      RABBITMQ_DEFAULT_USER: guest
+    image: rabbitmq:3-management
+    networks:
+      default: null
+    ports:
+      - mode: ingress
+        target: 5672
+        published: "5672"
+        protocol: tcp
+      - mode: ingress
+        target: 15672
+        published: "15672"
+        protocol: tcp
+    restart: always
+networks:
+  default:
+    name: dockercompose14006975786260146945_default
+volumes:
+  pgdata:
+    name: dockercompose14006975786260146945_pgdata

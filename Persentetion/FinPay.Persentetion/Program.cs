@@ -1,23 +1,22 @@
-
 using FinPay.Domain.Identity;
 using FinPay.Persistence.Context;
 using FinPay.Persistence.Seeder;
-using FinPay.Presentation.Filters;
+using FinPay.Presentetion.Filters;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using FinPay.Application;
-using FinPay._Infrastructure;
+using FinPay.Infrastructure;
 using FinPay.MessageRetryEngine;
 using FinPay.Persistence;
-using FinPay.SignalR.Hubs;
 using FinPay.SignalR;
 using FinPay.AutoMapper;
 using Serilog;
 using FinPay.Validator;
-using FinPay.Presentation;
+using FinPay.Presentetion;
 using Prometheus;
+using Microsoft.EntityFrameworkCore;
 
 
 namespace FinPay.Persentetion
@@ -89,11 +88,24 @@ namespace FinPay.Persentetion
 
             var app = builder.Build();
 
-            if (app.Environment.IsDevelopment())
+            using (var scope = app.Services.CreateScope())
             {
-                app.UseSwagger();
-                app.UseSwaggerUI();
+                var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+                db.Database.Migrate();
             }
+
+
+            //if (app.Environment.IsDevelopment())
+            //{
+            //    app.UseSwagger();
+            //    app.UseSwaggerUI();
+            //}
+
+            app.UseSwagger();
+                app.UseSwaggerUI();
+            //builder.WebHost.UseUrls("http://*:5290");
+            app.Urls.Add("http://+:5290");
+
 
             app.UseHttpsRedirection();
 

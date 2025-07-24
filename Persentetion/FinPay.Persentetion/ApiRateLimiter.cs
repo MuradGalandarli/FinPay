@@ -1,6 +1,6 @@
 ﻿using System.Threading.RateLimiting;
 
-namespace FinPay.Presentation
+namespace FinPay.Presentetion
 {
     public static class ApiRateLimiter
     {

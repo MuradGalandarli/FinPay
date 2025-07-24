@@ -407,20 +407,13 @@ namespace FinPay.Persistence.Service
             if (user != null)
             {
                 resetToken = resetToken.UrlDecode();
-                try
-                {
+               
                     IdentityResult result = await _userManager.ResetPasswordAsync(user, resetToken, newPassword);
                     if (result.Succeeded)
                         await _userManager.UpdateSecurityStampAsync(user);
                     else
                         throw new PasswordChangeFailedException();
-                }
-                catch(Exception ex)
-                {
-                    Console.WriteLine(ex.Message);
-                }
-                
-                
+             
             }
         }
     }
